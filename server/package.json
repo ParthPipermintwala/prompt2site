@@ -1,0 +1,20 @@
+{
+  "name": "prompt2site-backend",
+  "version": "1.0.0",
+  "description": "Backend service for Prompt2Site",
+  "homepage": "https://github.com/ParthPipermintwala/prompt2site#readme",
+  "bugs": {
+    "url": "https://github.com/ParthPipermintwala/prompt2site/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ParthPipermintwala/prompt2site.git"
+  },
+  "license": "MIT",
+  "author": "parth pipermintwala",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "test": "node --watch server.js"
+  }
+}
