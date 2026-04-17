@@ -1,4 +1,6 @@
 import { Schema } from "mongoose";
+import mongoose from "mongoose";
+import bcrypt from "bcrypt";
 
 const userSchema = new Schema(
   {
@@ -12,6 +14,11 @@ const userSchema = new Schema(
       required: true,
       unique: true,
     },
+    password: {
+      type: String,
+      required: false,
+      pattern: [/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,"Password must be at least 8 characters long and include uppercase, lowercase, number, and special character"], 
+    },
     avatar: {
       type: String,
       default:
@@ -20,7 +27,7 @@ const userSchema = new Schema(
     googleId: {
       type: String,
       unique: true,
-      sparse: true,// Only unique if it exists, allows multiple null values
+      sparse: true, // Only unique if it exists, allows multiple null values
     },
     credits: {
       type: Number,
@@ -33,7 +40,15 @@ const userSchema = new Schema(
       default: "free",
     },
   },
-  { timestamps: true },
+  {
+    strict: "throw",
+    timestamps: true,
+    methods: {
+      verifyPassword(password) {
+        return bcrypt.compare(password, this.password);
+      },
+    },
+  },
 );
 
 const User = mongoose.model("User", userSchema);
