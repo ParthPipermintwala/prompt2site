@@ -14,7 +14,6 @@ html {
   box-sizing: border-box;
 }
 
-/* 🎯 Theme Config */
 @theme inline {
   --font-heading: var(--font-sans);
   --font-sans: "Geist Variable", sans-serif;
@@ -49,7 +48,6 @@ html {
   --radius: 0.75rem;
 }
 
-/* 🌑 DARK THEME (your main UI) */
 :root {
   --background: #120f17;
   --foreground: oklch(0.985 0 0);
@@ -79,7 +77,6 @@ html {
   --ring: oklch(0.556 0 0);
 }
 
-/* (optional) light mode fallback */
 .dark {
   --background: #120f17;
 }
