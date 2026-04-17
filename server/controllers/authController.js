@@ -1,10 +1,13 @@
-import jwt from "jsonwebtoken";
+import bcrypt from "bcrypt";
 import User from "../models/userModel.js";
 import {
   verifyGoogleIdToken,
   loginWithGoogle,
+  generateJWTToken,
+  setTokenCookie,
 } from "../services/authServices.js";
 
+// Handle Google authentication
 export const googleAuth = async (req, res) => {
   try {
     const { idToken } = req.body;
@@ -14,18 +17,8 @@ export const googleAuth = async (req, res) => {
 
     const user = await loginWithGoogle(name, email, picture, googleId);
 
-    // Generate JWT token for the user
-    const jwtToken = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
-      expiresIn: "7d",
-    });
-
-    // Set token in HTTP-only cookie
-    res.cookie("token", jwtToken, {
-      httpOnly: true,
-      secure: false,
-      sameSite: "lax",
-      maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
-    });
+    const jwtToken = await generateJWTToken(user._id);
+    await setTokenCookie(res, jwtToken);
 
     return res.status(200).json({
       message: "Login successful",
@@ -43,6 +36,48 @@ export const googleAuth = async (req, res) => {
   }
 };
 
+// Handle user registration
+export const signup = async (req, res) => {
+  try {
+    const { name, email, password } = req.body;
+
+    // Check if user already exists
+    const existingUser = await User.findOne({ email }).select("_id").lean();
+    if (existingUser) {
+      return res.status(400).json({
+        message: "Email is already registered",
+      });
+    }
+
+    // Hash the password
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    const user = await User.create({
+      name,
+      email,
+      password: hashedPassword,
+    });
+
+    const jwtToken = await generateJWTToken(user._id);
+    await setTokenCookie(res, jwtToken);
+
+    return res.status(201).json({
+      message: "User created successfully",
+      user: {
+        _id: user._id,
+        name: user.name,
+        email: user.email,
+        avatar: user.avatar,
+      },
+    });
+  } catch (error) {
+    return res.status(error.statusCode || 500).json({
+      message: error.message || "User registration failed",
+    });
+  }
+};
+
+// Handle user logout
 export const logout = async (req, res) => {
   try {
     res.clearCookie("token", {
@@ -59,4 +94,3 @@ export const logout = async (req, res) => {
     });
   }
 };
-
