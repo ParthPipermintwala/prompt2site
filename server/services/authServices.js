@@ -1,4 +1,5 @@
 import { OAuth2Client } from "google-auth-library";
+import jwt from "jsonwebtoken";
 import User from "../models/userModel.js";
 
 //Initialize the Google OAuth2 client
@@ -62,4 +63,21 @@ export const loginWithGoogle = async (name, email, picture, googleId) => {
     );
   }
   return user;
+};
+
+export const generateJWTToken = async (userId) => {
+  // Generate JWT token for the user
+  const jwtToken = jwt.sign({ userId}, process.env.JWT_SECRET, {
+    expiresIn: "7d",
+  });
+};
+
+export const setTokenCookie = async (res, jwtToken) => {
+  // Set token in HTTP-only cookie
+  res.cookie("token", jwtToken, {
+    httpOnly: true,
+    secure: false,
+    sameSite: "lax",
+    maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+  });
 };
