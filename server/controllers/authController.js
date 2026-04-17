@@ -40,6 +40,11 @@ export const googleAuth = async (req, res) => {
 export const signup = async (req, res) => {
   try {
     const { name, email, password } = req.body;
+    if (!name || !email || !password) {
+      return res.status(400).json({
+        message: "Name, email, and password are required",
+      });
+    }
 
     // Check if user already exists
     const existingUser = await User.findOne({ email }).select("_id").lean();
@@ -71,7 +76,23 @@ export const signup = async (req, res) => {
       },
     });
   } catch (error) {
-    return res.status(error.statusCode || 500).json({
+    // Handle validation errors from Mongoose schema
+    if (error.name === "ValidationError") {
+      const messages = Object.values(error.errors).map((err) => err.message);
+
+      return res.status(400).json({
+        message: messages[0], // or send all messages
+      });
+    }
+
+    // Handle duplicate key error (e.g., email already exists)
+    if (error.code === 11000) {
+      return res.status(400).json({
+        message: "Email already exists",
+      });
+    }
+
+    return res.status(500).json({
       message: error.message || "User registration failed",
     });
   }
