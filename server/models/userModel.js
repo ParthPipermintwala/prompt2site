@@ -17,6 +17,11 @@ const userSchema = new Schema(
       default:
         "https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y",
     },
+    googleId: {
+      type: String,
+      unique: true,
+      sparse: true,// Only unique if it exists, allows multiple null values
+    },
     credits: {
       type: Number,
       default: 100,
