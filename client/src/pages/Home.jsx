@@ -1,7 +1,7 @@
 import React from "react";
-import Navbar from "@/components/Home/Navbar";
+import Navbar from "@/components/common/Navbar";
 import Herosection from "@/components/Home/Herosection";
-import Footer from "@/components/Home/Footer";
+import Footer from "@/components/common/Footer";
 import Highlightes from "@/components/Home/Highlightes";
 import Loginmodel from "./Loginmodel";
 import { AnimatePresence } from "framer-motion";
