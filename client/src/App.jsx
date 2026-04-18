@@ -1,40 +1,34 @@
 import React from "react";
 import { GoogleOAuthProvider } from "@react-oauth/google";
-import Particles from "./components/animation/Particles";
 import Loader from "./components/common/Loader";
 import { Outlet, useNavigation } from "react-router-dom";
 import "./index.css";
 
+const subscribeToBootState = (callback) => {
+  window.addEventListener("load", callback);
+  return () => window.removeEventListener("load", callback);
+};
+
+const getBootState = () => document.readyState !== "complete";
+
 export default function App() {
   const navigation = useNavigation();
-  const isLoading = navigation.state !== "idle";
+  const isBootLoading = React.useSyncExternalStore(
+    subscribeToBootState,
+    getBootState,
+    () => true,
+  );
+  const isLoading = isBootLoading || navigation.state !== "idle";
 
   return (
     <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
+      {isLoading && <Loader />}
+
       <div
-        className="relative min-h-screen isolate overflow-hidden select-none bg-[#120f17]"
+        className="relative z-10 min-h-screen isolate overflow-hidden select-none bg-[#120f17]"
         onContextMenu={(e) => e.preventDefault()}
       >
-        <div className="fixed inset-0 z-0 pointer-events-none">
-          <Particles
-            particleColors={["#6dbfdf"]}
-            particleCount={450}
-            particleSpread={20}
-            speed={0.4}
-            particleBaseSize={150}
-            moveParticlesOnHover
-            alphaParticles={false}
-            disableRotation={false}
-            pixelRatio={1}
-          />
-        </div>
-        {isLoading ? (
-          <Loader />
-        ) : (
-          <div className="relative z-10">
-            <Outlet />
-          </div>
-        )}
+        <Outlet />
       </div>
     </GoogleOAuthProvider>
   );
