@@ -14,7 +14,7 @@ export default function Home() {
 
       <section className="pt-[30vh] pb-32 px-6 text-center">
         <Motion.h1
-          initial={{ y: 100, opacity: 0 }}
+          initial={{ y: 200, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.5, ease: "easeInOut" }}
           className="text-[8vh] max-md:text-[5vh] font-bold text-[#e1e8ea]  tracking-tight mb-0"
@@ -31,9 +31,9 @@ export default function Home() {
         </Motion.h1>
 
         <Motion.p
-          initial={{ y: 100, opacity: 0 }}
+          initial={{ y: 200, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.2, ease: "linear", delay: 0.2 }}
+          transition={{ duration: 0.3, ease: "linear", delay: 0.2 }}
           className="text-[1.7vh] max-w-2xl max-md:max-w-xl text-[#a0a0a0] mt-5 mx-auto"
         >
           Transform your ideas into reality with the power of artificial
@@ -44,7 +44,7 @@ export default function Home() {
         <Motion.button
           initial={{ x: 2000, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
-          transition={{ duration: 0.4, ease: "easeInOut", delay: 0.2 }}
+          transition={{ duration: 0.3, ease: "easeInOut", delay: 0.3 }}
           className="mt-10 w-[13vw] h-[4vw] max-md:w-[18vh] max-md:h-[6vh] px-2 py-2 font-bold rounded-2xl max-md:rounded-xl text-[3vh] max-md:text-[2.6vh] bg-[#b3d2d6] text-black transition-all duration-300 ease-in-out hover:bg-gradient-to-r hover:from-[#00F5FF] hover:via-[#3B82F6] hover:to-[#8B5CF6] hover:shadow-lg hover:shadow-blue-900/30 hover:scale-102 hover:border-3 hover:border-[#00F5FF]"
         >
           Get Started
@@ -52,7 +52,7 @@ export default function Home() {
       </section>
 
       <section className="max-w-7xl mx-auto px-6 pb-32">
-        <div className="grid  max-md:grid-cols-1 grid-cols-3 gap-10 max-md:gap-5">
+        <div className="grid  max-md:grid-cols-1 grid-cols-3 gap-10 max-md:gap-3">
           {highLights.map((item, index) => {
             return (
               <Motion.div
@@ -75,20 +75,20 @@ export default function Home() {
           })}
         </div>
       </section>
-      <footer className="border-t border-white/10 px-6 text-center text-sm text-zinc-500 flex align-baseline pt-3 justify-between">
-        <div>
-          <p className="mb-2 text-zinc-400">
+      <footer className="border-t border-white/10 px-6 max-md:px-1 text-center text-sm text-zinc-500 flex align-baseline pt-3 justify-between">
+        <div className="max-md:text[2px]">
+          <p className="mb-2 text-zinc-400 max-md:px-0">
             &copy; 2026 prompt2site. All rights reserved.
           </p>
 
-          <p className="mb-4 text-zinc-500">Made by Parth Pipermintwala</p>
+          <p className="mb-4 text-zinc-500 max-md:px-0">Made by Parth Pipermintwala</p>
         </div>
 
         <a
           href="https://github.com/ParthPipermintwala/prompt2site"
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex h-[50px] items-center rounded-full border border-white/10 bg-white/5 px-4 py-2 text-blue-300 transition duration-300 ease-in-out hover:border-cyan-400/40 hover:bg-cyan-400/10 hover:text-cyan-200"
+          className="inline-flex max-md:text[2px] h-[50px] items-center rounded-full border border-white/10 bg-white/5 px-4 py-2 text-blue-300 transition duration-300 ease-in-out hover:border-cyan-400/40 hover:bg-cyan-400/10 hover:text-cyan-200 max-md:px-2 max-md:py-1"
         >
           prompt2site GitHub
         </a>
