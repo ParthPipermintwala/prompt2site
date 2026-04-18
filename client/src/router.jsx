@@ -2,7 +2,7 @@ import { createBrowserRouter, redirect } from "react-router-dom";
 import App from "./App";
 import Home from "./pages/Home";
 import Signup from "./pages/signup";
-import ErrorPage from "./pages/ErrorPage";
+import ErrorPage from "./components/common/ErrorPage";
 import Loginmodel from "./pages/Loginmodel";
 
 const router = createBrowserRouter([
@@ -17,12 +17,8 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "/signin",
+        path: "/login",
         element: <Loginmodel/>,
-      },
-      {
-        path: "/signup",
-        element: <Signup />,
       },
       {
         path: "*",
