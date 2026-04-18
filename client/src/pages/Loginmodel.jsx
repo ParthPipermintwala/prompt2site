@@ -45,15 +45,22 @@ export default function Loginmodel({ isOpen, CloseLogin }) {
                       prompt2site
                     </span>
                   </h2>
-                  <GoogleLogin
+                  <div className="w-full flex items-center justify-center">
+                       <GoogleLogin
                     onSuccess={(credentialResponse) => {
                       console.log(credentialResponse);
                     }}
                     onError={() => {
                       console.log("Login Failed");
                     }}
+                    theme="filled_blue"
+                    size="large"
+                    shape="pill"
+                    text="continue_with"
+                    width="200"
                     useOneTap
                   />
+                  </div>
                 </div>
               </div>
             </Motion.div>
