@@ -9,8 +9,6 @@
 html {
   scroll-behavior: smooth;
   background-color: var(--background);
-  scrollbar-width: thin;
-  scrollbar-color: #120f17 #120f17;
 }
 
 * {
@@ -199,4 +197,84 @@ html {
 }
 .animate-gradient {
   animation: gradient 10s linear infinite;
+}
+
+@keyframes loader-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes loader-spin-reverse {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes loader-orbit {
+  from {
+    transform: translate(-50%, 0) rotate(0deg) translateY(-46px) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, 0) rotate(360deg) translateY(-46px)
+      rotate(-360deg);
+  }
+}
+
+@keyframes loader-pulse {
+  0%,
+  100% {
+    transform: scale(0.92);
+    opacity: 0.72;
+  }
+  50% {
+    transform: scale(1.08);
+    opacity: 1;
+  }
+}
+
+@keyframes loader-float {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.65;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+}
+
+.animate-loader-spin {
+  animation: loader-spin 2.8s linear infinite;
+}
+
+.animate-loader-spin-reverse {
+  animation: loader-spin-reverse 4.2s linear infinite;
+}
+
+.animate-loader-orbit {
+  animation: loader-orbit 2.4s linear infinite;
+}
+
+.animate-loader-orbit-delayed {
+  animation: loader-orbit 2.4s linear infinite 0.4s;
+}
+
+.animate-loader-orbit-slower {
+  animation: loader-orbit 3.3s linear infinite 0.75s;
+}
+
+.animate-loader-pulse {
+  animation: loader-pulse 1.8s ease-in-out infinite;
+}
+
+.animate-loader-float {
+  animation: loader-float 2.8s ease-in-out infinite;
 }
