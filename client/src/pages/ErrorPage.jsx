@@ -1,9 +1,11 @@
-import React from 'react'
-
+import FuzzyText from "@/components/animation/FuzzyText";
+import React from "react";
 export default function ErrorPage() {
   return (
-    <div className='text-7xl flex text-center justify-center h-screen items-center text-white'>
-     ❌ 404 page not found
-    </div>
-  )
+   <div className="w-screen h-screen flex justify-center items-center p-10">
+     <FuzzyText baseIntensity={0.1} hoverIntensity={0.3} enableHover>
+      404 Page Not Found
+    </FuzzyText>
+   </div>
+  );
 }
