@@ -1,39 +1,16 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 140" fill="none" role="img" aria-label="Prompt2Site logo">
   <defs>
-    <linearGradient id="bg" x1="18" y1="16" x2="120" y2="122" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#241a35" />
-      <stop offset="1" stop-color="#0e0b15" />
-    </linearGradient>
-    <linearGradient id="panel" x1="28" y1="30" x2="110" y2="104" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#fbfaff" />
-      <stop offset="1" stop-color="#e4ddff" />
-    </linearGradient>
-    <linearGradient id="accent" x1="38" y1="44" x2="104" y2="92" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#c084fc" />
-      <stop offset="1" stop-color="#8b5cf6" />
-    </linearGradient>
-    <linearGradient id="wordmark" x1="156" y1="54" x2="418" y2="94" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#f8f7ff" />
-      <stop offset="1" stop-color="#cdbdff" />
+    <linearGradient id="wordmark" x1="18" y1="54" x2="420" y2="94" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#f7fdff" />
+      <stop offset="0.55" stop-color="#dff4ff" />
+      <stop offset="1" stop-color="#b8e8ff" />
     </linearGradient>
   </defs>
 
-  <rect x="10" y="10" width="120" height="120" rx="32" fill="url(#bg)" />
-  <rect x="22" y="24" width="96" height="84" rx="22" fill="url(#panel)" />
-  <rect x="22" y="24" width="96" height="20" rx="22" fill="#2b233b" />
-  <circle cx="41" cy="34" r="3.2" fill="#fb7185" />
-  <circle cx="51" cy="34" r="3.2" fill="#fbbf24" />
-  <circle cx="61" cy="34" r="3.2" fill="#34d399" />
-  <rect x="38" y="57" width="40" height="8" rx="4" fill="url(#accent)" />
-  <rect x="38" y="73" width="50" height="6" rx="3" fill="#2b233b" fill-opacity="0.16" />
-  <rect x="38" y="84" width="34" height="6" rx="3" fill="#2b233b" fill-opacity="0.12" />
-  <path d="M91 52L104 65L91 78" stroke="url(#accent)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" />
-  <path d="M74 100C79.5 95.5 84.5 92.5 90.5 90.5" stroke="#ffffff" stroke-opacity="0.18" stroke-width="3.2" stroke-linecap="round" />
-
-  <text x="154" y="72" fill="url(#wordmark)" font-family="Geist, Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="54" font-weight="800" letter-spacing="-1.8">
-    Prompt<tspan fill="#c084fc">2</tspan>Site
+  <text x="18" y="72" fill="url(#wordmark)" font-family="Geist, Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="54" font-weight="800" letter-spacing="-1.8">
+    Prompt<tspan fill="#9edfff">2</tspan>Site
   </text>
-  <text x="156" y="102" fill="#a79bc7" font-family="Geist, Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="18" font-weight="500" letter-spacing="3.2">
+  <text x="20" y="102" fill="#8fbfd2" font-family="Geist, Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="18" font-weight="500" letter-spacing="3.2">
     TURN PROMPTS INTO WEBSITES
   </text>
 </svg>
