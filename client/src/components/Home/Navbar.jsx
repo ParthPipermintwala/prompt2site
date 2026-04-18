@@ -24,12 +24,6 @@ export default function Navbar() {
         >
           Get Started
         </Link>
-        <Link
-          to="#contact"
-          className="text-[#e1e8ea] hover:text-[#13b6f6d9] transition duration-400"
-        >
-          Contact
-        </Link>
       </div>
     </Motion.div>
   );
