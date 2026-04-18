@@ -10,7 +10,7 @@ export default function Navbar({ OpenLogin }) {
       transition={{ duration: 0.5, ease: "easeInOut" }}
       className="fixed inset-0 w-full h-[8vh] flex justify-between items-center px-10 max-md:px-3 cursor-pointer"
     >
-      {/* // Logo */}
+  
       <Link to="/">
         <Motion.img
           whileTap={{ scale: 0.7 }}
@@ -19,24 +19,24 @@ export default function Navbar({ OpenLogin }) {
           className="w-[18vw] max-md:w-[28vh]"
         />
       </Link>
-      {/* // Navigation Links */}
+
       <div className="flex gap-10 max-md:gap-5 text-[2.5vh] max-md:hidden">
         <Motion.div whileTap={{ scale: 0.6 }}>
           <Link
             to="#pricing"
-            className="text-[#e1e8ea] hover:text-[#13b6f6d9] transition duration-400"
+            className="text-[#e1e8ea] hover:text-[#13b6f6d9] transition duration-300"
           >
             Pricing
           </Link>
         </Motion.div>
         <Motion.div whileTap={{ scale: 0.6 }}>
-          <Link
-            to="#services"
-            className="text-[#e1e8ea] hover:text-[#13b6f6d9] transition duration-400"
+          <div
+            
+            className="text-[#e1e8ea] hover:text-[#13b6f6d9] transition duration-300"
             onClick={OpenLogin}
           >
             Get Started
-          </Link>
+          </div>
         </Motion.div>
       </div>
     </Motion.div>
