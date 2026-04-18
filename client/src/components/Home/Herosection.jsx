@@ -16,7 +16,7 @@ export default function Herosection() {
         initial={{ x: -500, opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
         transition={{ duration: 0.5, ease: "easeInOut", delay: 0.1 }}
-        className=" animate-gradient bg-[linear-gradient(90deg,#1540b7_0%,#4F46E5_40%,#A855F7_100%)]  bg-clip-text text-transparent tracking-tight max-md:text-[6vh] max-md:mt-1 font-bold"
+        className=" animate-gradient bg-[linear-gradient(120deg,#645ee4_41%,#4F46E5_40%,#A855F7_60%)] bg-length-[100%] bg-clip-text text-transparent tracking-tight max-md:text-[6vh] max-md:mt-1 font-bold"
       >
         With AI
       </Motion.h1>
@@ -36,7 +36,7 @@ export default function Herosection() {
         initial={{ x: 2000, opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
         transition={{ duration: 0.3, ease: "easeInOut", delay: 0.3 }}
-        className="mt-10 w-[13vw] h-[4vw] max-md:w-[18vh] max-md:h-[6vh] px-2 py-2 font-bold rounded-2xl max-md:rounded-xl text-[3vh] max-md:text-[2.6vh] bg-[#b3d2d6] text-black transition-all duration-300 ease-in-out hover:bg-linear-to-r hover:from-[#00F5FF] hover:via-[#3B82F6] hover:to-[#8B5CF6] hover:shadow-lg hover:shadow-blue-900/30 hover:scale-102 hover:border-3 hover:border-[#00F5FF]"
+        className="mt-10 w-[13vw] h-[4vw] max-lg:w-[18vh] max-lg:h-[6vh] px-2 py-2 font-bold rounded-2xl max-md:rounded-xl text-[3vh] max-md:text-[2.6vh] bg-[#b3d2d6] text-black transition-all duration-300 ease-in-out hover:bg-linear-to-r hover:from-[#00F5FF] hover:via-[#3B82F6] hover:to-[#8B5CF6] hover:shadow-lg hover:shadow-blue-900/30 hover:scale-102 hover:border-3 hover:border-[#00F5FF]"
       >
         Get Started
       </Motion.button>
