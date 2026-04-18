@@ -8,7 +8,7 @@ app.disable("x-powered-by");
 
 app.use(
   cors({
-    origin: process.env.ORIGIN,
+    origin: process.env.ORIGIN||"http://localhost:5173", 
     credentials: true, //allowing cookies to be sent with requests from the frontend
   }),
 );
