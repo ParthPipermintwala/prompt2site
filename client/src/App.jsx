@@ -1,12 +1,16 @@
 import React from "react";
 import Particles from "./components/animation/Particles";
-import { Outlet } from "react-router-dom";
+import Loader from "./components/common/Loader";
+import { Outlet, useNavigation } from "react-router-dom";
 import "./index.css";
 
 export default function App() {
+  const navigation = useNavigation();
+  const isLoading = navigation.state !== "idle";
+
   return (
     <div
-      className="relative min-h-screen isolate overflow-hiddenselect-none"
+      className="relative min-h-screen isolate overflow-hiddenselect-none bg-[#120f17]"
       onContextMenu={(e) => e.preventDefault()}
     >
       <div className="fixed inset-0 z-0 pointer-events-none">
@@ -22,6 +26,9 @@ export default function App() {
           pixelRatio={1}
         />
       </div>
+      {isLoading ? (
+          <Loader />
+      ) : null}
       <div className="relative z-10">
         <Outlet />
       </div>
