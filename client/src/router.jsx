@@ -2,8 +2,8 @@ import { createBrowserRouter, redirect } from "react-router-dom";
 import App from "./App";
 import Home from "./pages/Home";
 import Signup from "./pages/signup";
-import Signin from "./pages/signin";
 import ErrorPage from "./pages/ErrorPage";
+import Loginmodel from "./pages/Loginmodel";
 
 const router = createBrowserRouter([
   {
@@ -18,7 +18,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/signin",
-        element: <Signin />,
+        element: <Loginmodel/>,
       },
       {
         path: "/signup",
