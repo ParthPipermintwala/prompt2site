@@ -6,12 +6,12 @@ import "./index.css";
 export default function App() {
   return (
     <div
-      className="relative min-h-screen isolate overflow-hidden bg-[#120F17] select-none"
+      className="relative min-h-screen isolate overflow-hiddenselect-none"
       onContextMenu={(e) => e.preventDefault()}
     >
       <div className="fixed inset-0 z-0 pointer-events-none">
         <Particles
-          particleColors={["#8FDFFF"]}
+          particleColors={["#6dbfdf"]}
           particleCount={450}
           particleSpread={20}
           speed={0.4}
