@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 export const connectDB = async () => {
   try {
-    await mongoose.connect(process.env.MONGODB_URL);
+    await mongoose.connect(process.env.MONGODB_URL, { dbName: "prompt2siteDB" });
     console.log("MongoDB connected successfully");
   } catch (error) {
     console.error("Error connecting to MongoDB:", error);
