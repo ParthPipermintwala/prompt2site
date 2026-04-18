@@ -1,6 +1,7 @@
 import React from "react";
 import { motion as Motion } from "motion/react";
 import { AnimatePresence } from "framer-motion";
+import { GoogleLogin } from "@react-oauth/google";
 
 export default function Loginmodel({ isOpen, CloseLogin }) {
   return (
@@ -40,9 +41,19 @@ export default function Loginmodel({ isOpen, CloseLogin }) {
                   </h1>
                   <h2 className="text-2xl font-semibold mb-3 space-x-2 text-white">
                     <span>welcome to</span>
-                    <span className="bg-linear-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">prompt2site</span>
+                    <span className="bg-linear-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
+                      prompt2site
+                    </span>
                   </h2>
-                  
+                  <GoogleLogin
+                    onSuccess={(credentialResponse) => {
+                      console.log(credentialResponse);
+                    }}
+                    onError={() => {
+                      console.log("Login Failed");
+                    }}
+                    useOneTap
+                  />
                 </div>
               </div>
             </Motion.div>
