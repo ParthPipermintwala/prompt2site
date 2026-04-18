@@ -1,25 +1,30 @@
 import React from "react";
-import Particles from "./components/Particles";
+import Particles from "./components/animation/Particles";
 import { Outlet } from "react-router-dom";
 import "./index.css";
 
 export default function App() {
   return (
-    <>
-      <div className="absolute top-0 left-0 w-screen h-screen -z-10 bg-[#120F17]">
+    <div
+      className="relative min-h-screen isolate overflow-hidden bg-[#120F17] select-none"
+      onContextMenu={(e) => e.preventDefault()}
+    >
+      <div className="fixed inset-0 z-0 pointer-events-none">
         <Particles
           particleColors={["#8FDFFF"]}
-          particleCount={400}
+          particleCount={450}
           particleSpread={20}
-          speed={0.2}
+          speed={0.4}
           particleBaseSize={150}
           moveParticlesOnHover
           alphaParticles={false}
           disableRotation={false}
-          pixelRatio={2}
+          pixelRatio={1}
         />
       </div>
-      <Outlet />
-    </>
+      <div className="relative z-10">
+        <Outlet />
+      </div>
+    </div>
   );
 }
