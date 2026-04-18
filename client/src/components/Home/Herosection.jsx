@@ -1,7 +1,7 @@
 import React from "react";
 import { motion as Motion } from "motion/react";
 
-export default function Herosection() {
+export default function Herosection({OpenLogin}) {
   return (
     <section className="pt-[30vh] pb-32 px-6 text-center">
       <Motion.h1
@@ -35,8 +35,9 @@ export default function Herosection() {
       <Motion.button
         initial={{ x: 2000, opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
-        transition={{ duration: 0.3, ease: "easeInOut", delay: 0.3 }}
-        className="mt-10 w-[13vw] h-[4vw] max-lg:w-[18vh] max-lg:h-[6vh] px-2 py-2 font-bold rounded-2xl max-md:rounded-xl text-[3vh] max-md:text-[2.6vh] bg-[#b3d2d6] text-black transition-all duration-300 ease-in-out hover:bg-linear-to-r hover:from-[#00F5FF] hover:via-[#3B82F6] hover:to-[#8B5CF6] hover:shadow-lg hover:shadow-blue-900/30 hover:scale-102 hover:border-3 hover:border-[#00F5FF]"
+        transition={{ duration: 0.3, ease: "easeInOut", delay: 0.2 }}
+        onClick={OpenLogin}
+        className="cursor-pointer mt-10 w-[13vw] h-[4vw] max-lg:w-[18vh] max-lg:h-[6vh] px-2 py-2 font-bold rounded-2xl max-md:rounded-xl text-[3vh] max-md:text-[2.6vh] bg-[#b3d2d6] text-black transition-all duration-300 ease-in-out hover:bg-linear-to-r hover:from-[#00F5FF] hover:via-[#3B82F6] hover:to-[#8B5CF6] hover:shadow-lg hover:shadow-blue-900/30 hover:scale-102 hover:border-3 hover:border-[#00F5FF]"
       >
         Get Started
       </Motion.button>
