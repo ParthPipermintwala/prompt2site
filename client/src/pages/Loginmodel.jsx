@@ -27,8 +27,8 @@ export default function Loginmodel({ isOpen, CloseLogin }) {
       <Motion.div
         initial={{ opacity: 0, y: -1000 }}
         animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: -1000 }}
-        transition={{ duration: 0.5, ease: "easeInOut" }}
+        exit={{ opacity: 0, y: 1000 }}
+        transition={{ duration: 0.6, ease: "easeInOut" }}
         className="fixed inset-0 z-50 flex items-center justify-center bg-transparent backdrop-blur-xs px-4"
         onClick={CloseLogin}
       >
@@ -68,6 +68,7 @@ export default function Loginmodel({ isOpen, CloseLogin }) {
               <GoogleLogin
                 onSuccess={(credentialResponse) => {
                   sendCredentialResponse(credentialResponse.credential);
+                  CloseLogin();
                 }}
                 onError={() => {
                   console.log("Login Failed");
