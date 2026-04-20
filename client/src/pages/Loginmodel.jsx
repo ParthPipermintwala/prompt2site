@@ -2,33 +2,31 @@ import React from "react";
 import { motion as Motion } from "motion/react";
 import { GoogleLogin } from "@react-oauth/google";
 import { redirect } from "react-router-dom";
-
-const sendCredentialResponse = async (credential) => {
-  const baseUrl = import.meta.env.VITE_BACKEND_URL;
-  const response = await fetch(`${baseUrl}/api/auth/google`, {
-    method: "POST",
-    credentials: "include",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ idToken: credential }),
-  });
-  const data = await response.json();
-  console.log(data)
-  if (response.status === 200) {
-    redirect("/");
-  }
-};
+import axios from "axios";
 
 export default function Loginmodel({ isOpen, CloseLogin }) {
   if (!isOpen) return null;
+
+  const handleGoogleAuth = async (credential) => {
+    const baseUrl = import.meta.env.VITE_BACKEND_URL;
+    try {
+      const {data}=await axios.post(`${baseUrl}/api/auth/google`, { idToken: credential }, { withCredentials: true });
+      if (data.status === 200) {
+      console.log(data.user)
+      redirect("/");
+    }
+    } catch (error) {
+      console.error("Error during authentication:", error);
+    }
+  };
+
   return (
     <>
       <Motion.div
         initial={{ opacity: 0, y: -1000 }}
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: 1000 }}
-        transition={{ duration: 0.6, ease: "easeInOut" }}
+        transition={{ duration: 0.5, ease: "easeInOut" }}
         className="fixed inset-0 z-50 flex items-center justify-center bg-transparent backdrop-blur-xs px-4"
         onClick={CloseLogin}
       >
@@ -67,7 +65,7 @@ export default function Loginmodel({ isOpen, CloseLogin }) {
             <div className="w-full flex items-center justify-center">
               <GoogleLogin
                 onSuccess={(credentialResponse) => {
-                  sendCredentialResponse(credentialResponse.credential);
+                  handleGoogleAuth(credentialResponse.credential);
                   CloseLogin();
                 }}
                 onError={() => {
