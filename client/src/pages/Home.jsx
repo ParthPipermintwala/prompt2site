@@ -25,7 +25,7 @@ export default function Home() {
           )}
         </AnimatePresence>
       </div>
-      <div className="fixed inset-0 z-0 pointer-events-none">
+      <div className="fixed inset-0 -z-10 pointer-events-none">
         <Particles
           particleColors={["#6dbfdf"]}
           particleCount={450}
