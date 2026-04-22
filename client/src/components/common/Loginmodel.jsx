@@ -20,7 +20,6 @@ export default function Loginmodel({ isOpen, CloseLogin }) {
       );
       if (data.user) {
         dispatch(setUserData(data.user));
-        console.log(data.user);
       }
       if (data.status === 200) {
         redirect("/");

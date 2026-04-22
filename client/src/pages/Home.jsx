@@ -3,7 +3,7 @@ import Navbar from "@/components/common/Navbar";
 import Herosection from "@/components/Home/Herosection";
 import Footer from "@/components/common/Footer";
 import Highlightes from "@/components/Home/Highlightes";
-import Loginmodel from "./Loginmodel";
+import Loginmodel from "../components/common/Loginmodel";
 import { AnimatePresence } from "framer-motion";
 import Particles from "@/components/animation/Particles";
 import useGetCurrentUser from "@/hooks/useGetCurrentUser";
