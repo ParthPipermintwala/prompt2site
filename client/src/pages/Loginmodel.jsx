@@ -10,13 +10,16 @@ export default function Loginmodel({ isOpen, CloseLogin }) {
   const handleGoogleAuth = async (credential) => {
     const baseUrl = import.meta.env.VITE_BACKEND_URL;
     try {
-      const {data}=await axios.post(`${baseUrl}/api/auth/google`, { idToken: credential }, { withCredentials: true });
+      const { data } = await axios.post(
+        `${baseUrl}/api/auth/google`,
+        { idToken: credential },
+        { withCredentials: true },
+      );
       if (data.status === 200) {
-      console.log(data.user)
-      redirect("/");
-    }
+        redirect("/");
+      }
     } catch (error) {
-      console.error("Error during authentication:", error);
+      console.error("Error during authentication:- ", error);
     }
   };
 
