@@ -3,7 +3,6 @@ import "./index.css";
 import { Outlet, useNavigation } from "react-router-dom";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import Loader from "./components/common/Loader";
-import useGetCurrentUser from "./hooks/useGetCurrentUser";
 import { Provider } from "react-redux";
 import { store } from "./app/store";
 
@@ -23,7 +22,6 @@ export default function App() {
   //consider loading when the app is first loaded or when navigating to a new route
   const isLoading = isInitialLoading || navigation.state === "loading";
 
-  useGetCurrentUser();
   return (
     <Provider store={store}>
       <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
