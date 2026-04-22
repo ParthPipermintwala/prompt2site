@@ -16,10 +16,6 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "/login",
-        element: <Loginmodel/>,
-      },
-      {
         path: "*",
         loader: () => redirect("/"),
       },
