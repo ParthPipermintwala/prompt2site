@@ -22,12 +22,7 @@ export const googleAuth = async (req, res) => {
 
     return res.status(200).json({
       message: "Login successful",
-      user: {
-        _id: user._id,
-        name: user.name,
-        email: user.email,
-        avatar: user.avatar,
-      },
+      user,
     });
   } catch (error) {
     return res.status(error.statusCode || 500).json({

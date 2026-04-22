@@ -51,7 +51,7 @@ export const verifyGoogleIdToken = async (idToken) => {
 export const loginWithGoogle = async (name, email, picture, googleId) => {
   // Check if user exists, if not create a new user
   let user = await User.findOne({ googleId })
-    .select("_id name email avatar googleId")
+    .select("-password -googleId")
     .lean();
 
   // If user doesn't exist with googleId, check if there's a user with the same email
