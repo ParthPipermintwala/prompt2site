@@ -6,9 +6,12 @@ import Highlightes from "@/components/Home/Highlightes";
 import Loginmodel from "./Loginmodel";
 import { AnimatePresence } from "framer-motion";
 import Particles from "@/components/animation/Particles";
+import useGetCurrentUser from "@/hooks/useGetCurrentUser";
 
 export default function Home() {
   const [openLogin, setOpenLogin] = React.useState(false);
+  useGetCurrentUser();
+
   return (
     <>
       <div className="max-w-screen max-h-screen overflow-x-hidden transition duration-400 text-7xl">
