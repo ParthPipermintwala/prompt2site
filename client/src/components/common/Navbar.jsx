@@ -3,7 +3,7 @@ import { AnimatePresence, motion as Motion } from "motion/react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { CoinsIcon, LogInIcon } from "lucide-react";
-import Profile from "./Profile";
+import Profile from "../Home/Profile";
 
 export default function Navbar({ OpenLogin }) {
   const { userData } = useSelector((state) => state.user);
