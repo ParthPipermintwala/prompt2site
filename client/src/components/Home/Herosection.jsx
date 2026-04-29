@@ -1,7 +1,11 @@
 import React from "react";
 import { motion as Motion } from "motion/react";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
-export default function Herosection({OpenLogin}) {
+export default function Herosection({ OpenLogin }) {
+  const navigate = useNavigate();
+  const { userData } = useSelector((state) => state.user);
   return (
     <section className="pt-[30vh] pb-32 px-6 text-center">
       <Motion.h1
@@ -36,10 +40,13 @@ export default function Herosection({OpenLogin}) {
         initial={{ x: 2000, opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
         transition={{ duration: 0.3, ease: "easeInOut", delay: 0.2 }}
-        onClick={OpenLogin}
-        className="cursor-pointer mt-10 w-[13vw] h-[4vw] max-md:w-[18vh] max-md:h-[6vh] max-lg:w-[20vh] max-lg:h-[7vh] px-2 py-2 font-bold rounded-2xl max-md:rounded-xl text-[3vh] max-md:text-[2.6vh] bg-[#b3d2d6] text-black transition-all duration-300 ease-in-out hover:bg-linear-to-r hover:from-[#00F5FF] hover:via-[#3B82F6] hover:to-[#8B5CF6] hover:shadow-lg hover:shadow-blue-900/30 hover:scale-102 hover:border-3 hover:border-[#00F5FF]"
+        onClick={() => {
+          if (!userData) OpenLogin();
+          else navigate("/generate");
+        }}
+        className={`cursor-pointer h-[3.5vw] max-xl:h-[7vh] max-xl:text-[3vh]  mt-10 ${userData ? "w-[17vw] max-xl:w-[32vh] text-2xl" : "w-[13vw] text-3xl max-xl:w-[23vh]"} px-1 py-1 font-bold rounded-2xl max-md:rounded-xl  border-2 border-cyan-300/60 bg-gradient-to-r from-[#00F5FF] via-[#3B82F6] to-[#8B5CF6] text-[#1b155b] transition-all duration-300 hover:border-cyan-300 hover:brightness-110 hover:scale-101 hover:font-b`}
       >
-        Get Started
+        {userData ? "Create New Website" : "Get Started"}
       </Motion.button>
     </section>
   );
