@@ -1,7 +1,6 @@
 import { useEffect, useRef } from "react";
 import { Renderer, Camera, Geometry, Program, Mesh } from "ogl";
 
-const defaultColors = ["#ffffff", "#ffffff", "#ffffff"];
 
 const hexToRgb = (hex) => {
   hex = hex.replace(/^#/, "");
@@ -144,7 +143,7 @@ const Particles = ({
     const palette =
       particleColors && particleColors.length > 0
         ? particleColors
-        : defaultColors;
+        : ["#120f17"];
 
     for (let i = 0; i < count; i++) {
       let x, y, z, len;
@@ -243,7 +242,7 @@ const Particles = ({
   ]);
 
   return (
-    <div ref={containerRef} className={`relative w-full h-full ${className}`} />
+    <div ref={containerRef} className={`relative w-full h-full bg-[#120f17] ${className}`} />
   );
 };
 
