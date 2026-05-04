@@ -6,11 +6,15 @@ import Dashboard from "./pages/Dashboard";
 import Genrate from "./pages/Genrate";
 import { store } from "./app/store";
 
-const validateAuth = () => {
-  const userData = store.getState().user.userData;
-  if (!userData) redirect("/");
+function requireAuth() {
+  const user =
+    JSON.parse(localStorage.getItem("user")) || store.getState().user.userData;
+  if (!user) {
+    console.log("here");
+    return redirect("/");
+  }
   return null;
-};
+}
 
 const router = createBrowserRouter([
   {
@@ -25,12 +29,12 @@ const router = createBrowserRouter([
       },
       {
         path: "/dashboard",
-        loader: validateAuth,
+        loader: requireAuth,
         element: <Dashboard />,
       },
       {
         path: "/generate",
-        loader: validateAuth,
+        loader: requireAuth,
         element: <Genrate />,
       },
       {
