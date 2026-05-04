@@ -4,5 +4,7 @@ import { RouterProvider } from "react-router-dom";
 import router from "./router";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <RouterProvider router={router} />,
+  <div className="min-h-screen bg-[#120f17]">
+    <RouterProvider router={router} />
+  </div>,
 );

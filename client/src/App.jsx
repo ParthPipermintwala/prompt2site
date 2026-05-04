@@ -27,7 +27,7 @@ export default function App() {
       <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
         {isLoading && <Loader />}
         <div
-          className="relative z-10 min-h-screen isolate overflow-hidden select-none bg-[#120f17]"
+          className="relative z-10 min-h-screen isolate select-none bg-[#120f17]"
           onContextMenu={(e) => e.preventDefault()}
         >
           <Outlet />
