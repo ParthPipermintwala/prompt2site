@@ -71,7 +71,6 @@ export default function Navbar({ OpenLogin }) {
             >
               <img
                 src={
-                  userData.avatar ||
                   `https://ui-avatars.com/api/?background=7e57c2&color=fff&name=${userData.name}`
                 }
                 alt="no profile"
@@ -81,7 +80,7 @@ export default function Navbar({ OpenLogin }) {
             <AnimatePresence>{openProfile && <Profile />}</AnimatePresence>
           </div>
         )}
-        {!userData && (
+        {!userData && !localStorage.getItem("user") && (
           <div style={{ display: "none" }}>
             <GoogleLogin
               useOneTap
