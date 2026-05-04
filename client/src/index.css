@@ -11,10 +11,14 @@
 }
 html {
   scroll-behavior: smooth;
-  background-color: #120f17;
+  background-color: #120f17 !important;
 }
 body {
   background-color: #120f17;
+}
+#root {
+  background: #120f17;
+  will-change: transform;
 }
 
 @theme inline {
@@ -165,7 +169,8 @@ body {
   }
 
   body {
-    @apply bg-background text-foreground font-sans;
+    background-color: #120f17 !important;
+    color: white;
     margin: 0;
     min-width: 100vw;
   }
