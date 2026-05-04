@@ -4,10 +4,13 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { CoinsIcon, LogInIcon } from "lucide-react";
 import Profile from "../Home/Profile";
+import { GoogleLogin } from "@react-oauth/google";
+import useAuth from "@/hooks/useAuth";
 
 export default function Navbar({ OpenLogin }) {
   const { userData } = useSelector((state) => state.user);
   const [openProfile, setOpenProfile] = useState(false);
+  const { handleGoogleAuth } = useAuth();
 
   return (
     <Motion.div
@@ -56,7 +59,7 @@ export default function Navbar({ OpenLogin }) {
               className="flex items-center text-[#e1e8ea] hover:bg-[#034b68d1] transition duration-200 max-md:text-sm text-[20px] bold border-2 border-[#13b6f6d9] px-2 py-1.5 rounded-xl bg-[#13b6f6d9]/20  max-md:py-1 max-md:mt-2"
               onClick={OpenLogin}
             >
-              <LogInIcon size={23} className="inline-block mr-2"/>
+              <LogInIcon size={23} className="inline-block mr-2" />
               Get Started
             </div>
           </Motion.div>
@@ -76,6 +79,19 @@ export default function Navbar({ OpenLogin }) {
               />
             </Motion.div>
             <AnimatePresence>{openProfile && <Profile />}</AnimatePresence>
+          </div>
+        )}
+        {!userData && (
+          <div style={{ display: "none" }}>
+            <GoogleLogin
+              useOneTap
+              onSuccess={(credentialResponse) => {
+                handleGoogleAuth(credentialResponse.credential);
+              }}
+              onError={() => {
+                console.log("Login Failed");
+              }}
+            />
           </div>
         )}
       </div>
