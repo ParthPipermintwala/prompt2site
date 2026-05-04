@@ -6,13 +6,15 @@
 /* Enable dark mode */
 @custom-variant dark (&:is(.dark *));
 
-html {
-  scroll-behavior: smooth;
-  background-color: var(--background);
-}
-
 * {
   box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+  background-color: #120f17;
+}
+body {
+  background-color: #120f17;
 }
 
 @theme inline {
