@@ -1,33 +1,11 @@
 import React from "react";
-import axios from "axios";
 import { motion as Motion } from "motion/react";
 import { GoogleLogin } from "@react-oauth/google";
-import { redirect } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { setUserData } from "@/features/user/userSlice";
+import useAuth from "@/hooks/useAuth";
 
 export default function Loginmodel({ isOpen, CloseLogin }) {
-  const dispatch = useDispatch();
+  const { handleGoogleAuth } = useAuth();
   if (!isOpen) return null;
-
-  const handleGoogleAuth = async (credential) => {
-    const baseUrl = import.meta.env.VITE_BACKEND_URL;
-    try {
-      const { data } = await axios.post(
-        `${baseUrl}/api/auth/google`,
-        { idToken: credential },
-        { withCredentials: true },
-      );
-      if (data.user) {
-        dispatch(setUserData(data.user));
-      }
-      if (data.status === 200) {
-        redirect("/");
-      }
-    } catch (error) {
-      console.error("Error during authentication:- ", error);
-    }
-  };
 
   return (
     <>
