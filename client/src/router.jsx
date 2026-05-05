@@ -4,11 +4,9 @@ import Home from "./pages/Home";
 import ErrorPage from "./components/common/ErrorPage";
 import Dashboard from "./pages/Dashboard";
 import Genrate from "./pages/Genrate";
-import { store } from "./app/store";
 
 function requireAuth() {
-  const user =
-    JSON.parse(localStorage.getItem("user")) || store.getState().user.userData;
+  const user =JSON.parse(localStorage.getItem("user"));
   if (!user) {
     console.log("here");
     return redirect("/");
