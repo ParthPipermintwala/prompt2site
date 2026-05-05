@@ -3,9 +3,18 @@ import { motion as Motion } from "motion/react";
 
 export default function Highlightes() {
   const highLights = [
-    "AI Genrated Code",
-    "Fully Responsive Layout",
-    "Production Reday Output",
+    [
+      "AI Generated Code",
+      "prompt2site builds real websites - clean code, animation ,responsive design and scalable structure",
+    ],
+    [
+      "Fully Responsive Layout",
+      "prompt2site ensures your website looks great on all devices, from desktops to smartphones.",
+    ],
+    [
+      "Production Ready Output",
+      "prompt2site delivers production-ready websites that are optimized for performance and scalability.",
+    ],
   ];
   return (
     <section className="max-w-7xl mx-auto px-6 pb-32">
@@ -22,11 +31,8 @@ export default function Highlightes() {
               }}
               className="rounded-2xl bg-white/8 border border-white/10 p-8 mb-5"
             >
-              <h1 className="text-xl font-semibold mb-3">{item}</h1>
-              <p className="text-sm text-zinc-400">
-                prompt2site builds real websites - clean code, animation ,
-                responsive design and scalable structure{" "}
-              </p>
+              <h1 className="text-xl font-semibold mb-3">{item[0]}</h1>
+              <p className="text-sm text-zinc-400">{item[1]}</p>
             </Motion.div>
           );
         })}
