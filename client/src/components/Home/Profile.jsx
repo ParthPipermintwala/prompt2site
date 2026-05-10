@@ -49,9 +49,9 @@ export default function Profile() {
           Dashboard
         </Motion.button>
         <Motion.button
-          initial={{ y: 100, opacity: 0 }}
+          initial={{ y: 150, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          exit={{ y: -100, opacity: 0 }}
+          exit={{ y: -150, opacity: 0 }}
           transition={{ duration: 0.2, ease: "easeInOut", delay: 0.15 }}
           className="cursor-pointer w-full text-left px-4 py-2 text-red-400 hover:bg-white/5 max-md:text-sm text-lg"
           onClick={handleLogout}
