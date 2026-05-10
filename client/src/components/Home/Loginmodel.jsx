@@ -51,8 +51,8 @@ export default function Loginmodel({ isOpen, CloseLogin }) {
 
             <div className="w-full flex items-center justify-center">
               <GoogleLogin
-                onSuccess={(credentialResponse) => {
-                  handleGoogleAuth(credentialResponse.credential);
+                onSuccess={async (credentialResponse) => {
+                  await handleGoogleAuth(credentialResponse.credential);
                   CloseLogin();
                 }}
                 onError={() => {
