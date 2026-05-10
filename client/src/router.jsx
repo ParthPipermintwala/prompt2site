@@ -7,11 +7,10 @@ import Genrate from "./pages/Genrate";
 
 function requireAuth() {
   const user =JSON.parse(localStorage.getItem("user"));
-  if (!user) {
-    console.log("here");
-    return redirect("/");
+  if (user) {
+    return;
   }
-  return null;
+  return redirect("/");
 }
 
 const router = createBrowserRouter([
