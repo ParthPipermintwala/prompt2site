@@ -26,8 +26,21 @@ const useAuth = () => {
       console.error("Error during authentication:- ", error);
     }
   };
+
+  const handleLogout = async () => {
+    try {
+      const baseurl = import.meta.env.VITE_BACKEND_URL;
+      await axios.get(`${baseurl}/api/auth/logout`, {
+        withCredentials: true,
+      });
+      window.location.reload();
+    } catch (error) {
+      console.error("Logout failed:", error);
+    }
+  };
   return {
     handleGoogleAuth,
+    handleLogout,
   };
 };
 export default useAuth;
