@@ -17,7 +17,7 @@ export default function Navbar({ OpenLogin }) {
       initial={{ y: -70, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5, ease: "easeInOut" }}
-      className="fixed inset-0 w-full h-[8vh] flex justify-between items-center px-10 max-md:px-2 cursor-pointer "
+      className="fixed inset-0 w-full h-[8vh] flex justify-between items-center px-10 max-md:px-2 cursor-pointer backdrop-blur-lg  bg-transparent "
     >
       <Link to="/">
         <Motion.img
@@ -84,6 +84,7 @@ export default function Navbar({ OpenLogin }) {
           <div style={{ display: "none" }}>
             <GoogleLogin
               useOneTap
+              auto_select
               onSuccess={(credentialResponse) => {
                 handleGoogleAuth(credentialResponse.credential);
               }}
