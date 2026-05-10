@@ -2,23 +2,13 @@ import React from "react";
 import { motion as Motion } from "motion/react";
 import { useSelector } from "react-redux";
 import { LayoutDashboard, LogOut } from "lucide-react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import useAuth from "@/hooks/useAuth";
 
 export default function Profile() {
   const navigate = useNavigate();
   const { userData } = useSelector((state) => state.user);
-  const handleLogout = async () => {
-    try {
-      const baseurl = import.meta.env.VITE_BACKEND_URL;
-      await axios.get(`${baseurl}/api/auth/logout`, {
-        withCredentials: true,
-      });
-      window.location.reload();
-    } catch (error) {
-      console.error("Logout failed:", error);
-    }
-  };
+  const { handleLogout } = useAuth();
 
   return (
     <Motion.div
