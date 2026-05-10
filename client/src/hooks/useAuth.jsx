@@ -18,8 +18,6 @@ const useAuth = () => {
       if (data.user) {
         dispatch(setUserData(data.user));
         localStorage.setItem("user", JSON.stringify(data.user));
-      }
-      if (data.status === 200) {
         navigate("/");
       }
     } catch (error) {
@@ -33,6 +31,8 @@ const useAuth = () => {
       await axios.get(`${baseurl}/api/auth/logout`, {
         withCredentials: true,
       });
+      dispatch(setUserData(null));
+      localStorage.removeItem("user");
       window.location.reload();
     } catch (error) {
       console.error("Logout failed:", error);
