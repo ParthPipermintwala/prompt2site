@@ -1,8 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion as Motion } from "motion/react";
 import Navbar from "@/components/Generate/Navbar";
+import axios from "axios";
 
 export default function Generate() {
+  const [prompt, setPrompt] = useState("");
+  const handlegenerate = async () => {
+    try {
+      const result = await axios.post(
+        `${import.meta.env.VITE_BACKEND_URL}/api/website/generate`,
+        { prompt },
+        {
+          withCredentials: true,
+        },
+      );
+      console.log(result.data);
+    } catch (error) {
+      console.error("Error generating website:", error);
+    }
+  };
   return (
     <div>
       <Navbar />
@@ -38,10 +54,10 @@ export default function Generate() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.4, delay: 0.2, ease: "easeInOut" }}
-              name="website-description"
-              id="website-description"
               placeholder="Describe your website in detail..."
               className="w-full h-35 max-md:h-24 p-4 mb-5 rounded-2xl overflow-y-scroll hide-scrollbar bg-[#0c0a0f] border border-white/10 outline-none resize-none text-[16px] leading-relaxed focus:ring-1 focus:ring-white/30 "
+              value={prompt}
+              onChange={(e) => setPrompt(e.target.value)}
             ></Motion.textarea>
           </div>
           <Motion.div
@@ -54,6 +70,7 @@ export default function Generate() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.9 }}
               className="cursor-pointer px-5 py-2 rounded-2xl font-semibold bg-white text-black text-lg"
+              onClick={handlegenerate}
             >
               Generate Website
             </Motion.button>
