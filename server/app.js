@@ -4,6 +4,7 @@ import cookieParser from "cookie-parser";
 import { authMiddleware } from "./middlewares/authMiddleware.js";
 import authRouter from "./routes/authRoutes.js";
 import userRouter from "./routes/userRoute.js";
+import websiteRouter from "./routes/websiteRoutes.js";
 
 const app = express();
 app.disable("x-powered-by");
@@ -20,7 +21,7 @@ app.use(express.json());
 //Routing
 app.use("/api/auth",authRouter);
 app.use("/api/user",authMiddleware,userRouter);
-
+app.use("/api/website",authMiddleware,websiteRouter);
 //global error handling middleware
 app.use((err, req, res, next) => {
    res.status(err.status || 500).json({ message: "something went wrong" });
