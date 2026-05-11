@@ -4,13 +4,13 @@ import { FaGithub } from "react-icons/fa";
 
 export default function Footer() {
   return (
-    <footer className="border-t border-white/10 px-6 max-md:px-0 text-center text-sm text-zinc-500 flex align-baseline pt-3 justify-between">
+    <footer className="border-t border-white/10 px-6 max-md:px-0 text-center text-sm text-zinc-500 flex align-baseline pt-3 justify-between ">
       <div className="max-md:text-[12px]">
         <Motion.p
           initial={{ opacity: 0, scale: 0 }}
           whileInView={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.2, ease: "easeInOut" }}
-          className="mb-1 text-zinc-400 max-md:px-1"
+          className="mb-0 text-zinc-400 max-md:px-1"
         >
           &copy; {new Date().getFullYear()} prompt2site. All rights reserved.
         </Motion.p>
@@ -35,7 +35,7 @@ export default function Footer() {
         rel="noopener noreferrer"
         className="inline-flex max-md:text-[12px] h-[5vh] max-md:h-[6vh] items-center rounded-full border border-white/10 bg-white/5 px-4 py-2 text-blue-300 transition duration-300 ease-in-out hover:border-cyan-400/40 hover:bg-cyan-400/10 hover:text-cyan-200 max-md:px-2 max-md:py-1"
       >
-        <FaGithub size={24} className="mr-2 max-md:mr-0"/>
+        <FaGithub size={24} className="mr-2 max-md:mr-0.5"/>
          prompt2site GitHub
       </Motion.a>
     </footer>
