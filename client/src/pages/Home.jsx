@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Herosection from "@/components/Home/Herosection";
 import Footer from "@/components/common/Footer";
 import Highlightes from "@/components/Home/Highlightes";
@@ -9,13 +9,23 @@ import useGetCurrentUser from "@/hooks/useGetCurrentUser";
 import Navbar from "@/components/Home/Navbar";
 
 export default function Home() {
-  const [openLogin, setOpenLogin] = React.useState(false);
+  const [openLogin, setOpenLogin] = useState(false);
+  const [openProfile, setOpenProfile] = useState(false);
   useGetCurrentUser();
 
   return (
     <>
-      <div className="max-w-screen max-h-screen overflow-x-hidden transition duration-400 text-7xl">
-        <Navbar OpenLogin={() => setOpenLogin(true)} />
+      <div
+        onClick={() => {
+          setOpenProfile(false);
+        }}
+        className="max-w-screen max-h-screen overflow-x-hidden transition duration-400 text-7xl"
+      >
+        <Navbar
+          OpenLogin={() => setOpenLogin(true)}
+          SetProfile={() => setOpenProfile(!openProfile)}
+          isOpenProfile={openProfile}
+        />
         <Herosection OpenLogin={() => setOpenLogin(true)} />
         <Highlightes />
         <Footer />
