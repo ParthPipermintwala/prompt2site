@@ -39,7 +39,7 @@ export default function Navbar() {
               whileTap={{ scale: 0.9 }}
               src="/logo.svg"
               alt="logo"
-              className="w-[14vw] max-md:w-[24vh]"
+              className="w-[14vw] max-md:w-[28vh]"
             />
           </Link>
         </div>
