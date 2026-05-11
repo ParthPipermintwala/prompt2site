@@ -11,7 +11,7 @@ export default function Navbar() {
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: -100, opacity: 0 }}
           transition={{ duration: 0.3, ease: "easeInOut" }}
-          className="sticky top-0 z-40 backdrop-blur-xl bg-black/50 border-b-3 border-white/10"
+          className="sticky top-0 z-40 backdrop-blur-xl bg-[#0c0a0f] border-b-1 border-white/10"
         >
           <Motion.div
             initial={{ y: -200, opacity: 0 }}
