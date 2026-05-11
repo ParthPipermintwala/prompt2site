@@ -29,7 +29,7 @@ export default function Highlightes() {
                 duration: 0.5,
                 ease: "easeInOut",
               }}
-              className="rounded-2xl bg-white/8 border border-white/10 p-8 mb-5"
+              className="rounded-2xl bg-white/8 border border-white/10 p-4 mb-5"
             >
               <h1 className="text-xl font-semibold mb-3">{item[0]}</h1>
               <p className="text-sm text-zinc-400">{item[1]}</p>
