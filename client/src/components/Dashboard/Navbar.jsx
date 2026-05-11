@@ -35,7 +35,7 @@ export default function Navbar() {
               </Motion.div>
               <h1  className="text-lg font-semibold">DashBoard</h1>
             </div>
-            <button className="cursor-pointer px-2 py-1 rounded-lg bg-white text-black text-sm font-semibold hover:scale-105 transition mr-5 max-md:mr-0">
+            <button onClick={()=>{Navigate("/generate")}} className="cursor-pointer px-2 py-1 rounded-lg bg-white text-black text-sm font-semibold hover:scale-105 transition mr-5 max-md:mr-0">
               <span className="font-bold text-lg">+</span> New Website
             </button>
           </Motion.div>
