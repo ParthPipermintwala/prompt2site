@@ -3,7 +3,7 @@ import App from "./App";
 import Home from "./pages/Home";
 import ErrorPage from "./components/common/ErrorPage";
 import Dashboard from "./pages/Dashboard";
-import Genrate from "./pages/Genrate";
+import Generate from "./pages/Generate";
 
 function requireAuth() {
   const user =JSON.parse(localStorage.getItem("user"));
@@ -32,7 +32,7 @@ const router = createBrowserRouter([
       {
         path: "/generate",
         loader: requireAuth,
-        element: <Genrate />,
+        element: <Generate />,
       },
       {
         path: "*",
