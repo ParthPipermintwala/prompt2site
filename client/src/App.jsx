@@ -8,18 +8,16 @@ import { store } from "./app/store";
 
 export default function App() {
   const navigation = useNavigation();
-  //only for first load
   const [isInitialLoading, setIsInitialLoading] = useState(true);
 
   useEffect(() => {
-    const handleLoad = () => setIsInitialLoading(false);
+    const timer = setTimeout(() => {
+      setIsInitialLoading(false);
+    }, 0);
 
-    window.addEventListener("load", handleLoad);
-
-    return () => window.removeEventListener("load", handleLoad);
+    return () => clearTimeout(timer);
   }, []);
 
-  //consider loading when the app is first loaded or when navigating to a new route
   const isLoading = isInitialLoading || navigation.state === "loading";
 
   return (
