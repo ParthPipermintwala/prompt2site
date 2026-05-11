@@ -1,5 +1,5 @@
 import express from "express";
-import { generatewebsite } from "../controllers/websiteController";
+import { generatewebsite } from "../controllers/websiteController.js";
 
 const router = express.Router();
 
