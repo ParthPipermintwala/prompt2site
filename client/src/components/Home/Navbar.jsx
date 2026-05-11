@@ -20,10 +20,10 @@ export default function Navbar({ OpenLogin, SetProfile, isOpenProfile }) {
     >
       <Link to="/">
         <Motion.img
-          whileTap={{ scale: 0.7 }}
+          whileTap={{ scale: 0.9 }}
           src="/logo.svg"
           alt="logo"
-          className="w-[18vw] max-md:w-[28vh] mt-3"
+          className="w-[18vw] max-md:w-[28vh] "
         />
       </Link>
 
@@ -34,7 +34,7 @@ export default function Navbar({ OpenLogin, SetProfile, isOpenProfile }) {
         >
           <Link
             to="#pricing"
-            className="text-[#e1e8ea] hover:text-[#915ecf] hover:brightness-125 transition duration-200"
+            className="text-[#e1e8ea] hover:text-cyan-400 hover:brightness-125 transition duration-200"
           >
             Pricing
           </Link>
