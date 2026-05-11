@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { AnimatePresence, motion as Motion } from "motion/react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -7,9 +7,8 @@ import Profile from "../Home/Profile";
 import { GoogleLogin } from "@react-oauth/google";
 import useAuth from "@/hooks/useAuth";
 
-export default function Navbar({ OpenLogin }) {
+export default function Navbar({ OpenLogin, SetProfile, isOpenProfile }) {
   const { userData } = useSelector((state) => state.user);
-  const [openProfile, setOpenProfile] = useState(false);
   const { handleGoogleAuth } = useAuth();
 
   return (
@@ -35,7 +34,7 @@ export default function Navbar({ OpenLogin }) {
         >
           <Link
             to="#pricing"
-            className="text-[#e1e8ea] hover:text-[#13b6f6d9] transition duration-200"
+            className="text-[#e1e8ea] hover:text-[#915ecf] hover:brightness-125 transition duration-200"
           >
             Pricing
           </Link>
@@ -67,17 +66,18 @@ export default function Navbar({ OpenLogin }) {
           <div>
             <Motion.div
               whileTap={{ scale: 0.8 }}
-              onClick={() => setOpenProfile(!openProfile)}
+              onClick={(e) => {
+                e.stopPropagation();
+                SetProfile();
+              }}
             >
               <img
-                src={
-                  `https://ui-avatars.com/api/?background=7e57c2&color=fff&name=${userData.name}`
-                }
+                src={`https://ui-avatars.com/api/?background=7e57c2&color=fff&name=${userData.name}`}
                 alt="no profile"
                 className="w-10 h-10 max-md:w-9 max-md:h-9 rounded-full border-white/20 object-cover border-1"
               />
             </Motion.div>
-            <AnimatePresence>{openProfile && <Profile />}</AnimatePresence>
+            <AnimatePresence>{isOpenProfile && <Profile />}</AnimatePresence>
           </div>
         )}
         {!userData && !localStorage.getItem("user") && (
