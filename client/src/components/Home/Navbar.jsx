@@ -23,7 +23,7 @@ export default function Navbar({ OpenLogin, SetProfile, isOpenProfile }) {
           whileTap={{ scale: 0.9 }}
           src="/logo.svg"
           alt="logo"
-          className="w-[18vw] max-md:w-[28vh] "
+          className="w-[18vw] max-xl:w-[28vh] "
         />
       </Link>
 
