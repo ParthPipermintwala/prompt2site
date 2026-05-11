@@ -7,12 +7,12 @@ export default function Herosection({ OpenLogin }) {
   const navigate = useNavigate();
   const { userData } = useSelector((state) => state.user);
   return (
-    <section className="pt-[30vh] pb-32 px-6 text-center">
+    <section className="pt-[30vh] pb-32 px-6 max-md:px-2 text-center">
       <Motion.h1
         initial={{ y: 200, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5, ease: "easeInOut" }}
-        className="text-[8vh] max-md:text-[5vh] font-bold text-[#e1e8ea]  tracking-tight mb-0"
+        className="text-[8vh] max-md:text-[4vh] font-bold text-[#e1e8ea]  tracking-tight mb-0"
       >
         Building Stunning Websites
       </Motion.h1>
@@ -20,7 +20,7 @@ export default function Herosection({ OpenLogin }) {
         initial={{ x: -500, opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
         transition={{ duration: 0.5, ease: "easeInOut", delay: 0.1 }}
-        className=" animate-gradient bg-[linear-gradient(120deg,#645ee4_41%,#4F46E5_40%,#A855F7_60%)] bg-length-[100%] bg-clip-text text-transparent tracking-tight max-md:text-[6vh] max-md:mt-1 font-bold"
+        className=" animate-gradient bg-[linear-gradient(120deg,#645ee4_41%,#4F46E5_40%,#A855F7_60%)] bg-length-[100%] bg-clip-text text-transparent tracking-tight max-md:text-[5vh] max-md:mt-1 font-bold"
       >
         With AI
       </Motion.h1>
@@ -29,7 +29,7 @@ export default function Herosection({ OpenLogin }) {
         initial={{ y: 200, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.3, ease: "linear", delay: 0.2 }}
-        className="text-[1.7vh] max-w-2xl max-md:max-w-xl text-[#a0a0a0] mt-5 mx-auto max-md:text-[2.1vh]"
+        className="text-[1.7vh] leading-5 max-w-2xl max-md:max-w-xl text-[#a0a0a0] mt-5 mx-auto max-md:text-[2.1vh]"
       >
         Transform your ideas into reality with the power of artificial
         intelligence. Our AI-driven website builder creates websites in minutes.
