@@ -20,10 +20,22 @@ export default function Generate() {
             </span>
           </h1>
           <p className="text-zinc-400 max-w-2xl mx-auto max-md:text-[12px]">
-            This Process May Take Several Minutes.
-            prompt2site focuses on quality, not shortcuts.
+            This Process May Take Several Minutes. prompt2site focuses on
+            quality, not shortcuts.
           </p>
         </Motion.div>
+        <div className="mb-14">
+          <h1 className="text-xl font-semibold mb-2">Describe Your Website</h1>
+          <div className="relative">
+            <textarea
+              name="website-description"
+              id="website-description"
+              placeholder="Describe your website in detail..."
+              className="w-full h-35 max-md:h-24 p-6 rounded-2xl overflow-y-scroll hide-scrollbar bg-[#0c0a0f] border border-white/10 outline-none resize-none text-sm leading-relaxed focus:ring-1 focus:ring-white/30 transition duration-300"
+            >
+            </textarea>
+          </div>
+        </div>
       </div>
     </div>
   );
