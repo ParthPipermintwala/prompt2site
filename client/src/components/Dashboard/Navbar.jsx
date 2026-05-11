@@ -20,7 +20,7 @@ export default function Navbar() {
             transition={{ duration: 0.5, ease: "easeInOut" }}
             className="mx-auto px-3 h-16 flex items-center justify-between"
           >
-            <div className="flex items-center gap-8 max-md:gap-2">
+            <div className="flex items-center gap-10 max-md:gap-4">
               <Motion.div whileTap={{ scale: 0.6 }}>
                 {" "}
                 <Motion.button
