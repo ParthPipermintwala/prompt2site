@@ -1,7 +1,6 @@
-const openRouterUrl = process.env.OPENROUTER_URL;
-const model = process.env.MODEL;
-
-const genrateResponse = async (prompt) => {
+const generateResponse = async (prompt) => {
+  const openRouterUrl = process.env.OPENROUTER_URL;
+  const model = process.env.MODEL;
   const response = await fetch(openRouterUrl, {
     method: "POST",
     headers: {
@@ -35,10 +34,11 @@ const genrateResponse = async (prompt) => {
       temperature: 0.2,
     }),
   });
-  if(!response.ok){
-    const err=await response.text()
-    throw new Error(`OpenRouter API error: ${err}`)
+  if (!response.ok) {
+    const err = await response.text();
+    throw new Error(`OpenRouter API error: ${err}`);
   }
   const data = await response.json();
-    return data;
+  return data.choices[0].message.content;
 };
+export default generateResponse;
