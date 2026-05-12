@@ -4,6 +4,6 @@ import { generatewebsite, getWebsites } from "../controllers/websiteController.j
 const router = express.Router();
 
 router.post("/generate", generatewebsite);
-router.get("/websites/:id", getWebsites);
+router.get("/websiteData/:id", getWebsites);
 
 export default router;
