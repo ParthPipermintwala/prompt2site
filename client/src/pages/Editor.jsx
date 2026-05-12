@@ -66,7 +66,7 @@ export default function Editor() {
         <div className="h-14 px-4 flex justify-between items-center border-b border-white/10 bg-black/80">
           <span className="text-sm text-zinc-400">Live Preview</span>
           <div className="flex items-center gap-4">
-            <button className="flex items-center gap-2 px-4 py-1 rounded-lg bg-linear-to-r from-indigo-600 to-purple-500 text-[16px] hover:from-indigo-700 hover:to-purple-600 transition-colors duration-300 hover:scale-102">
+            <button className="flex items-center gap-2 px-4 py-1 rounded-lg bg-linear-to-r from-indigo-800 to-purple-600 text-[16px] hover:from-indigo-700 hover:to-purple-600 transition-colors duration-300 hover:scale-102 hover:shadow-lg hover:border-purple-500/50">
               <Rocket size={15} /> Deploy
             </button>
             <button className="p-2">
