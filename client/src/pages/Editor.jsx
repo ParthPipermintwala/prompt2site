@@ -1,7 +1,9 @@
 import FuzzyText from "@/components/animation/FuzzyText";
-import ErrorPage from "@/components/common/ErrorPage";
 import Loader from "@/components/common/Loader";
+import Chat from "@/components/Editor/Chat";
+import Header from "@/components/Editor/Header";
 import axios from "axios";
+import { Code2Icon, Maximize2, Rocket } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
@@ -31,10 +33,6 @@ export default function Editor() {
     handleGetWebsite();
   }, [id]);
 
-  if (!websiteData) {
-    return <Loader message="Loading website data..." />;
-  }
-
   if (error) {
     return (
       <div className="max-w-screen h-screen flex justify-center items-center p-10 overflow-hidden">
@@ -50,11 +48,24 @@ export default function Editor() {
     );
   }
 
+  if (!websiteData) {
+    return <Loader message="Loading website data..." />;
+  }
+
+  console.log(websiteData);
   return (
-    <div className="h-screen w-screen bg-black text-white overflow-hidden">
+    <div className="h-screen w-screen flex gap-2 bg-black text-white overflow-hidden">
       <aside>
-        
+        <Header title={websiteData.title} />
+        <Chat conversations={websiteData.conversations} />
       </aside>
+
+      <div className="h-14 px-4 flex flex-1 justify-between items-center border-b border-white/10 bg-black/80">
+        <span className="text-xs text-zinc-400">Live Preview</span>
+        <button><Rocket size={14} className="inline"/> Deploy</button>
+        <button><Code2Icon size={14}/></button>
+        <button><Maximize2 size={14}/></button>
+      </div>
     </div>
   );
 }
