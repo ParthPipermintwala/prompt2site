@@ -47,14 +47,14 @@ export default function Promptbox() {
           "user",
           JSON.stringify({ ...userData, credits: result.data.creditsLeft }),
         );
-        setLoading(false);
       }
+      setLoading(false);
     } catch (error) {
+      setLoading(false);
       if (error.status === 403) {
         alert(
           "You don't have enough credits to generate a website. Please purchase more credits to continue.",
         );
-        setLoading(false);
         return;
       }
       console.error("Error generating website:", error);
