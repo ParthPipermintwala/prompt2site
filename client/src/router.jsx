@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import ErrorPage from "./components/common/ErrorPage";
 import Dashboard from "./pages/Dashboard";
 import Generate from "./pages/Generate";
+import Editor from "./pages/Editor";
 
 function requireAuth() {
   const user =JSON.parse(localStorage.getItem("user"));
@@ -33,6 +34,11 @@ const router = createBrowserRouter([
         path: "/generate",
         loader: requireAuth,
         element: <Generate />,
+      },
+      {
+        path: "/editor",
+        loader: requireAuth,
+        element: <Editor />,
       },
       {
         path: "*",
