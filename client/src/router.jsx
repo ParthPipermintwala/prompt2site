@@ -36,7 +36,7 @@ const router = createBrowserRouter([
         element: <Generate />,
       },
       {
-        path: "/editor",
+        path: "/editor/:id",
         loader: requireAuth,
         element: <Editor />,
       },
