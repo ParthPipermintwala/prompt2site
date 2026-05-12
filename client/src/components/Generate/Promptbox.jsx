@@ -2,8 +2,12 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import axios from "axios";
 import { motion as Motion } from "motion/react";
+import { useDispatch, useSelector } from "react-redux";
+import { setUserData } from "@/features/user/userSlice";
 
 export default function Promptbox() {
+  const dispatch = useDispatch();
+  const { userData } = useSelector((state) => state.user);
   const [prompt, setPrompt] = useState("");
   const [loading, setLoading] = useState(false);
   const [randomText, setRandomText] = useState("Generating...");
@@ -23,6 +27,7 @@ export default function Promptbox() {
 
     return () => clearInterval(interval);
   }, [loading]);
+
   const handlegenerate = async () => {
     setLoading(true);
     try {
@@ -33,13 +38,25 @@ export default function Promptbox() {
           withCredentials: true,
         },
       );
-      console.log(result.data)
+      if (result.status === 200) {
+        console.log(result.data);
+        dispatch(
+          setUserData({ ...userData, credits: result.data.creditsLeft }),
+        );
+        localStorage.setItem(
+          "user",
+          JSON.stringify({ ...userData, credits: result.data.creditsLeft }),
+        );
+        setLoading(false);
+      }
     } catch (error) {
-        if(error.status === 403){
-            alert("You don't have enough credits to generate a website. Please purchase more credits to continue.");
-            setLoading(false);
-            return;
-        }
+      if (error.status === 403) {
+        alert(
+          "You don't have enough credits to generate a website. Please purchase more credits to continue.",
+        );
+        setLoading(false);
+        return;
+      }
       console.error("Error generating website:", error);
     }
   };
@@ -70,7 +87,7 @@ export default function Promptbox() {
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.9 }}
           disabled={loading}
-          className={`px-5 py-2 rounded-2xl font-semibold bg-white text-black text-lg ${loading ? "cursor-not-allowed" : "cursor-pointer"}`}
+          className={`px-5 py-2 rounded-2xl font-semibold bg-white text-black text-lg ${loading ? "cursor-not-allowed opacity-90" : "cursor-pointer"}`}
           onClick={handlegenerate}
         >
           {loading ? randomText : "Generate Website"}
