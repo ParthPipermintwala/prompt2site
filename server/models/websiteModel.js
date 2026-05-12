@@ -28,7 +28,7 @@ const websiteSchema = new Schema(
         sparse: true, // Only unique if it exists, allows multiple null values
         unique: true,
     },
-    conversation: [{ type: Schema.Types.ObjectId, ref: "Message" }],
+    conversations: [{ type: Schema.Types.ObjectId, ref: "Message" }],
   },
   { timestamps: true, strict: "throw" },
 );

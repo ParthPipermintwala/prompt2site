@@ -53,7 +53,7 @@ export const generatewebsite = async (req, res) => {
       user: user._id,
       title: parsed.website_title,
       latestCode: parsed.code,
-      conversation: [user_conversation._id, ai_conversation._id],
+      conversations: [user_conversation._id, ai_conversation._id],
     });
     user.credits -= 50;
     await user.save();
@@ -75,7 +75,7 @@ export const getWebsites = async (req, res) => {
     const website = await Website.findOne({
       _id: id,
       user: req.user._id,
-    }).populate("conversation");
+    }).populate("conversations");
     if (!website) {
       return res.status(404).json({ message: "Website not found" });
     }
