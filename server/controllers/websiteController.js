@@ -17,12 +17,10 @@ export const generatewebsite = async (req, res) => {
       return res.status(401).json({ message: "Unauthorized" });
     }
     if (user.credits < 50) {
-      return res
-        .status(403)
-        .json({
-          message:
-            "Insufficient credits. 50 credits required to generate a website.",
-        });
+      return res.status(403).json({
+        message:
+          "Insufficient credits. 50 credits required to generate a website.",
+      });
     }
     const finalPrompt = masterprompt.replace("{USER_PROMPT}", prompt);
     let raw = "";
@@ -61,9 +59,30 @@ export const generatewebsite = async (req, res) => {
     await user.save();
     return res
       .status(201)
-      .json({websiteId: website._id, creditsLeft: user.credits });
+      .json({ websiteId: website._id, creditsLeft: user.credits });
   } catch (error) {
-    console.log(error)
-    return res.status(500).json({ message: "An error occurred while generating the website", error: error.message });
+    console.log(error);
+    return res.status(500).json({
+      message: "An error occurred while generating the website",
+      error: error.message,
+    });
+  }
+};
+
+export const getWebsites = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const website = await Website.findOne({
+      _id: id,
+      user: req.user._id,
+    }).populate("conversation");
+    if (!website) {
+      return res.status(404).json({ message: "Website not found" });
+    }
+    return res.status(200).json(website);
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ message: "An error occurred while fetching websites" });
   }
 };
