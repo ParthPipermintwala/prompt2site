@@ -14,7 +14,10 @@ const extractJson = (text) => {
       return null;
     }
 
-    const jsonText = match[0];
+    let jsonText = match[0];
+
+    // Fix invalid escape characters
+    jsonText = jsonText.replace(/\\(?!["\\/bfnrtu])/g, "\\\\");
 
     return JSON.parse(jsonText);
   } catch (error) {
