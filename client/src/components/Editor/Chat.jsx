@@ -7,7 +7,7 @@ export default function Chat({ conversations = [] }) {
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       exit={{ opacity: 0, transition: { duration: 0.1, delay: 0 } }}
-      transition={{ duration: 0.3, delay: 0.2, ease: "easeInOut" }}
+      transition={{ duration: 0.3, delay: 0.1, ease: "easeInOut" }}
       className="flex-1 overflow-y-auto px-2 py-4 space-y-4 "
     >
       {conversations.map((conversation, index) => (
@@ -16,7 +16,7 @@ export default function Chat({ conversations = [] }) {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 20, transition: { duration: 0.1, delay: 0 } }}
-          transition={{ duration: 0.3, delay: 0.2, ease: "easeInOut" }}
+          transition={{ duration: 0.3, delay: 0.1, ease: "easeInOut" }}
           className={`max-w-[80%] flex ${conversation.role === "user" ? "justify-end ml-auto" : "justify-start mr-auto"}`}
         >
           <div
