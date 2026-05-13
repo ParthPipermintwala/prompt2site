@@ -11,7 +11,6 @@ import Header from "@/components/Editor/Header";
 
 export default function Editor() {
   const { id } = useParams();
-  const fetchedRef = useRef(false);
   const iframeRef = useRef(null);
   const [websiteData, setWebsiteData] = useState(null);
   const [chatVisible, setChatVisible] = useState(false);
@@ -20,9 +19,6 @@ export default function Editor() {
 
   useEffect(() => {
     const handleGetWebsite = async () => {
-      if (fetchedRef.current || !id) return;
-      fetchedRef.current = true;
-      if(websiteData != null) return; 
       try {
         const result = await axios.get(
           `${import.meta.env.VITE_BACKEND_URL}/api/website/websiteData/${id}`,
@@ -38,14 +34,20 @@ export default function Editor() {
             "An error occurred while fetching website data.",
         );
       }
-
-      return () => {
-        console.log("EDITOR UNMOUNTED");
-      };
     };
 
     handleGetWebsite();
   }, [id]);
+
+  useEffect(() => {
+    if (!websiteData?.latestCode && !iframeRef.current) return;
+    const blob = new Blob([websiteData.latestCode], { type: "text/html" });
+    const url = URL.createObjectURL(blob);
+    iframeRef.current.src = url;
+    return () => {
+      URL.revokeObjectURL(url);
+    };
+  }, [websiteData]);
 
   if (error) {
     return (
@@ -69,22 +71,22 @@ export default function Editor() {
   return (
     <div className="h-screen w-screen gap-1.5 flex bg-black text-white overflow-hidden p-1 max-lg:p-0">
       <AnimatePresence mode="wait">
-      {chatVisible || chatVisibleBigScreen ? (
-        <Motion.aside
-          initial={{ width: 0 }}
-          whileInView={{ width: "auto" }}
-          exit={{ width: 0 }}
-          transition={{ duration: 0.2, ease: "linear" }}
-          className={`${chatVisible ? "flex flex-col  max-lg:w-screen min-lg:w-[30%]" : "max-lg:hidden"} ${chatVisibleBigScreen ? "min-lg:flex min-lg:flex-col" : "min-lg:hidden"} border border-white/20 rounded-lg overflow-hidden`}
-        >
-          <Header
-            title={websiteData.title}
-            setChatVisible={setChatVisible}
-            setChatVisibleBigScreen={setChatVisibleBigScreen}
-          />
-          <Chat conversations={websiteData.conversations} />
-        </Motion.aside>
-      ) : null}
+        {chatVisible || chatVisibleBigScreen ? (
+          <Motion.aside
+            initial={{ width: 0 }}
+            whileInView={{ width: "auto" }}
+            exit={{ width: 0 }}
+            transition={{ duration: 0.2, ease: "linear" }}
+            className={`${chatVisible ? "flex flex-col  max-lg:w-screen min-lg:w-[30%]" : "max-lg:hidden"} ${chatVisibleBigScreen ? "min-lg:flex min-lg:flex-col" : "min-lg:hidden"} border border-white/20 rounded-lg overflow-hidden`}
+          >
+            <Header
+              title={websiteData.title}
+              setChatVisible={setChatVisible}
+              setChatVisibleBigScreen={setChatVisibleBigScreen}
+            />
+            <Chat conversations={websiteData.conversations} />
+          </Motion.aside>
+        ) : null}
       </AnimatePresence>
 
       <div
