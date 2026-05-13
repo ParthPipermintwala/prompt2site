@@ -91,9 +91,9 @@ export default function Editor() {
         className={`flex-1 flex flex-col border border-white/20 rounded-lg overflow-hidden max-lg:border-0 ${chatVisible ? "max-lg:hidden" : ""}`}
       >
         <Motion.div
-          initial={{ opacity: 0, y: -20 }}
+          initial={{ opacity: 0, y: -40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3, ease: "easeInOut", delay: 0.2 }}
+          transition={{ duration: 0.3, ease: "easeInOut", delay: 0.1 }}
           className="h-14 px-4 flex justify-between items-center border-b border-white/10 bg-black/80"
         >
           <div className="flex items-center gap-4">
@@ -108,7 +108,7 @@ export default function Editor() {
             </button>
             <span className="text-sm text-zinc-300">Live Preview</span>
           </div>
-          <div className="flex items-center gap-2 max-md:gap-0.5">
+          <div className="flex items-center gap-2 max-md:gap-1">
             <button className="cursor-pointer flex items-center gap-2 max-md:px-2  max-md:gap-1 px-4 py-1 rounded-lg bg-linear-to-r from-indigo-800 to-purple-600 text-[16px] hover:from-indigo-700 hover:to-purple-600 transition-colors duration-300 hover:scale-102 hover:shadow-lg hover:border-purple-500/50">
               <Rocket size={15} /> Deploy
             </button>
