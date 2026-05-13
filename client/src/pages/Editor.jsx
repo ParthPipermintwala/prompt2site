@@ -75,7 +75,7 @@ export default function Editor() {
           whileInView={{ width: "auto" }}
           exit={{ width: 0 }}
           transition={{ duration: 0.2, ease: "linear" }}
-          className={`${chatVisible ? "block max-lg:w-screen min-lg:w-[30%]" : "max-lg:hidden"} ${chatVisibleBigScreen ? "min-lg:block" : "min-lg:hidden"} border border-white/20 rounded-lg overflow-hidden`}
+          className={`${chatVisible ? "flex flex-col  max-lg:w-screen min-lg:w-[30%]" : "max-lg:hidden"} ${chatVisibleBigScreen ? "min-lg:flex min-lg:flex-col" : "min-lg:hidden"} border border-white/20 rounded-lg overflow-hidden`}
         >
           <Header
             title={websiteData.title}
