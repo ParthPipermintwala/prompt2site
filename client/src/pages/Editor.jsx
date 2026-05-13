@@ -109,13 +109,13 @@ export default function Editor() {
             <span className="text-sm text-zinc-300">Live Preview</span>
           </div>
           <div className="flex items-center gap-2 max-md:gap-0.5">
-            <button className="flex items-center gap-2 max-md:px-2  max-md:gap-1 px-4 py-1 rounded-lg bg-linear-to-r from-indigo-800 to-purple-600 text-[16px] hover:from-indigo-700 hover:to-purple-600 transition-colors duration-300 hover:scale-102 hover:shadow-lg hover:border-purple-500/50">
+            <button className="cursor-pointer flex items-center gap-2 max-md:px-2  max-md:gap-1 px-4 py-1 rounded-lg bg-linear-to-r from-indigo-800 to-purple-600 text-[16px] hover:from-indigo-700 hover:to-purple-600 transition-colors duration-300 hover:scale-102 hover:shadow-lg hover:border-purple-500/50">
               <Rocket size={15} /> Deploy
             </button>
-            <button className="p-2">
+            <button className="cursor-pointer p-2">
               <Code2Icon size={18} />
             </button>
-            <button>
+            <button className="cursor-pointer">
               <Maximize2 size={18} />
             </button>
           </div>
