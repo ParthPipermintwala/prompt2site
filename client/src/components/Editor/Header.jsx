@@ -12,7 +12,7 @@ export default function Header({
       initial={{ opacity: 0, y: -20 }}
       whileInView={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20, transition: { duration: 0.1, delay: 0 } }}
-      transition={{ duration: 0.3, ease: "easeInOut", delay: 0.2 }}
+      transition={{ duration: 0.3, ease: "easeInOut", delay: 0.1 }}
       className="h-14 px-4 flex items-center justify-between border-b border-white/10"
     >
       <span className="font-semibold truncate">{title}</span>
