@@ -1,62 +1,49 @@
 const extractJson = (text) => {
-  if (!text || typeof text !== "string") return null;
+  if (!text || typeof text !== "string") {
+    return null;
+  }
 
   try {
     // Remove markdown wrappers
     let cleanedText = text
-      .replace(/```json/gi, "")
-      .replace(/```/g, "")
+      .replace("```json", "")
+      .replace("```", "")
       .trim();
 
-    // Extract first valid JSON object
+    // Extract JSON object
     const start = cleanedText.indexOf("{");
     const end = cleanedText.lastIndexOf("}");
 
     if (start === -1 || end === -1) {
-      console.error("No JSON found");
+      console.error("No valid JSON found");
       return null;
     }
 
-    let jsonText = cleanedText.slice(start, end + 1);
+    const jsonText = cleanedText.slice(start, end + 1);
 
-    // Remove invalid control characters
-    jsonText = jsonText.replace(
-      /[\u0000-\u0019]+/g,
-      ""
-    );
-
-    // Fix broken backslashes
-    jsonText = jsonText.replace(
-      /\\(?!["\\/bfnrtu])/g,
-      "\\\\"
-    );
-
-    // Fix escaped template literals
-    jsonText = jsonText
-      .replace(/\\`/g, "`")
-      .replace(/\\\$/g, "$");
-
-    // Try parsing
+    // Parse JSON directly
     return JSON.parse(jsonText);
 
   } catch (error) {
-    console.error(
-      "Error parsing JSON:",
-      error.message
-    );
+    console.error("Error parsing JSON:", error.message);
 
-    // Debug broken location
-    const match = error.message.match(
-      /position (\d+)/
-    );
+    // Debug nearby broken content
+    const match = error.message.match("position ");
 
     if (match) {
-      const pos = Number(match[1]);
+      const posMatch = error.message.match(/\d+/);
 
-      console.log(
-        "Around error:\n",
-        text.slice(pos - 120, pos + 120)
-      );
+      if (posMatch) {
+        const pos = Number(posMatch[0]);
+
+        console.log(
+          "Around error:\n",
+          text.slice(
+            Math.max(0, pos - 120),
+            pos + 120
+          )
+        );
+      }
     }
 
     return null;
