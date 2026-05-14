@@ -17,6 +17,7 @@ export default function Editor() {
   const [chatVisibleBigScreen, setChatVisibleBigScreen] = useState(true);
   const [error, setError] = useState("");
 
+
   useEffect(() => {
     const handleGetWebsite = async () => {
       try {
@@ -77,7 +78,7 @@ export default function Editor() {
             whileInView={{ width: "auto" }}
             exit={{ width: 0 }}
             transition={{ duration: 0.2, ease: "linear" }}
-            className={`${chatVisible ? "flex flex-col  max-lg:w-screen min-lg:w-[30%]" : "max-lg:hidden"} ${chatVisibleBigScreen ? "min-lg:flex min-lg:flex-col" : "min-lg:hidden"} border border-white/20 rounded-lg overflow-hidden`}
+            className={`${chatVisible ? "flex flex-col  max-lg:w-screen min-lg:w-[30%]" : "max-lg:hidden"} ${chatVisibleBigScreen ? "min-lg:flex min-lg:flex-col min-lg:max-w-[40%]" : "min-lg:hidden"} border border-white/20 rounded-lg overflow-hidden`}
           >
             <Header
               title={websiteData.title}
@@ -90,7 +91,7 @@ export default function Editor() {
       </AnimatePresence>
 
       <div
-        className={`flex-1 flex flex-col border border-white/20 rounded-lg overflow-hidden max-lg:border-0 ${chatVisible ? "max-lg:hidden" : ""}`}
+        className={`hide-scrollbar flex-1 flex flex-col border border-white/20 rounded-lg overflow-hidden max-lg:border-0 ${chatVisible ? "max-lg:hidden" : ""}`}
       >
         <Motion.div
           initial={{ opacity: 0, y: -40 }}
@@ -122,7 +123,7 @@ export default function Editor() {
             </button>
           </div>
         </Motion.div>
-        <iframe ref={iframeRef} className="flex-1 w-full bg-white/3" />
+        <iframe ref={iframeRef} className="flex-1 w-full bg-white/3 " />
       </div>
     </div>
   );
