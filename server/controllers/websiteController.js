@@ -1,6 +1,6 @@
 import { readFile } from "fs/promises";
 import generateResponse from "../config/openRouter.js";
-import extractJson from "../services/extractJson.js";
+import extractWebsiteResponse from "../services/extractJson.js";
 import Website from "../models/websiteModel.js";
 import Message from "../models/messageModel.js";
 import User from "../models/userModel.js";
@@ -27,13 +27,13 @@ export const generatewebsite = async (req, res) => {
     let parsed = null;
     for (let i = 0; i < 2 && !parsed; i++) {
       raw = await generateResponse(finalPrompt);
-      parsed = await extractJson(raw);
+      parsed = await extractWebsiteResponse(raw);
       if (!parsed) {
         raw = await generateResponse(
           finalPrompt +
             "\n\nThe previous response was not valid JSON. Please provide only valid JSON without any explanations or markdown.",
         );
-        parsed = await extractJson(raw);
+        parsed = await extractWebsiteResponse(raw);
       }
     }
     if (!parsed.code) {
@@ -51,7 +51,7 @@ export const generatewebsite = async (req, res) => {
     });
     const website = await Website.create({
       user: user._id,
-      title: parsed.website_title,
+      title: parsed.title || "Untitled Website",
       latestCode: parsed.code,
       conversations: [user_conversation._id, ai_conversation._id],
     });
