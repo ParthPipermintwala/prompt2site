@@ -27,7 +27,7 @@ export default function Chat({ conversations = [] }) {
             whileInView={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 80, transition: { duration: 0, delay: 0 } }}
             transition={{ duration: 0.3, delay: 0.1, ease: "easeInOut" }}
-            className={`cursor-text group max-w-[80%] flex gap-1 ${conversation.role === "user" ? "justify-end ml-auto" : "justify-start mr-auto ml-2"}`}
+            className={`cursor-text group max-w-[80%] flex gap-1.5 ${conversation.role === "user" ? "justify-end ml-auto" : "justify-start mr-auto ml-2"}`}
           >
             <div
               dangerouslySetInnerHTML={{
