@@ -1,53 +1,62 @@
-const extractJson = (text) => {
+const extractWebsiteResponse = (text) => {
   if (!text || typeof text !== "string") {
     return null;
   }
 
   try {
-    // Remove markdown wrappers
-    let cleanedText = text
-      .replace("```json", "")
-      .replace("```", "")
-      .trim();
+    const cleaned = text.replace(/\r/g, "").trim();
 
-    // Extract JSON object
-    const start = cleanedText.indexOf("{");
-    const end = cleanedText.lastIndexOf("}");
+    const titleMatch = cleaned.match(/TITLE:\s*([\s\S]*?)\nMESSAGE:/);
 
-    if (start === -1 || end === -1) {
-      console.error("No valid JSON found");
+    const messageMatch = cleaned.match(/MESSAGE:\s*([\s\S]*?)\nCODE:/);
+
+    const codeMatch = cleaned.match(/```html\s*([\s\S]*?)```/);
+
+    let formattedMessage = "";
+
+    if (messageMatch) {
+      const items = messageMatch[1]
+        .split("\n")
+        .map((line) => line.trim())
+        .filter(Boolean)
+        .map((line) => {
+          line = line.replace(/^[-•]\s*/, "");
+
+          return `
+            <li>
+              ${line}
+            </li>
+          `;
+        })
+        .join("");
+
+      formattedMessage = `
+        <ul class="pl-6 text-zinc-200 space-y-1" style="list-style-type: disc;">
+          ${items}
+        </ul>
+      `;
+    }
+
+    const result = {
+      title: titleMatch ? titleMatch[1].trim() : "",
+
+      message: formattedMessage,
+
+      code: codeMatch ? codeMatch[1].trim() : "",
+    };
+
+    // Validate
+    if (!result.code) {
+      console.error("No HTML code found");
       return null;
     }
 
-    const jsonText = cleanedText.slice(start, end + 1);
-
-    // Parse JSON directly
-    return JSON.parse(jsonText);
-
+    return result;
   } catch (error) {
-    console.error("Error parsing JSON:", error.message);
-
-    // Debug nearby broken content
-    const match = error.message.match("position ");
-
-    if (match) {
-      const posMatch = error.message.match(/\d+/);
-
-      if (posMatch) {
-        const pos = Number(posMatch[0]);
-
-        console.log(
-          "Around error:\n",
-          text.slice(
-            Math.max(0, pos - 120),
-            pos + 120
-          )
-        );
-      }
-    }
+    console.error("Error extracting response:", error.message);
 
     return null;
   }
 };
 
-export default extractJson;
+export default extractWebsiteResponse;
