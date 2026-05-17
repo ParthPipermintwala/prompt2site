@@ -51,6 +51,10 @@ export default function Chat({
         latestCode: result.data.latestCode,
       }));
     } catch (e) {
+      setWebsiteData((pre) => ({
+        ...pre,
+        conversations: conversations.slice(0),
+      }));
       setFetching(false);
       errorRef.current.innerText = "* " + e?.response?.data?.message;
       setTimeout(() => {
@@ -186,7 +190,16 @@ export default function Chat({
             className={`${fetching ? "cursor-not-allowed opacity-50" : "cursor-text opacity-100"} hide-scrollbar flex-1 resize-none rounded-2xl px-4 py-3 bg-white/5 border border-white/10 text-sm outline-none focus:ring-[1px] focus:ring-blue-400`}
           ></textarea>
           <button
-            onClick={handleSend}
+            onClick={() => {
+              setWebsiteData((pre) => ({
+                ...pre,
+                conversations: [
+                  ...conversations,
+                  { role: "user", content: prompt },
+                ],
+              }));
+              handleSend();
+            }}
             disabled={fetching}
             className={`${fetching ? "cursor-not-allowed opacity-70" : "cursor-pointer"} mt-1 px-2 py-2 rounded-2xl bg-white text-black  transition duration-200 hover:scale-105`}
           >
