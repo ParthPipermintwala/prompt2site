@@ -146,15 +146,23 @@ export const changeWebsite = async (req, res) => {
     user.credits -= 15;
     await website.save();
     await user.save();
-    return res
-      .status(201)
-      .json({
-        conversations: [user_conversation, ai_conversation],
-        latestCode: parsed.code,
-        creditsLeft: user.credits,
-      });
+    return res.status(201).json({
+      conversations: [user_conversation, ai_conversation],
+      latestCode: parsed.code,
+      creditsLeft: user.credits,
+    });
   } catch (error) {
-    console.log(error);
+    return res
+      .status(500)
+      .json({ message: "An error occurred while saving changes" });
+  }
+};
+
+export const getAll = async (req, res) => {
+  try {
+    const website=await Website.find({user:req.user._id})
+    return res.status(200).json(website)
+  } catch (error) {
     return res
       .status(500)
       .json({ message: "An error occurred while saving changes" });
