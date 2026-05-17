@@ -8,7 +8,8 @@ export default function PreviewHeader({
   setChatVisibleBigScreen,
   chatVisibleBigScreen,
   chatVisible,
-  setShowFullPreview
+  setShowFullPreview,
+  ShowCode,
 }) {
   return (
     <Motion.div
@@ -18,7 +19,9 @@ export default function PreviewHeader({
       className="h-14 px-4 flex justify-between items-center border-b border-white/10 bg-black/80"
     >
       <div className="flex items-center gap-4">
-        <button
+        <Motion.button
+          initial={{ scale: 1 }}
+          whileTap={{ scale: 0.8 }}
           className={`${chatVisibleBigScreen ? "min-lg:hidden" : "min-lg:block"} cursor-pointer `}
           onClick={() => {
             setChatVisible(!chatVisible);
@@ -26,24 +29,35 @@ export default function PreviewHeader({
           }}
         >
           <MessageSquarePlus />
-        </button>
+        </Motion.button>
         <span className="text-sm text-zinc-300">Live Preview</span>
       </div>
       <div className="flex items-center gap-2 max-md:gap-1">
-        <button className="cursor-pointer flex items-center gap-2 max-md:px-2  max-md:gap-1 px-4 py-1 rounded-lg bg-linear-to-r from-indigo-800 to-purple-600 text-[16px] hover:from-indigo-700 hover:to-purple-600 transition-colors duration-300 hover:scale-102 hover:shadow-lg hover:border-purple-500/50">
+        <Motion.button
+          initial={{ scale: 1 }}
+          whileTap={{ scale: 0.8 }}
+          className="cursor-pointer flex items-center gap-2 max-md:px-2  max-md:gap-1 px-4 py-1 rounded-lg bg-linear-to-r from-indigo-800 to-purple-600 text-[16px] hover:from-indigo-700 hover:to-purple-600 transition-colors duration-300 hover:scale-102 hover:shadow-lg hover:border-purple-500/50"
+        >
           <Rocket size={15} /> Deploy
-        </button>
-        <button
+        </Motion.button>
+        <Motion.button
+          initial={{ scale: 1 }}
+          whileTap={{ scale: 0.8 }}
           className="cursor-pointer p-2"
           onClick={() => {
-            setShowCode(true);
+            setShowCode(!ShowCode);
           }}
         >
           <Code2Icon size={18} />
-        </button>
-        <button className="cursor-pointer" onClick={()=>setShowFullPreview(true)}>
+        </Motion.button>
+        <Motion.button
+          initial={{ scale: 1 }}
+          whileTap={{ scale: 0.8 }}
+          className="cursor-pointer"
+          onClick={() => setShowFullPreview(true)}
+        >
           <Maximize2 size={18} />
-        </button>
+        </Motion.button>
       </div>
     </Motion.div>
   );
