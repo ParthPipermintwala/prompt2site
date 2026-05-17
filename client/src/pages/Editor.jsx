@@ -3,11 +3,13 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import { motion as Motion } from "motion/react";
 import { AnimatePresence } from "framer-motion";
-import { Code2Icon, Maximize2, MessageSquarePlus, Rocket } from "lucide-react";
 import FuzzyText from "@/components/animation/FuzzyText";
 import Loader from "@/components/common/Loader";
 import Chat from "@/components/Editor/Chat";
 import Header from "@/components/Editor/Header";
+import PreviewHeader from "@/components/Editor/PreviewHeader";
+import CodeEditor from "@/components/Editor/CodeEditor";
+import { Minimize2 } from "lucide-react";
 
 export default function Editor() {
   const { id } = useParams();
@@ -16,9 +18,11 @@ export default function Editor() {
   const [chatVisible, setChatVisible] = useState(false);
   const [chatVisibleBigScreen, setChatVisibleBigScreen] = useState(true);
   const [error, setError] = useState("");
-    const [prompt, setPrompt] = useState("");
-    const [fetching, setFetching] = useState(false);
-
+  const [prompt, setPrompt] = useState("");
+  const [fetching, setFetching] = useState(false);
+  const [ShowCode, setShowCode] = useState(false);
+  const [ShowFullPreview, setShowFullPreview] = useState(false);
+  const [code, setCode] = useState(websiteData?.latestCode);
 
   useEffect(() => {
     const handleGetWebsite = async () => {
@@ -30,6 +34,7 @@ export default function Editor() {
           },
         );
         setWebsiteData(result.data);
+        setCode(result.data.latestCode)
       } catch (error) {
         console.error("Error fetching website data:", error);
         setError(
@@ -43,14 +48,14 @@ export default function Editor() {
   }, [id]);
 
   useEffect(() => {
-    if(!websiteData?.latestCode) return;
-    const blob = new Blob([websiteData.latestCode], { type: "text/html" });
+    if (!code) return;
+    const blob = new Blob([code], { type: "text/html" });
     const url = URL.createObjectURL(blob);
     iframeRef.current.src = url;
     return () => {
       URL.revokeObjectURL(url);
     };
-  }, [websiteData]);
+  }, [code]);
 
   if (error) {
     return (
@@ -87,7 +92,16 @@ export default function Editor() {
               setChatVisible={setChatVisible}
               setChatVisibleBigScreen={setChatVisibleBigScreen}
             />
-            <Chat conversations={websiteData.conversations} id={id} setWebsiteData={setWebsiteData} setPrompt={setPrompt} prompt={prompt} fetching={fetching} setFetching={setFetching}/>
+            <Chat
+              conversations={websiteData.conversations}
+              id={id}
+              setWebsiteData={setWebsiteData}
+              setPrompt={setPrompt}
+              setCode={setCode}
+              prompt={prompt}
+              fetching={fetching}
+              setFetching={setFetching}
+            />
           </Motion.aside>
         ) : null}
       </AnimatePresence>
@@ -95,38 +109,50 @@ export default function Editor() {
       <div
         className={`hide-scrollbar flex-1 flex flex-col border border-white/20 rounded-lg overflow-hidden max-lg:border-0 ${chatVisible ? "max-lg:hidden" : ""}`}
       >
-        <Motion.div
-          initial={{ opacity: 0, y: -40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3, ease: "easeInOut", delay: 0.1 }}
-          className="h-14 px-4 flex justify-between items-center border-b border-white/10 bg-black/80"
-        >
-          <div className="flex items-center gap-4">
-            <button
-              className={`${chatVisibleBigScreen ? "min-lg:hidden" : "min-lg:block"} cursor-pointer `}
-              onClick={() => {
-                setChatVisible(!chatVisible);
-                setChatVisibleBigScreen(!chatVisibleBigScreen);
-              }}
-            >
-              <MessageSquarePlus />
-            </button>
-            <span className="text-sm text-zinc-300">Live Preview</span>
-          </div>
-          <div className="flex items-center gap-2 max-md:gap-1">
-            <button className="cursor-pointer flex items-center gap-2 max-md:px-2  max-md:gap-1 px-4 py-1 rounded-lg bg-linear-to-r from-indigo-800 to-purple-600 text-[16px] hover:from-indigo-700 hover:to-purple-600 transition-colors duration-300 hover:scale-102 hover:shadow-lg hover:border-purple-500/50">
-              <Rocket size={15} /> Deploy
-            </button>
-            <button className="cursor-pointer p-2">
-              <Code2Icon size={18} />
-            </button>
-            <button className="cursor-pointer">
-              <Maximize2 size={18} />
-            </button>
-          </div>
-        </Motion.div>
+        <PreviewHeader
+          setShowCode={setShowCode}
+          setChatVisibleBigScreen={setChatVisibleBigScreen}
+          chatVisibleBigScreen={chatVisibleBigScreen}
+          setChatVisible={setChatVisible}
+          chatVisible={chatVisible}
+          setShowFullPreview={setShowFullPreview}
+        />
         <iframe ref={iframeRef} className="flex-1 w-full bg-white/3 " />
       </div>
+
+      <AnimatePresence mode="wait">
+        {ShowCode && (
+          <CodeEditor
+            setShowCode={setShowCode}
+            setWebsiteData={setWebsiteData}
+            code={code}
+            setCode={setCode}
+          />
+        )}
+      </AnimatePresence>
+
+      {ShowFullPreview && (
+        <AnimatePresence mode="wait">
+          <Motion.div
+            initial={{ x: 100, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            exit={{ x: 100, opacity: 0 }}
+            transition={{ duration: 0.2, ease: "easeInOut" }}
+            className="fixed inset-0 z-[9999] bg-black"
+          >
+            <iframe srcDoc={code} className="w-full bg-white/3 h-full" />
+            <Motion.button
+              initial={{ x: -100, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              transition={{ duration: 0.2, ease: "easeInOut", delay: 0.1 }}
+              onClick={() => setShowFullPreview(false)}
+              className="absolute top-0 left-0 p-1 bg-black/90 rounded-lg hover:scale-110 duration-200 cursor-pointer"
+            >
+              <Minimize2 size="22" />
+            </Motion.button>
+          </Motion.div>
+        </AnimatePresence>
+      )}
     </div>
   );
 }
