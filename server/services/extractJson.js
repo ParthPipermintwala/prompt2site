@@ -31,7 +31,7 @@ const extractWebsiteResponse = (text) => {
         .join("");
 
       formattedMessage = `
-        <ul class="pl-6 text-zinc-200 space-y-1" style="list-style-type: disc;">
+        <ul class=" text-zinc-200 space-y-1" style="margin-left:18px;list-style-type: disc;">
           ${items}
         </ul>
       `;
