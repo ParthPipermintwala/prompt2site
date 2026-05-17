@@ -114,7 +114,7 @@ export default function Chat({
               duration: 0.3,
               ease: "easeInOut",
             }}
-            className="max-w-[45%] max-md:max-w-[60%] px-3 py-3 rounded-2xl bg-zinc-900/80 backdrop-blur-xl border border-white/10 flex items-center gap-3 z-50"
+            className="max-w-[50%] max-md:max-w-[60%] px-3 py-3 rounded-2xl bg-zinc-900/80 backdrop-blur-xl border border-white/10 flex items-center gap-3 z-50"
           >
             <div className="flex gap-1 ">
               <Motion.span
