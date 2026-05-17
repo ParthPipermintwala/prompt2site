@@ -16,6 +16,8 @@ export default function Editor() {
   const [chatVisible, setChatVisible] = useState(false);
   const [chatVisibleBigScreen, setChatVisibleBigScreen] = useState(true);
   const [error, setError] = useState("");
+    const [prompt, setPrompt] = useState("");
+    const [fetching, setFetching] = useState(false);
 
 
   useEffect(() => {
@@ -41,7 +43,7 @@ export default function Editor() {
   }, [id]);
 
   useEffect(() => {
-    if (!websiteData?.latestCode && !iframeRef.current) return;
+    if(!websiteData?.latestCode) return;
     const blob = new Blob([websiteData.latestCode], { type: "text/html" });
     const url = URL.createObjectURL(blob);
     iframeRef.current.src = url;
@@ -85,7 +87,7 @@ export default function Editor() {
               setChatVisible={setChatVisible}
               setChatVisibleBigScreen={setChatVisibleBigScreen}
             />
-            <Chat conversations={websiteData.conversations} />
+            <Chat conversations={websiteData.conversations} id={id} setWebsiteData={setWebsiteData} setPrompt={setPrompt} prompt={prompt} fetching={fetching} setFetching={setFetching}/>
           </Motion.aside>
         ) : null}
       </AnimatePresence>
