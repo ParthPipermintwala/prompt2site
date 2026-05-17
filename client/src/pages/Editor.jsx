@@ -116,6 +116,7 @@ export default function Editor() {
           setChatVisible={setChatVisible}
           chatVisible={chatVisible}
           setShowFullPreview={setShowFullPreview}
+          ShowCode={ShowCode}
         />
         <iframe ref={iframeRef} className="flex-1 w-full bg-white/3 " />
       </div>
