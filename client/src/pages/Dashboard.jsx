@@ -10,11 +10,27 @@ import { useNavigate } from "react-router-dom";
 
 export default function Dashboard() {
   useGetCurrentUser();
-  const navigate=useNavigate()
+  const navigate = useNavigate();
   const [Websites, setWebsites] = useState();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const { userData } = useSelector((state) => state.user);
+
+  const handleDeploy = async (id) => {
+    try {
+      const result = await axios.get(
+        `${import.meta.env.VITE_BACKEND_URL}/api/website/deploy/${id}`,
+        {
+          withCredentials: true,
+        },
+      );
+      console.log(result.data.deployeUrl)
+      window.open(`${result.data.deployeUrl}`, "_blank");
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   useEffect(() => {
     const handleGetAllWebsite = async () => {
       setLoading(true);
@@ -96,12 +112,17 @@ export default function Dashboard() {
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 whileHover={{ y: -6, scale: 1.05 }}
-                transition={{ duration: 0.1, ease: "easeInOut",delay:index*0.001 }}
+                transition={{
+                  duration: 0.1,
+                  ease: "easeInOut",
+                  delay: index * 0.001,
+                }}
                 className="rounded-2xl bg-white/5 border border-white/10 overflow-hidden hover:bg-white/10 transition flex flex-col "
               >
-                <div 
-                onClick={()=>(navigate(`/editor/${w._id}`))}
-                className="relative h-[160px] bg-black cursor-pointer overflow-hidden">
+                <div
+                  onClick={() => navigate(`/editor/${w._id}`)}
+                  className="relative h-[160px] bg-black cursor-pointer overflow-hidden"
+                >
                   <iframe
                     srcDoc={w.latestCode}
                     className="absolute inset-0  scale-[0.72] origin-top-left pointer-event-none bg-black w-[140%] h-[140%] cursor-pointer overflow-hidden"
@@ -117,7 +138,10 @@ export default function Dashboard() {
                     {new Date(w.updatedAt).toLocaleDateString()}
                   </p>
                   {!w.deployed ? (
-                    <button className="mt-auto flex items-center justify-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold bg-gradient-to-r from-indigo-600 to-purple-600 hover:scale-102 transition duration-200 cursor-pointer mx-3">
+                    <button
+                      onClick={() => handleDeploy(w._id)}
+                      className="mt-auto flex items-center justify-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold bg-gradient-to-r from-indigo-600 to-purple-600 hover:scale-102 transition duration-200 cursor-pointer mx-3"
+                    >
                       <Rocket size={14} /> Deploy
                     </button>
                   ) : (
