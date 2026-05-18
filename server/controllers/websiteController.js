@@ -152,7 +152,7 @@ export const changeWebsite = async (req, res) => {
       creditsLeft: user.credits,
     });
   } catch (error) {
-    console.log(error)
+    console.log(error);
     return res
       .status(500)
       .json({ message: "An error occurred while saving changes" });
@@ -161,11 +161,38 @@ export const changeWebsite = async (req, res) => {
 
 export const getAll = async (req, res) => {
   try {
-    const website=await Website.find({user:req.user._id}).lean()
-    return res.status(200).json(website)
+    const website = await Website.find({ user: req.user._id }).lean();
+    return res.status(200).json(website);
   } catch (error) {
     return res
       .status(500)
-      .json({ message: "An error occurred while saving changes" });
+      .json({ message: "An error occurred while fetching websites" });
+  }
+};
+
+export const deploy = async (req, res) => {
+  try {
+    const website = await Website.findOne({
+      _id: req.params.id,
+      user: req.user._id,
+    });
+    if (!website) return res.status(400).json({ message: "website not found" });
+    if (!website.slug) {
+      website.slug =
+        website.title.toLowerCase().trim().slice(0, 60) +
+        website._id.toString().slice(-5);
+    }
+    website.deployed = true;
+    website.deployeUrl = `${process.env.ORIGIN}/site/${website.slug}`;
+    await website.save();
+
+    return res.status(200).json({
+      deployed: website.deployed,
+      deployeUrl: website.deployeUrl,
+    });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ message: "An error occurred while deploy website" });
   }
 };
