@@ -96,7 +96,7 @@ export default function Dashboard() {
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 whileHover={{ y: -6, scale: 1.05 }}
-                transition={{ duration: 0.1, ease: "linear",delay:index*0.02 }}
+                transition={{ duration: 0.1, ease: "easeInOut",delay:index*0.001 }}
                 className="rounded-2xl bg-white/5 border border-white/10 overflow-hidden hover:bg-white/10 transition flex flex-col "
               >
                 <div 
