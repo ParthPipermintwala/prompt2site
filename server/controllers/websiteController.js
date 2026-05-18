@@ -161,7 +161,9 @@ export const changeWebsite = async (req, res) => {
 
 export const getAll = async (req, res) => {
   try {
-    const website = await Website.find({ user: req.user._id }).lean();
+    const website = await Website.find({ user: req.user._id })
+      .select("-conversations -__v -user")
+      .lean();
     return res.status(200).json(website);
   } catch (error) {
     return res
