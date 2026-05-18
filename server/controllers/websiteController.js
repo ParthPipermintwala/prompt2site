@@ -85,6 +85,27 @@ export const getWebsites = async (req, res) => {
   }
 };
 
+export const getWebsitesBySlug = async (req, res) => {
+  try {
+    const { slug } = req.params;
+    const website = await Website.findOne({
+      slug: slug,
+      user: req.user._id,
+    })
+      .select("latestCode")
+      .lean();
+    if (!website) {
+      return res.status(404).json({ message: "Website not found" });
+    }
+    return res.status(200).json(website);
+  } catch (error) {
+    console.log(error)
+    return res
+      .status(500)
+      .json({ message: "An error occurred while fetching websites" });
+  }
+};
+
 export const changeWebsite = async (req, res) => {
   try {
     const updatePrompt = await readFile("./asset/updatePrompt.txt", "utf-8");
@@ -180,12 +201,16 @@ export const deploy = async (req, res) => {
     });
     if (!website) return res.status(400).json({ message: "website not found" });
     if (!website.slug) {
-      website.slug =
-        website.title.toLowerCase().trim().slice(0, 60) +
-        website._id.toString().slice(-5);
+      website.slug = website.title
+        .toLowerCase()
+        .trim()
+        .slice(0, 60)
+        .replace(/[^a-z0-9 ]/g, "")
+        .replace(/\s+/g, "-");
+      +website._id.toString().slice(-5);
     }
     website.deployed = true;
-    website.deployeUrl = `${process.env.ORIGIN}/site/${website.slug}`;
+    website.deployeUrl = `${process.env.ORIGIN}site/${website.slug}`;
     await website.save();
 
     return res.status(200).json({
@@ -193,6 +218,7 @@ export const deploy = async (req, res) => {
       deployeUrl: website.deployeUrl,
     });
   } catch (error) {
+    console.log(error)
     return res
       .status(500)
       .json({ message: "An error occurred while deploy website" });
