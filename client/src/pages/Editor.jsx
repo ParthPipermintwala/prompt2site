@@ -118,7 +118,7 @@ export default function Editor() {
           setShowFullPreview={setShowFullPreview}
           ShowCode={ShowCode}
         />
-        <iframe ref={iframeRef} className="flex-1 w-full bg-white/3 " />
+        <iframe ref={iframeRef} className="flex-1 w-full bg-white/3 " sandbox="allow-scripts allow-same-origin allow-forms"/>
       </div>
 
       <AnimatePresence mode="wait">
@@ -141,7 +141,7 @@ export default function Editor() {
             transition={{ duration: 0.2, ease: "easeInOut" }}
             className="fixed inset-0 z-[9999] bg-black"
           >
-            <iframe srcDoc={code} className="w-full bg-white/3 h-full" />
+            <iframe srcDoc={code} className="w-full bg-white/3 h-full" sandbox="allow-scripts allow-same-origin allow-forms"/>
             <Motion.button
               initial={{ x: -100, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
