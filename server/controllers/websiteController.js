@@ -161,7 +161,7 @@ export const changeWebsite = async (req, res) => {
 
 export const getAll = async (req, res) => {
   try {
-    const website=await Website.find({user:req.user._id})
+    const website=await Website.find({user:req.user._id}).lean()
     return res.status(200).json(website)
   } catch (error) {
     return res
