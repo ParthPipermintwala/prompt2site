@@ -6,9 +6,11 @@ import useGetCurrentUser from "@/hooks/useGetCurrentUser";
 import axios from "axios";
 import FuzzyText from "@/components/animation/FuzzyText";
 import { Rocket, Share2 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 export default function Dashboard() {
   useGetCurrentUser();
+  const navigate=useNavigate()
   const [Websites, setWebsites] = useState();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -97,7 +99,9 @@ export default function Dashboard() {
                 transition={{ duration: 0.1, ease: "linear",delay:index*0.02 }}
                 className="rounded-2xl bg-white/5 border border-white/10 overflow-hidden hover:bg-white/10 transition flex flex-col "
               >
-                <div className="relative h-[160px] bg-black cursor-pointer overflow-hidden">
+                <div 
+                onClick={()=>(navigate(`/editor/${w._id}`))}
+                className="relative h-[160px] bg-black cursor-pointer overflow-hidden">
                   <iframe
                     srcDoc={w.latestCode}
                     className="absolute inset-0  scale-[0.72] origin-top-left pointer-event-none bg-black w-[140%] h-[140%] cursor-pointer overflow-hidden"
