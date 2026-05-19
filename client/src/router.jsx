@@ -6,6 +6,7 @@ import Dashboard from "./pages/Dashboard";
 import Generate from "./pages/Generate";
 import Editor from "./pages/Editor";
 import LiveSite from "./pages/LiveSite";
+import Pricing from "./pages/Pricing";
 
 function requireAuth() {
   const user =JSON.parse(localStorage.getItem("user"));
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
         path: "/generate",
         loader: requireAuth,
         element: <Generate />,
+      },
+      {
+        path: "/pricing",
+        element: <Pricing />,
       },
       {
         path: "/editor/:id",
