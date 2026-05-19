@@ -1,6 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion as Motion } from "motion/react";
-import { Code2Icon, Maximize2, MessageSquarePlus, Rocket, Share2 } from "lucide-react";
+import {
+  Code2Icon,
+  CopyCheckIcon,
+  Maximize2,
+  MessageSquarePlus,
+  Rocket,
+  Share2,
+} from "lucide-react";
 import axios from "axios";
 
 export default function PreviewHeader({
@@ -15,6 +22,14 @@ export default function PreviewHeader({
   deployUrl,
   setdeployUrl,
 }) {
+  const [copied, setcopied] = useState(false);
+  const handleCopy = async () => {
+    await navigator.clipboard.writeText(deployUrl);
+    setcopied(true);
+    setTimeout(() => {
+      setcopied(false);
+    }, 2000);
+  };
   const handleDeploy = async (id) => {
     try {
       const result = await axios.get(
@@ -23,13 +38,13 @@ export default function PreviewHeader({
           withCredentials: true,
         },
       );
-      setdeployUrl(result.data.deployeUrl)
+      setdeployUrl(result.data.deployeUrl);
       window.open(`${result.data.deployeUrl}`, "_blank");
     } catch (err) {
       console.log(err);
     }
   };
-  console.log(deployUrl)
+  console.log(deployUrl);
   return (
     <Motion.div
       initial={{ opacity: 0, y: -40 }}
@@ -52,7 +67,7 @@ export default function PreviewHeader({
         <span className="text-sm text-zinc-300">Live Preview</span>
       </div>
       <div className="flex items-center gap-2 max-md:gap-1">
-        {!deployUrl? (
+        {!deployUrl ? (
           <Motion.button
             initial={{ scale: 1 }}
             whileTap={{ scale: 0.8 }}
@@ -61,14 +76,23 @@ export default function PreviewHeader({
           >
             <Rocket size={15} /> Deploy
           </Motion.button>
+        ) : !copied ? (
+          <Motion.button
+            initial={{ scale: 1 }}
+            whileTap={{ scale: 0.8 }}
+            onClick={handleCopy}
+            className="cursor-pointer flex items-center gap-2 max-md:px-2  max-md:gap-1 px-4 py-1 rounded-lg bg-linear-to-r from-indigo-800 to-purple-600 text-[16px] hover:from-indigo-700 hover:to-purple-600 transition-colors duration-300 hover:scale-102 hover:shadow-lg hover:border-purple-500/50"
+          >
+            <Share2 size={15} /> Share Link
+          </Motion.button>
         ) : (
           <Motion.button
             initial={{ scale: 1 }}
             whileTap={{ scale: 0.8 }}
-            onClick={() => handleDeploy(id)}
-            className="cursor-pointer flex items-center gap-2 max-md:px-2  max-md:gap-1 px-4 py-1 rounded-lg bg-linear-to-r from-indigo-800 to-purple-600 text-[16px] hover:from-indigo-700 hover:to-purple-600 transition-colors duration-300 hover:scale-102 hover:shadow-lg hover:border-purple-500/50"
+            className="cursor-pointer flex items-center gap-2 max-md:px-2  max-md:gap-1 px-4 py-1 rounded-lg  text-[16px] bg-emerald-500/20 border border-emerald-500/30 text-emerald-400"
           >
-            <Share2 size={15} /> Share
+            <CopyCheckIcon size={15} />
+            Link Copied
           </Motion.button>
         )}
         <Motion.button
