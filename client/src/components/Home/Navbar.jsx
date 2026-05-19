@@ -1,6 +1,6 @@
 import React from "react";
 import { AnimatePresence, motion as Motion } from "motion/react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { CoinsIcon, LogInIcon } from "lucide-react";
 import Profile from "../Home/Profile";
@@ -10,6 +10,7 @@ import useAuth from "@/hooks/useAuth";
 export default function Navbar({ OpenLogin, SetProfile, isOpenProfile }) {
   const { userData } = useSelector((state) => state.user);
   const { handleGoogleAuth } = useAuth();
+  const navigate=useNavigate()
 
   return (
     <Motion.div
@@ -33,7 +34,7 @@ export default function Navbar({ OpenLogin, SetProfile, isOpenProfile }) {
           className="max-md:hidden text-[24px] bold"
         >
           <Link
-            to="#pricing"
+            to="/pricing"
             className="text-[#e1e8ea] hover:text-cyan-400 hover:brightness-125 transition duration-200"
           >
             Pricing
@@ -43,6 +44,7 @@ export default function Navbar({ OpenLogin, SetProfile, isOpenProfile }) {
         {userData && (
           <Motion.div
             whileTap={{ scale: 0.9 }}
+            onClick={()=>navigate("/pricing")}
             className="flex items-center gap-1 rounded-full bg-white/5 border border-white/10 text-lg max-md:text-[3vw] semi-bold px-2 py-1 hover:bg-white/10"
           >
             <CoinsIcon size={20} className="text-yellow-400" />
