@@ -56,7 +56,6 @@ export default function Dashboard() {
             withCredentials: true,
           },
         );
-        console.log(result.data);
         setWebsites(result.data);
         setLoading(false);
       } catch (error) {
@@ -171,9 +170,8 @@ export default function Dashboard() {
                         <Share2 size={14} /> Share Link
                       </button>
                     ) : (
-                      <button className="text-emerald-400 mt-auto flex items-center justify-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold bg-emerald-500/20 border border-emerald-500/30 transition duration-200 cursor-pointer mx-3">
-                        <CopyCheckIcon size={14} />
-                        Link Copied
+                      <button className="text-emerald-400 mt-auto flex items-center justify-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold bg-emerald-500/20 border border-emerald-500/30 transition  cursor-pointer mx-3">
+                        <CopyCheckIcon size={14} />Link Copied
                       </button>
                     )}
                   </div>
