@@ -1,6 +1,7 @@
 import React from "react";
 import { motion as Motion } from "motion/react";
-import { Code2Icon, Maximize2, MessageSquarePlus, Rocket } from "lucide-react";
+import { Code2Icon, Maximize2, MessageSquarePlus, Rocket, Share2 } from "lucide-react";
+import axios from "axios";
 
 export default function PreviewHeader({
   setShowCode,
@@ -10,7 +11,25 @@ export default function PreviewHeader({
   chatVisible,
   setShowFullPreview,
   ShowCode,
+  id,
+  deployUrl,
+  setdeployUrl,
 }) {
+  const handleDeploy = async (id) => {
+    try {
+      const result = await axios.get(
+        `${import.meta.env.VITE_BACKEND_URL}/api/website/deploy/${id}`,
+        {
+          withCredentials: true,
+        },
+      );
+      setdeployUrl(result.data.deployeUrl)
+      window.open(`${result.data.deployeUrl}`, "_blank");
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  console.log(deployUrl)
   return (
     <Motion.div
       initial={{ opacity: 0, y: -40 }}
@@ -33,13 +52,25 @@ export default function PreviewHeader({
         <span className="text-sm text-zinc-300">Live Preview</span>
       </div>
       <div className="flex items-center gap-2 max-md:gap-1">
-        <Motion.button
-          initial={{ scale: 1 }}
-          whileTap={{ scale: 0.8 }}
-          className="cursor-pointer flex items-center gap-2 max-md:px-2  max-md:gap-1 px-4 py-1 rounded-lg bg-linear-to-r from-indigo-800 to-purple-600 text-[16px] hover:from-indigo-700 hover:to-purple-600 transition-colors duration-300 hover:scale-102 hover:shadow-lg hover:border-purple-500/50"
-        >
-          <Rocket size={15} /> Deploy
-        </Motion.button>
+        {!deployUrl? (
+          <Motion.button
+            initial={{ scale: 1 }}
+            whileTap={{ scale: 0.8 }}
+            onClick={() => handleDeploy(id)}
+            className="cursor-pointer flex items-center gap-2 max-md:px-2  max-md:gap-1 px-4 py-1 rounded-lg bg-linear-to-r from-indigo-800 to-purple-600 text-[16px] hover:from-indigo-700 hover:to-purple-600 transition-colors duration-300 hover:scale-102 hover:shadow-lg hover:border-purple-500/50"
+          >
+            <Rocket size={15} /> Deploy
+          </Motion.button>
+        ) : (
+          <Motion.button
+            initial={{ scale: 1 }}
+            whileTap={{ scale: 0.8 }}
+            onClick={() => handleDeploy(id)}
+            className="cursor-pointer flex items-center gap-2 max-md:px-2  max-md:gap-1 px-4 py-1 rounded-lg bg-linear-to-r from-indigo-800 to-purple-600 text-[16px] hover:from-indigo-700 hover:to-purple-600 transition-colors duration-300 hover:scale-102 hover:shadow-lg hover:border-purple-500/50"
+          >
+            <Share2 size={15} /> Share
+          </Motion.button>
+        )}
         <Motion.button
           initial={{ scale: 1 }}
           whileTap={{ scale: 0.8 }}
