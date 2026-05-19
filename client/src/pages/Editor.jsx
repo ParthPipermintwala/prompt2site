@@ -23,6 +23,7 @@ export default function Editor() {
   const [ShowCode, setShowCode] = useState(false);
   const [ShowFullPreview, setShowFullPreview] = useState(false);
   const [code, setCode] = useState(websiteData?.latestCode);
+  const [deployUrl, setdeployUrl] = useState(null);
 
   useEffect(() => {
     const handleGetWebsite = async () => {
@@ -34,6 +35,7 @@ export default function Editor() {
           },
         );
         setWebsiteData(result.data);
+        setdeployUrl(result.data.deployeUrl)
         setCode(result.data.latestCode)
       } catch (error) {
         console.error("Error fetching website data:", error);
@@ -117,6 +119,9 @@ export default function Editor() {
           chatVisible={chatVisible}
           setShowFullPreview={setShowFullPreview}
           ShowCode={ShowCode}
+          id={websiteData._id}
+          deployUrl={deployUrl}
+          setdeployUrl={setdeployUrl}
         />
         <iframe ref={iframeRef} className="flex-1 w-full bg-white/3 " sandbox="allow-scripts allow-same-origin allow-forms"/>
       </div>
