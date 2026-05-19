@@ -5,13 +5,14 @@ import Navbar from "@/components/Dashboard/Navbar";
 import useGetCurrentUser from "@/hooks/useGetCurrentUser";
 import axios from "axios";
 import FuzzyText from "@/components/animation/FuzzyText";
-import { Rocket, Share2 } from "lucide-react";
+import { CopyCheckIcon, Rocket, Share2 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 export default function Dashboard() {
   useGetCurrentUser();
   const navigate = useNavigate();
   const [Websites, setWebsites] = useState();
+  const [copiedId, setcopiedId] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const { userData } = useSelector((state) => state.user);
@@ -24,11 +25,25 @@ export default function Dashboard() {
           withCredentials: true,
         },
       );
-      console.log(result.data.deployeUrl)
+      setWebsites((prev) =>
+        prev.map((site) =>
+          site._id === id
+            ? { ...site, deployeUrl: result.data.deployeUrl }
+            : site,
+        ),
+      );
       window.open(`${result.data.deployeUrl}`, "_blank");
     } catch (err) {
       console.log(err);
     }
+  };
+
+  const handleCopy = async (site) => {
+    await navigator.clipboard.writeText(site.deployeUrl);
+    setcopiedId(site._id);
+    setTimeout(() => {
+      setcopiedId(null);
+    }, 2000);
   };
 
   useEffect(() => {
@@ -106,52 +121,65 @@ export default function Dashboard() {
 
         {!loading && Websites?.length > 0 && (
           <div className="grid grid-cols-3 max-md:grid-cols-1 max-lg:grid-cols-2 gap-8">
-            {Websites.map((w, index) => (
-              <Motion.div
-                key={index}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                whileHover={{ y: -6, scale: 1.05 }}
-                transition={{
-                  duration: 0.1,
-                  ease: "easeInOut",
-                  delay: index * 0.001,
-                }}
-                className="rounded-2xl bg-white/5 border border-white/10 overflow-hidden hover:bg-white/10 transition flex flex-col "
-              >
-                <div
-                  onClick={() => navigate(`/editor/${w._id}`)}
-                  className="relative h-[160px] bg-black cursor-pointer overflow-hidden"
+            {Websites.map((w, index) => {
+              const copied = copiedId == w._id;
+              return (
+                <Motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 50 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  whileHover={{ y: -6, scale: 1.05 }}
+                  transition={{
+                    duration: 0.1,
+                    ease: "easeInOut",
+                    delay: index * 0.001,
+                  }}
+                  className="rounded-2xl bg-white/5 border border-white/10 overflow-hidden hover:bg-white/10 transition flex flex-col "
                 >
-                  <iframe
-                    srcDoc={w.latestCode}
-                    className="absolute inset-0  scale-[0.72] origin-top-left pointer-event-none bg-black w-[140%] h-[140%] cursor-pointer overflow-hidden"
-                  />
-                  <div className="absolute inset-0 bg-black/30 h-[140%]" />
-                </div>
-                <div className="p-3 flex flex-col gap-1 flex-1">
-                  <h4 className="text-base font-semibold line-clamp-2">
-                    {w.title}
-                  </h4>
-                  <p className="text-xs text-zinc-400 mb-3">
-                    Last Updated {""}
-                    {new Date(w.updatedAt).toLocaleDateString()}
-                  </p>
-                  {!w.deployed ? (
-                    <button
-                      onClick={() => handleDeploy(w._id)}
-                      className="mt-auto flex items-center justify-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold bg-gradient-to-r from-indigo-600 to-purple-600 hover:scale-102 transition duration-200 cursor-pointer mx-3"
-                    >
-                      <Rocket size={14} /> Deploy
-                    </button>
-                  ) : (
-                    <button className="mt-auto flex items-center justify-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold bg-gradient-to-r from-indigo-600 to-purple-600 hover:scale-102 transition duration-200 cursor-pointer mx-3">
-                      <Share2 size={14} /> Share Link
-                    </button>
-                  )}
-                </div>
-              </Motion.div>
-            ))}
+                  <div
+                    onClick={() => navigate(`/editor/${w._id}`)}
+                    className="relative h-[160px] bg-black cursor-pointer overflow-hidden"
+                  >
+                    <iframe
+                      srcDoc={w.latestCode}
+                      className="absolute inset-0  scale-[0.72] origin-top-left pointer-event-none bg-black w-[140%] h-[140%] cursor-pointer overflow-hidden"
+                    />
+                    <div className="absolute inset-0 bg-black/30 h-[140%]" />
+                  </div>
+                  <div className="p-3 flex flex-col gap-1 flex-1">
+                    <h4 className="text-base font-semibold line-clamp-2">
+                      {w.title}
+                    </h4>
+                    <p className="text-xs text-zinc-400 mb-3">
+                      Last Updated {""}
+                      {new Date(w.updatedAt).toLocaleDateString()}
+                    </p>
+                    {!w.deployeUrl ? (
+                      <button
+                        onClick={() => handleDeploy(w._id)}
+                        className="mt-auto flex items-center justify-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold bg-gradient-to-r from-indigo-600 to-purple-600 hover:scale-102 transition duration-200 cursor-pointer mx-3"
+                      >
+                        <Rocket size={14} /> Deploy
+                      </button>
+                    ) : !copied ? (
+                      <button
+                        onClick={() => {
+                          handleCopy(w);
+                        }}
+                        className="mt-auto flex items-center justify-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold bg-gradient-to-r from-indigo-600 to-purple-600 hover:scale-102 transition duration-200 cursor-pointer mx-3"
+                      >
+                        <Share2 size={14} /> Share Link
+                      </button>
+                    ) : (
+                      <button className="text-emerald-400 mt-auto flex items-center justify-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold bg-emerald-500/20 border border-emerald-500/30 transition duration-200 cursor-pointer mx-3">
+                        <CopyCheckIcon size={14} />
+                        Link Copied
+                      </button>
+                    )}
+                  </div>
+                </Motion.div>
+              );
+            })}
           </div>
         )}
       </div>
