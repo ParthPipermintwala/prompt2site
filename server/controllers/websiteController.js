@@ -99,7 +99,7 @@ export const getWebsitesBySlug = async (req, res) => {
     }
     return res.status(200).json(website);
   } catch (error) {
-    console.log(error)
+    console.log(error);
     return res
       .status(500)
       .json({ message: "An error occurred while fetching websites" });
@@ -173,7 +173,34 @@ export const changeWebsite = async (req, res) => {
       creditsLeft: user.credits,
     });
   } catch (error) {
-    console.log(error);
+    return res
+      .status(500)
+      .json({ message: "An error occurred while saving changes" });
+  }
+};
+
+export const deleteWebsite = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const website = await Website.findById(req.params.id)
+      .select("conversations")
+      .lean();
+    if (!website) {
+      return res.status(404).json({
+        success: false,
+        message: "Website not found",
+      });
+    }
+    await Message.deleteMany({
+      _id: { $in: website.conversations },
+    });
+    await Website.findByIdAndDelete(req.params.id);
+
+    res.json({
+      success: true,
+      message: "Website and conversations deleted",
+    });
+  } catch {
     return res
       .status(500)
       .json({ message: "An error occurred while saving changes" });
@@ -218,7 +245,7 @@ export const deploy = async (req, res) => {
       deployeUrl: website.deployeUrl,
     });
   } catch (error) {
-    console.log(error)
+    console.log(error);
     return res
       .status(500)
       .json({ message: "An error occurred while deploy website" });
