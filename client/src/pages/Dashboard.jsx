@@ -5,8 +5,9 @@ import Navbar from "@/components/Dashboard/Navbar";
 import useGetCurrentUser from "@/hooks/useGetCurrentUser";
 import axios from "axios";
 import FuzzyText from "@/components/animation/FuzzyText";
-import { CopyCheckIcon, Rocket, Share2 } from "lucide-react";
+import { CopyCheckIcon, Delete, Rocket, Share2, Trash2 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import DeletePopup from "@/components/Dashboard/DeletePopup";
 
 export default function Dashboard() {
   useGetCurrentUser();
@@ -15,6 +16,8 @@ export default function Dashboard() {
   const [copiedId, setcopiedId] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [isOpen, setOpen] = useState(false);
+  const [id, setid] = useState(false);
   const { userData } = useSelector((state) => state.user);
 
   const handleDeploy = async (id) => {
@@ -45,26 +48,36 @@ export default function Dashboard() {
       setcopiedId(null);
     }, 2000);
   };
+  const handleGetAllWebsite = async () => {
+    setLoading(true);
+    try {
+      const result = await axios.get(
+        `${import.meta.env.VITE_BACKEND_URL}/api/website/getAll`,
+        {
+          withCredentials: true,
+        },
+      );
+      setWebsites(result.data);
+      setLoading(false);
+    } catch (error) {
+      setLoading(false);
+      setError(error?.message || "Something went wrong");
+    }
+  };
+  useEffect(() => {
+    const call = () => {
+      handleGetAllWebsite();
+    };
+    call();
+  }, []);
 
   useEffect(() => {
-    const handleGetAllWebsite = async () => {
-      setLoading(true);
-      try {
-        const result = await axios.get(
-          `${import.meta.env.VITE_BACKEND_URL}/api/website/getAll`,
-          {
-            withCredentials: true,
-          },
-        );
-        setWebsites(result.data);
-        setLoading(false);
-      } catch (error) {
-        setLoading(false);
-        setError(error?.message || "Something went wrong");
-      }
+    document.body.classList.toggle("overflow-hidden", isOpen);
+
+    return () => {
+      document.body.classList.remove("overflow-hidden");
     };
-    handleGetAllWebsite();
-  }, []);
+  }, [isOpen]);
 
   if (error) {
     return (
@@ -96,7 +109,11 @@ export default function Dashboard() {
           <p className="text-sm text-zinc-400 mb-1">Welcome To Prompt2site</p>
           <h1 className="text-3xl font-bold">{userData?.name}</h1>
         </Motion.div>
-
+        {isOpen && (
+          <AnimatePresence mode="wait">
+            <DeletePopup setOpen={setOpen} id={id} handleGetAllWebsite={handleGetAllWebsite}/>
+          </AnimatePresence>
+        )}
         {loading && (
           <Motion.div
             initial={{ opacity: 0, y: 10 }}
@@ -125,13 +142,13 @@ export default function Dashboard() {
               return (
                 <Motion.div
                   key={index}
-                  initial={{ opacity: 0, y: 50 }}
+                  initial={{ opacity: 0, y: 150 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   whileHover={{ y: -6, scale: 1.05 }}
                   transition={{
-                    duration: 0.1,
+                    duration: 0.2,
                     ease: "easeInOut",
-                    delay: index * 0.001,
+                    delay: index * 0.01,
                   }}
                   className="rounded-2xl bg-white/5 border border-white/10 overflow-hidden hover:bg-white/10 transition flex flex-col "
                 >
@@ -141,14 +158,26 @@ export default function Dashboard() {
                   >
                     <iframe
                       srcDoc={w.latestCode}
-                      className="absolute inset-0  scale-[0.72] origin-top-left pointer-event-none bg-black w-[140%] h-[140%] cursor-pointer overflow-hidden"
+                      className="absolute inset-0  scale-[0.72] origin-top-left pointer-events-none bg-black w-[140%] h-[140%] cursor-pointer"
                     />
                     <div className="absolute inset-0 bg-black/30 h-[140%]" />
                   </div>
                   <div className="p-3 flex flex-col gap-1 flex-1">
-                    <h4 className="text-base font-semibold line-clamp-2">
-                      {w.title}
-                    </h4>
+                    <div className="flex items-center justify-between">
+                      <h4 className="text-base font-semibold line-clamp-2">
+                        {w.title}
+                      </h4>
+                      <Motion.div
+                        whileTap={{ scale: 0.8 }}
+                        onClick={() => {
+                          setOpen(true);
+                          setid(w._id);
+                        }}
+                        className="cursor-pointer relative text-red-500 hover:scale-105 hover:text-red-600"
+                      >
+                        <Trash2 />
+                      </Motion.div>
+                    </div>
                     <p className="text-xs text-zinc-400 mb-3">
                       Last Updated {""}
                       {new Date(w.updatedAt).toLocaleDateString()}
@@ -171,7 +200,8 @@ export default function Dashboard() {
                       </button>
                     ) : (
                       <button className="text-emerald-400 mt-auto flex items-center justify-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold bg-emerald-500/20 border border-emerald-500/30 transition  cursor-pointer mx-3">
-                        <CopyCheckIcon size={14} />Link Copied
+                        <CopyCheckIcon size={14} />
+                        Link Copied
                       </button>
                     )}
                   </div>
