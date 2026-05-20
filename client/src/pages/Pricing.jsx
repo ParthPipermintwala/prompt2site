@@ -1,11 +1,12 @@
 import { ArrowLeft, Check, Coins } from "lucide-react";
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion as Motion } from "motion/react";
+import useRazorpay from "@/hooks/useRazorpay";
 const plans = [
   {
     name: "Free",
-    price: "₹0",
+    price: "0",
     credits: 100,
     description: "Perfect for getting started and testing the platform.",
     features: [
@@ -34,7 +35,7 @@ const plans = [
   },
   {
     name: "Enterprise",
-    price: "₹999",
+    price: "999",
     credits: 5000,
     description: "Built for teams and businesses with large-scale needs.",
     features: [
@@ -50,6 +51,9 @@ const plans = [
 ];
 export default function Pricing() {
   const navigate = useNavigate();
+  const [loading, setLoding] = useState(false);
+  const { initializePayment } = useRazorpay();
+  const user = JSON.parse(localStorage.getItem("user"));
   return (
     <div className="relative min-h-screen overflow-hidden bg-[#050505] text-white px-6 pt-8 pb-24">
       <div className="absolute inset-0 pointer-events-none">
@@ -65,7 +69,8 @@ export default function Pricing() {
         whileTap={{ scale: 0.7 }}
         transition={{ duration: 0 }}
         onClick={() => navigate("/")}
-        className="relative z-10 mb-8 flex items-center text-xl gap-2 text-zinc-400 hover:text-white transition-all "
+        className="relative cursor-pointer
+         z-10 mb-8 flex items-center text-xl gap-2 text-zinc-400 hover:text-white transition-all "
       >
         <ArrowLeft size={22} /> Back
       </Motion.button>
@@ -104,7 +109,7 @@ export default function Pricing() {
             <h1 className="text-xl font-semibold mb-2">{plan.name}</h1>
             <p className="text-zinc-400 text-sm mb-6">{plan.description}</p>
             <div className="flex items-end gap-1 mb-4">
-              <span className="text-4xl font-bold">{plan.price}</span>
+              <span className="text-4xl font-bold">₹{plan.price}</span>
               <span className="text-sm text-zinc-400 mb-1">/one-time</span>
             </div>
             <div className="flex items-center gap-2 mb-8">
@@ -125,9 +130,24 @@ export default function Pricing() {
             </ul>
             <Motion.button
               whileTap={{ scale: 0.96 }}
-              className={` cursor-pointer w-full py-3 rounded-xl font-semibold transition ${plan.popular ? "bg-indigo-500 hover:bg-indigo-600" : "bg-white/10 hover:bg-white/20"} disabled:opacity-60 ${i == 0 && "mt-13"}`}
+              onClick={() => {
+                setLoding(true);
+                if (i == 0) {
+                  navigate("/");
+                  return;
+                }
+                initializePayment({
+                  amount: plan.price,
+                  planName: plan.name,
+                  credits: plan.credits,
+                });
+                setLoding(false);
+              }}
+              title={!user ? "Please login first" : ""}
+              disabled={ !user && loading}
+              className={`disabled:opacity-80 disabled:cursor-not-allowed cursor-pointer w-full py-3 rounded-xl font-semibold transition ${plan.popular ? "bg-indigo-500 hover:bg-indigo-600" : "bg-white/10 hover:bg-white/20"} disabled:opacity-60 ${i == 0 && "mt-13"}`}
             >
-              {plan.button}
+              {loading ? "Redirecting..." : plan.button}
             </Motion.button>
           </Motion.div>
         ))}
