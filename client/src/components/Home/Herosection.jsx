@@ -2,6 +2,7 @@ import React from "react";
 import { motion as Motion } from "motion/react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { LayoutDashboard, LogIn, Plus, Wallet } from "lucide-react";
 
 export default function Herosection({ OpenLogin }) {
   const navigate = useNavigate();
@@ -11,7 +12,7 @@ export default function Herosection({ OpenLogin }) {
       <Motion.h1
         initial={{ y: 200, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.5, ease: "easeInOut" }}
+        transition={{ duration: 0.3, ease: "easeInOut" }}
         className="text-[8vh] max-md:text-[4vh] font-bold text-[#e1e8ea]  tracking-tight mb-0"
       >
         Building Stunning Websites
@@ -19,7 +20,7 @@ export default function Herosection({ OpenLogin }) {
       <Motion.h1
         initial={{ x: -500, opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
-        transition={{ duration: 0.5, ease: "easeInOut", delay: 0.1 }}
+        transition={{ duration: 0.3, ease: "easeInOut", delay: 0 }}
         className=" animate-gradient bg-[linear-gradient(120deg,#645ee4_41%,#4F46E5_40%,#A855F7_60%)] bg-length-[100%] bg-clip-text text-transparent tracking-tight max-md:text-[5vh] max-md:mt-1 font-bold"
       >
         With AI
@@ -28,7 +29,7 @@ export default function Herosection({ OpenLogin }) {
       <Motion.p
         initial={{ y: 200, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.3, ease: "linear", delay: 0.2 }}
+        transition={{ duration: 0.2, ease: "linear", delay: 0.1 }}
         className="text-[1.7vh] leading-5 max-w-2xl max-md:max-w-xl text-[#a0a0a0] mt-5 mx-auto max-md:text-[2.1vh]"
       >
         Transform your ideas into reality with the power of artificial
@@ -36,18 +37,60 @@ export default function Herosection({ OpenLogin }) {
         No coding required.
       </Motion.p>
 
-      <Motion.button
-        initial={{ x: 2000, opacity: 0 }}
-        animate={{ x: 0, opacity: 1 }}
-        transition={{ duration: 0.3, ease: "easeInOut", delay: 0.2 }}
-        onClick={() => {
-          if (!userData) OpenLogin();
-          else navigate("/generate");
-        }}
-        className={`cursor-pointer h-[3.5vw] max-xl:h-[7vh] max-xl:text-[3vh]  mt-10 ${userData ? "w-[17vw] max-xl:w-[32vh] text-2xl" : "w-[13vw] text-3xl max-xl:w-[23vh]"} px-1 py-1 font-bold rounded-2xl max-md:rounded-xl  border-2 border-cyan-300/60 bg-gradient-to-r from-[#00F5FF] via-[#3B82F6] to-[#8B5CF6] text-[#1b155b] transition-all duration-300 hover:border-cyan-300 hover:brightness-110 hover:scale-101 hover:font-b`}
-      >
-        {userData ? "Create New Website" : "Get Started"}
-      </Motion.button>
+      <div className="flex items-center gap-5 justify-center">
+        <Motion.button
+          initial={{ x: 1000, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          whileTap={{ scale: 0.8, transition: { duration: 0 } }}
+          transition={{ duration: 0.2, ease: "easeInOut", delay: 0.1 }}
+          onClick={() => {
+            if (!userData) OpenLogin();
+            else navigate("/generate");
+          }}
+          className=" text-xl max-xl:text-lg cursor-pointer w-[12vw] max-xl:w-[23vh] h-[3vw] max-xl:h-[6vh] mt-10 px-1 py-1  rounded-2xl max-md:rounded-xl  bg-linear-to-r from-indigo-600 to-purple-700 text-[#f4f4f9] transition-all duration-300 hover:brightness-110 hover:scale-101"
+        >
+          {userData ? (
+            <div className="flex justify-center items-center gap-1">
+              <Plus />
+              Start Building
+            </div>
+          ) : (
+            <div className="flex justify-center items-center gap-1">
+              <LogIn size={20} />
+              Get Started
+            </div>
+          )}
+        </Motion.button>
+        {!userData ? (
+          <Motion.button
+            initial={{ x: 1000, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            whileTap={{ scale: 0.8, transition: { duration: 0 } }}
+            transition={{ duration: 0.2, ease: "easeInOut", delay: 0.2 }}
+            onClick={() => {
+              navigate("/pricing");
+            }}
+            className={`md:hidden flex justify-center items-center gap-2 text-xl max-xl:text-lg cursor-pointer w-[10vw] max-xl:w-[18vh]  h-[3vw] max-xl:h-[6vh] mt-10 px-1 py-1  rounded-2xl max-md:rounded-xl  bg-linear-to-r from-indigo-600 to-purple-700 text-[#f4f4f9] transition-all duration-300 hover:brightness-110 hover:scale-101`}
+          >
+            <Wallet />
+            Pricing
+          </Motion.button>
+        ) : (
+          <Motion.button
+            initial={{ x: 1000, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            whileTap={{ scale: 0.8, transition: { duration: 0 } }}
+            transition={{ duration: 0.2, ease: "easeInOut", delay: 0.2 }}
+            onClick={() => {
+              navigate("/dashboard");
+            }}
+            className="flex justify-center items-center gap-2 text-xl max-xl:text-lg cursor-pointer w-[10vw] max-xl:w-[20vh] h-[3vw] max-xl:h-[6vh] mt-10 px-1 py-1  rounded-2xl max-md:rounded-xl  bg-linear-to-r from-indigo-600 to-purple-700 text-[#f4f4f9] transition-all duration-300 hover:brightness-110 hover:scale-101"
+          >
+            <LayoutDashboard />
+            Dashboard
+          </Motion.button>
+        )}
+      </div>
     </section>
   );
 }
