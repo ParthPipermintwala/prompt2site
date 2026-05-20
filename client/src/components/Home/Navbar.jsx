@@ -17,7 +17,7 @@ export default function Navbar({ OpenLogin, SetProfile, isOpenProfile }) {
       initial={{ y: -70, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5, ease: "easeInOut" }}
-      className="fixed inset-0 w-full h-[8vh] flex justify-between items-center px-10 max-md:px-2 cursor-pointer backdrop-blur-lg  bg-transparent "
+      className="fixed inset-0 w-full h-[8vh] flex justify-between items-center px-10 max-md:px-1 cursor-pointer backdrop-blur-lg bg-transparent "
     >
       <Link to="/">
         <Motion.img
@@ -28,14 +28,14 @@ export default function Navbar({ OpenLogin, SetProfile, isOpenProfile }) {
         />
       </Link>
 
-      <div className="flex gap-7 max-md:gap-3 max-md:text-sm items-center mr-2">
+      <div className="flex gap-7 max-md:gap-2 max-md:text-sm items-center mr-2">
         <Motion.div
           whileTap={{ scale: 0.8 }}
           className="max-md:hidden text-[24px] bold"
         >
           <Link
             to="/pricing"
-            className="text-[#e1e8ea] hover:text-cyan-400 hover:brightness-125 transition duration-200"
+            className="bg-gradient-to-r from-indigo-500 to-purple-600 bg-clip-text text-transparent hover:brightness-110 transition duration-200"
           >
             Pricing
           </Link>
