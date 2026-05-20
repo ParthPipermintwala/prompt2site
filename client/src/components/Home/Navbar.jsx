@@ -31,6 +31,7 @@ export default function Navbar({ OpenLogin, SetProfile, isOpenProfile }) {
       <div className="flex gap-7 max-md:gap-2 max-md:text-sm items-center mr-2">
         <Motion.div
           whileTap={{ scale: 0.8 }}
+          whileHover={{scale:1.1}}
           className="max-md:hidden text-[24px] bold"
         >
           <Link
