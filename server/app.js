@@ -5,6 +5,7 @@ import { authMiddleware } from "./middlewares/authMiddleware.js";
 import authRouter from "./routes/authRoutes.js";
 import userRouter from "./routes/userRoute.js";
 import websiteRouter from "./routes/websiteRoutes.js";
+import paymentRouter from "./routes/paymentRoutes.js";
 
 const app = express();
 app.disable("x-powered-by");
@@ -22,6 +23,7 @@ app.use(express.json());
 app.use("/api/auth",authRouter);
 app.use("/api/user",authMiddleware,userRouter);
 app.use("/api/website",authMiddleware,websiteRouter);
+app.use("/api/payment",authMiddleware,paymentRouter);
 //global error handling middleware
 app.use((err, req, res, next) => {
    res.status(err.status || 500).json({ message: "something went wrong" });
