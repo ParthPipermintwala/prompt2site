@@ -185,6 +185,7 @@ export const changeWebsite = async (req, res) => {
       role: "user",
       content: prompt,
     });
+    user.credits -= 15;
     await Website.findByIdAndUpdate(website._id, {
       latestCode: parsed.code,
       $push: {
@@ -193,8 +194,6 @@ export const changeWebsite = async (req, res) => {
         },
       },
     });
-    user.credits -= 15;
-    await website.save();
     await user.save();
     await deleteCache(
       cacheKeys.user(user._id),
@@ -281,13 +280,13 @@ export const deploy = async (req, res) => {
     });
     if (!website) return res.status(400).json({ message: "website not found" });
     if (!website.slug) {
-      website.slug = website.title
-        .toLowerCase()
-        .trim()
-        .slice(0, 60)
-        .replace(/[^a-z0-9 ]/g, "")
-        .replace(/\s+/g, "-");
-      +website._id.toString().slice(-5);
+      website.slug =
+        website.title
+          .toLowerCase()
+          .trim()
+          .slice(0, 60)
+          .replace(/[^a-z0-9 ]/g, "")
+          .replace(/\s+/g, "-") + website._id.toString().slice(-5);
     }
     website.deployed = true;
     website.deployeUrl = `${process.env.ORIGIN}/site/${website.slug}`;
