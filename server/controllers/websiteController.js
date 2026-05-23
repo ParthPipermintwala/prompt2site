@@ -114,12 +114,13 @@ export const getWebsitesBySlug = async (req, res) => {
     if (cachedWebsite) {
       return res.status(200).json(cachedWebsite);
     }
-
+    console.log(slug);
     const website = await Website.findOne({
       slug: slug,
     })
       .select("latestCode")
       .lean();
+    console.log(website);
     if (!website) {
       return res.status(404).json({ message: "Website not found" });
     }
@@ -209,7 +210,7 @@ export const changeWebsite = async (req, res) => {
       creditsLeft: user.credits,
     });
   } catch (error) {
-    console.log(error)
+    console.log(error);
     return res
       .status(500)
       .json({ message: "An error occurred while saving changes" });
@@ -267,7 +268,7 @@ export const getAll = async (req, res) => {
     await setJsonCache(cacheKey, website);
     return res.status(200).json(website);
   } catch (error) {
-    console.log(error)
+    console.log(error);
     return res
       .status(500)
       .json({ message: "An error occurred while fetching websites" });
