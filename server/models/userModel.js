@@ -44,7 +44,7 @@ const userSchema = new Schema(
     plan: {
       type: String,
       enum: ["Free", "Pro", "Enterprise"],
-      default: "free",
+      default: "Free",
     },
   },
   {
