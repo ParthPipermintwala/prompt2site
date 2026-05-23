@@ -169,10 +169,6 @@
       <rect x="420" y="45" width="440" height="170" rx="28" fill="#0A0A0E" fill-opacity="0.6" stroke="url(#glassBorder)" stroke-width="1" style="backdrop-filter: blur(16px);"/>
       <rect x="420" y="45" width="440" height="170" rx="28" fill="url(#textShine)" opacity="0.02"/>
 
-      <!-- Top Badge -->
-      <rect x="584" y="65" width="112" height="24" rx="12" fill="#818CF8" fill-opacity="0.1" stroke="#818CF8" stroke-opacity="0.3"/>
-      <text x="640" y="81" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="700" fill="#A5B4FC" letter-spacing="1">BETA 2.0 LIVE</text>
-
       <!-- Main Title -->
       <text x="640" y="130" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="52" font-weight="800" letter-spacing="-0.04em" fill="url(#textShine)">
         Prompt2Site
