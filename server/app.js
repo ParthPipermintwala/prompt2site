@@ -22,7 +22,7 @@ app.use(express.json());
 //Routing
 app.use("/api/auth",authRouter);
 app.use("/api/user",authMiddleware,userRouter);
-app.use("/api/website",authMiddleware,websiteRouter);
+app.use("/api/website",websiteRouter);
 app.use("/api/payment",authMiddleware,paymentRouter);
 //global error handling middleware
 app.use((err, req, res, next) => {
