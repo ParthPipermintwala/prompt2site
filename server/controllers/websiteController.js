@@ -210,6 +210,7 @@ export const changeWebsite = async (req, res) => {
       creditsLeft: user.credits,
     });
   } catch (error) {
+    console.log(error)
     return res
       .status(500)
       .json({ message: "An error occurred while saving changes" });
