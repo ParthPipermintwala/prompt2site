@@ -38,7 +38,6 @@ export default function Chat({
           withCredentials: true,
         },
       );
-      console.log(result);
       dispatch(setUserData({ ...userData, credits: result.data.creditsLeft }));
       localStorage.setItem(
         "user",
@@ -50,7 +49,7 @@ export default function Chat({
         ...prev,
         conversations: [
           ...prev.conversations,
-          { role: "user", content: prompt },
+          { role: "ai", content: result.data.conversations[1] },
         ],
       }));
      setCode(result.data.latestCode);
