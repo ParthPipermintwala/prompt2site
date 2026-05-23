@@ -114,13 +114,11 @@ export const getWebsitesBySlug = async (req, res) => {
     if (cachedWebsite) {
       return res.status(200).json(cachedWebsite);
     }
-    console.log(slug);
     const website = await Website.findOne({
       slug: slug,
     })
       .select("latestCode")
       .lean();
-    console.log(website);
     if (!website) {
       return res.status(404).json({ message: "Website not found" });
     }
