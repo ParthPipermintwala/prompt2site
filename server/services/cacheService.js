@@ -38,14 +38,29 @@ export const setJsonCache = async (
 };
 
 export const deleteCache = async (...keys) => {
-  if (!canUseCache()) return;
+  if (!canUseCache()) {
+    console.log("Redis unavailable");
+    return;
+  }
 
   const validKeys = keys.filter(Boolean);
-  if (!validKeys.length) return;
+
+  console.log("DELETE REQUEST:", validKeys);
+
+  if (!validKeys.length) {
+    console.log("No valid keys");
+    return;
+  }
 
   try {
-    await redisClient.del(validKeys);
+    const existing = await redisClient.exists(...validKeys);
+
+    console.log("Keys exist count:", existing);
+
+    const deleted = await redisClient.del(...validKeys);
+
+    console.log("Deleted keys count:", deleted);
   } catch (error) {
-    console.error("Redis delete failed:", error.message);
+    console.error("Redis delete failed:", error);
   }
 };
