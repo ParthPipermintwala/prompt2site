@@ -292,7 +292,7 @@ export const deploy = async (req, res) => {
       +website._id.toString().slice(-5);
     }
     website.deployed = true;
-    website.deployeUrl = `${process.env.ORIGIN}site/${website.slug}`;
+    website.deployeUrl = `${process.env.ORIGIN}/site/${website.slug}`;
     await website.save();
     await deleteCache(
       cacheKeys.websiteList(req.user._id),
