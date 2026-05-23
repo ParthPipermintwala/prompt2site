@@ -21,7 +21,10 @@ const userSchema = new Schema(
       type: String,
       required: false,
       default: null,
-      pattern: [/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,"Password must be at least 8 characters long and include uppercase, lowercase, number, and special character"], 
+      pattern: [
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+        "Password must be at least 8 characters long and include uppercase, lowercase, number, and special character",
+      ],
     },
     avatar: {
       type: String,
@@ -40,7 +43,7 @@ const userSchema = new Schema(
     },
     plan: {
       type: String,
-      enum: ["free", "pro", "enterprise"],
+      enum: ["Free", "Pro", "Enterprise"],
       default: "free",
     },
   },
