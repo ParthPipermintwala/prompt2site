@@ -6,7 +6,7 @@ export const cacheKeys = {
   user: (userId) => `prompt2site:user:${userId}`,
   websiteList: (userId) => `prompt2site:websites:list:${userId}`,
   websiteDetail: (userId, websiteId) => `prompt2site:website:detail:${userId}:${websiteId}`,
-  websiteSlug: (userId, slug) => (slug ? `prompt2site:website:slug:${userId}:${slug}` : null),
+  websiteSlug: (slug) => (slug ? `prompt2site:website:slug:${slug}` : null),
 };
 
 const canUseCache = () => redisClient?.isReady;
