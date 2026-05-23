@@ -273,8 +273,6 @@ flowchart TD
 | Group | Method | Endpoint | Purpose |
 | :---: | :---: | :--- | :--- |
 | Auth | `POST` | `/api/auth/google` | Google login, user creation/linking, JWT cookie |
-| Auth | `POST` | `/api/auth/signup` | Email/password signup |
-| Auth | `POST` | `/api/auth/signin` | Email/password signin |
 | Auth | `GET` | `/api/auth/logout` | Clear cookie |
 | User | `GET` | `/api/user/profile` | Return authenticated user |
 | Website | `POST` | `/api/website/generate` | Generate website from prompt |
