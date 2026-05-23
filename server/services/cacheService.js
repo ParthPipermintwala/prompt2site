@@ -44,7 +44,7 @@ export const deleteCache = async (...keys) => {
   if (!validKeys.length) return;
 
   try {
-    await redisClient.del(validKeys);
+    await redisClient.del(...validKeys);
   } catch (error) {
     console.error("Redis delete failed:", error.message);
   }
