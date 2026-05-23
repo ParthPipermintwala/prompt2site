@@ -532,9 +532,8 @@ Open `http://localhost:5173`.
 ## Created By
 
 <p align="center">
-  <img src="https://capsule-render.vercel.app/api?type=transparent&height=86&text=Parth%20Pipermintwala&fontSize=34&fontColor=ffffff&desc=Full-Stack%20%2B%20Product%20Engineering&descSize=14&descAlignY=72&animation=fadeIn" alt="Created by Parth Pipermintwala" />
+<img src="https://capsule-render.vercel.app/api?type=transparent&height=110&text=Parth%20Pipermintwala&fontSize=34&fontColor=ffffff&desc=Full-Stack%20%2B%20Modern%20Web%20Architecture&descSize=14&descAlignY=82&animation=fadeIn" alt="Created by Parth Pipermintwala" />
 </p>
-
 <p align="center">
   <a href="https://github.com/ParthPipermintwala">
     <img src="https://img.shields.io/badge/GitHub-@ParthPipermintwala-111827?style=for-the-badge&logo=github&logoColor=ffffff" alt="Parth GitHub" />
