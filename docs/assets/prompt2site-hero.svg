@@ -1,117 +1,203 @@
 <svg width="1280" height="300" viewBox="0 0 1280 300" fill="none" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1280" y2="300" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#120F17"/>
-      <stop offset="0.55" stop-color="#0D0A12"/>
-      <stop offset="1" stop-color="#111827"/>
+    <!-- Deep Space / Mesh Background Gradients -->
+    <linearGradient id="bgBase" x1="0" y1="0" x2="1280" y2="300" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#050505"/>
+      <stop offset="0.5" stop-color="#0A0710"/>
+      <stop offset="1" stop-color="#020204"/>
     </linearGradient>
-    <linearGradient id="brand" x1="390" y1="0" x2="890" y2="0" gradientUnits="userSpaceOnUse">
+
+    <!-- Vibrant Brand Gradients -->
+    <linearGradient id="textShine" x1="400" y1="0" x2="880" y2="200" gradientUnits="userSpaceOnUse">
       <stop offset="0" stop-color="#FFFFFF"/>
-      <stop offset="0.45" stop-color="#A5F3FC"/>
-      <stop offset="0.75" stop-color="#A78BFA"/>
-      <stop offset="1" stop-color="#FFFFFF"/>
+      <stop offset="0.4" stop-color="#F8FAFC"/>
+      <stop offset="0.7" stop-color="#818CF8"/>
+      <stop offset="1" stop-color="#C084FC"/>
     </linearGradient>
-    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+
+    <linearGradient id="glassBorder" x1="0" y1="0" x2="100%" y2="100%">
+      <stop offset="0" stop-color="#FFFFFF" stop-opacity="0.15"/>
+      <stop offset="0.5" stop-color="#FFFFFF" stop-opacity="0.02"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0.1"/>
+    </linearGradient>
+
+    <linearGradient id="btnGradient" x1="0" y1="0" x2="1" y2="0">
       <stop offset="0" stop-color="#4F46E5"/>
-      <stop offset="0.5" stop-color="#A855F7"/>
-      <stop offset="1" stop-color="#06B6D4"/>
+      <stop offset="1" stop-color="#9333EA"/>
     </linearGradient>
-    <linearGradient id="beam" x1="330" y1="150" x2="950" y2="150" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#06B6D4" stop-opacity="0"/>
-      <stop offset="0.2" stop-color="#06B6D4" stop-opacity="0.9"/>
-      <stop offset="0.8" stop-color="#A855F7" stop-opacity="0.9"/>
-      <stop offset="1" stop-color="#A855F7" stop-opacity="0"/>
+
+    <linearGradient id="wireframeGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#38BDF8" stop-opacity="0.4"/>
+      <stop offset="1" stop-color="#818CF8" stop-opacity="0.05"/>
     </linearGradient>
-    <radialGradient id="leftGlow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(260 150) rotate(20) scale(320 150)">
-      <stop offset="0" stop-color="#06B6D4" stop-opacity="0.3"/>
-      <stop offset="1" stop-color="#06B6D4" stop-opacity="0"/>
-    </radialGradient>
-    <radialGradient id="rightGlow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1020 150) rotate(160) scale(320 150)">
-      <stop offset="0" stop-color="#A855F7" stop-opacity="0.3"/>
-      <stop offset="1" stop-color="#A855F7" stop-opacity="0"/>
-    </radialGradient>
-    <filter id="shadow" x="-20%" y="-30%" width="140%" height="170%">
-      <feDropShadow dx="0" dy="22" stdDeviation="22" flood-color="#000000" flood-opacity="0.38"/>
+
+    <!-- Connecting Path Gradient -->
+    <linearGradient id="pathGradient" x1="200" y1="0" x2="1080" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#818CF8" stop-opacity="0"/>
+      <stop offset="0.2" stop-color="#818CF8" stop-opacity="0.8"/>
+      <stop offset="0.5" stop-color="#C084FC" stop-opacity="1"/>
+      <stop offset="0.8" stop-color="#38BDF8" stop-opacity="0.8"/>
+      <stop offset="1" stop-color="#38BDF8" stop-opacity="0"/>
+    </linearGradient>
+
+    <!-- Organic Glow Filters -->
+    <filter id="meshGlowLeft" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="60" result="blur"/>
     </filter>
-    <filter id="glow" x="-80%" y="-80%" width="260%" height="260%">
-      <feGaussianBlur stdDeviation="6" result="blur"/>
+    <filter id="meshGlowRight" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="80" result="blur"/>
+    </filter>
+
+    <!-- Premium Drop Shadows -->
+    <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="24" stdDeviation="32" flood-color="#000000" flood-opacity="0.6"/>
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#000000" flood-opacity="0.4"/>
+    </filter>
+
+    <filter id="intenseGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
       <feMerge>
         <feMergeNode in="blur"/>
         <feMergeNode in="SourceGraphic"/>
       </feMerge>
     </filter>
-    <clipPath id="clip">
-      <rect width="1280" height="300" rx="26"/>
+    
+    <clipPath id="mainClip">
+      <rect width="1280" height="300" rx="24"/>
     </clipPath>
   </defs>
 
-  <g clip-path="url(#clip)">
-    <rect width="1280" height="300" fill="url(#bg)"/>
-    <rect width="1280" height="300" fill="url(#leftGlow)"/>
-    <rect width="1280" height="300" fill="url(#rightGlow)"/>
+  <g clip-path="url(#mainClip)">
+    <!-- Base Background -->
+    <rect width="1280" height="300" fill="url(#bgBase)"/>
 
-    <g opacity="0.42" stroke="white" stroke-opacity="0.08">
-      <path d="M0 75H1280"/>
-      <path d="M0 150H1280"/>
-      <path d="M0 225H1280"/>
-      <path d="M160 0V300"/>
-      <path d="M320 0V300"/>
-      <path d="M480 0V300"/>
-      <path d="M640 0V300"/>
-      <path d="M800 0V300"/>
-      <path d="M960 0V300"/>
-      <path d="M1120 0V300"/>
-    </g>
-
-    <path d="M338 150C456 106 532 106 640 150C748 194 824 194 942 150" stroke="url(#beam)" stroke-width="2" stroke-dasharray="18 18">
-      <animate attributeName="stroke-dashoffset" values="0;-144" dur="5s" repeatCount="indefinite"/>
-    </path>
-
-    <g filter="url(#shadow)">
-      <animateTransform attributeName="transform" type="translate" values="0 0;0 -6;0 0" dur="5s" repeatCount="indefinite"/>
-      <rect x="92" y="72" width="300" height="156" rx="24" fill="#0C0A0F" stroke="white" stroke-opacity="0.14"/>
-      <rect x="112" y="94" width="260" height="86" rx="16" fill="#120F17" stroke="white" stroke-opacity="0.08"/>
-      <text x="128" y="122" font-family="Arial, sans-serif" font-size="14" font-weight="700" fill="#E2E8F0">Describe your website</text>
-      <rect x="128" y="140" width="176" height="7" rx="3.5" fill="#67E8F9">
-        <animate attributeName="opacity" values="0.35;1;0.35" dur="3s" repeatCount="indefinite"/>
-      </rect>
-      <rect x="128" y="156" width="214" height="7" rx="3.5" fill="#A78BFA">
-        <animate attributeName="opacity" values="0.35;1;0.35" dur="3s" begin="0.35s" repeatCount="indefinite"/>
-      </rect>
-      <rect x="128" y="172" width="142" height="7" rx="3.5" fill="#CBD5E1">
-        <animate attributeName="opacity" values="0.35;1;0.35" dur="3s" begin="0.7s" repeatCount="indefinite"/>
-      </rect>
-      <rect x="112" y="194" width="126" height="24" rx="12" fill="url(#accent)"/>
-      <text x="175" y="211" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="800" fill="#FFFFFF">Generate</text>
-    </g>
-
-    <g filter="url(#shadow)">
-      <rect x="420" y="52" width="440" height="196" rx="30" fill="#08070C" fill-opacity="0.86" stroke="white" stroke-opacity="0.13"/>
-      <rect x="420" y="52" width="440" height="196" rx="30" fill="#FFFFFF" opacity="0.03">
-        <animate attributeName="opacity" values="0.03;0.08;0.03" dur="4s" repeatCount="indefinite"/>
-      </rect>
-      <text x="640" y="128" text-anchor="middle" font-family="Arial, sans-serif" font-size="58" font-weight="800" letter-spacing="-2" fill="url(#brand)">Prompt2Site</text>
-      <text x="640" y="164" text-anchor="middle" font-family="Arial, sans-serif" font-size="17" font-weight="600" fill="#B6C2D1">AI website builder for instant live HTML</text>
-      <rect x="510" y="184" width="260" height="34" rx="17" fill="white" fill-opacity="0.055" stroke="white" stroke-opacity="0.1"/>
-      <text x="640" y="206" text-anchor="middle" font-family="Consolas, monospace" font-size="12" font-weight="800" fill="#BAE6FD">Prompt - Preview - Edit - Share</text>
-    </g>
-
-    <g filter="url(#shadow)">
-      <animateTransform attributeName="transform" type="translate" values="0 0;0 6;0 0" dur="5.5s" repeatCount="indefinite"/>
-      <rect x="888" y="66" width="300" height="168" rx="24" fill="#0C0A0F" stroke="white" stroke-opacity="0.14"/>
-      <rect x="908" y="88" width="260" height="126" rx="18" fill="#F8FAFC"/>
-      <rect x="928" y="110" width="92" height="10" rx="5" fill="#111827" opacity="0.85"/>
-      <rect x="928" y="132" width="142" height="8" rx="4" fill="#6366F1" opacity="0.82"/>
-      <rect x="928" y="151" width="98" height="8" rx="4" fill="#CBD5E1"/>
-      <rect x="928" y="178" width="70" height="18" rx="9" fill="url(#accent)"/>
-      <rect x="1088" y="112" width="56" height="80" rx="12" fill="#E0F2FE"/>
-      <path d="M1100 172L1116 150L1128 162L1138 144L1144 172H1100Z" fill="#06B6D4" opacity="0.6"/>
-    </g>
-
-    <circle cx="640" cy="34" r="4" fill="#67E8F9" filter="url(#glow)">
-      <animate attributeName="opacity" values="0.35;1;0.35" dur="2.8s" repeatCount="indefinite"/>
-      <animate attributeName="r" values="3;5;3" dur="2.8s" repeatCount="indefinite"/>
+    <!-- Animated Mesh Gradient Orbs -->
+    <circle cx="200" cy="50" r="150" fill="#4F46E5" opacity="0.15" filter="url(#meshGlowLeft)">
+      <animate attributeName="cx" values="200; 250; 200" dur="8s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.6 1; 0.4 0 0.6 1"/>
+      <animate attributeName="cy" values="50; 80; 50" dur="10s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.6 1; 0.4 0 0.6 1"/>
     </circle>
-    <path d="M0 264C168 236 304 241 456 264C600 286 758 286 914 264C1068 242 1184 238 1280 254V300H0V264Z" fill="#020617" fill-opacity="0.66"/>
+    <circle cx="1080" cy="250" r="180" fill="#06B6D4" opacity="0.12" filter="url(#meshGlowRight)">
+      <animate attributeName="cx" values="1080; 1030; 1080" dur="9s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.6 1; 0.4 0 0.6 1"/>
+      <animate attributeName="cy" values="250; 200; 250" dur="11s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.6 1; 0.4 0 0.6 1"/>
+    </circle>
+
+    <!-- Futuristic Dotted Grid -->
+    <pattern id="dotGrid" x="0" y="0" width="30" height="30" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1" fill="#FFFFFF" opacity="0.04"/>
+    </pattern>
+    <rect width="1280" height="300" fill="url(#dotGrid)"/>
+
+    <!-- Curved Connection Path -->
+    <path id="connectionLine" d="M 360 150 C 460 150, 480 240, 640 240 C 800 240, 820 150, 920 150" fill="none" stroke="url(#pathGradient)" stroke-width="2" stroke-dasharray="6 8" opacity="0.6"/>
+    
+    <!-- Travelling Data Packet along Path -->
+    <g filter="url(#intenseGlow)">
+      <circle r="4" fill="#38BDF8">
+        <animateMotion dur="3s" repeatCount="indefinite" keyPoints="0;1" keyTimes="0;1" calcMode="linear">
+          <mpath href="#connectionLine"/>
+        </animateMotion>
+        <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.2;0.8;1" dur="3s" repeatCount="indefinite"/>
+      </circle>
+    </g>
+
+    <!-- LEFT CARD: Intelligent Prompt Input -->
+    <g filter="url(#softShadow)">
+      <animateTransform attributeName="transform" type="translate" values="0 0; 0 -8; 0 0" dur="6s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1; 0.45 0 0.55 1"/>
+      <!-- Glass Card Body -->
+      <rect x="80" y="60" width="320" height="180" rx="20" fill="#0A0812" fill-opacity="0.75" stroke="url(#glassBorder)" stroke-width="1.5" style="backdrop-filter: blur(12px);"/>
+      
+      <!-- Input Header -->
+      <rect x="100" y="80" width="24" height="24" rx="6" fill="#1E1B4B" stroke="#4338CA" stroke-opacity="0.5"/>
+      <path d="M107 88 L111 92 L107 96 M113 96 L117 96" stroke="#818CF8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      <text x="136" y="96" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="600" fill="#E2E8F0">AI Prompt Matrix</text>
+
+      <!-- Text Box -->
+      <rect x="100" y="116" width="280" height="64" rx="12" fill="#030305" stroke="#FFFFFF" stroke-opacity="0.06"/>
+      <text x="116" y="140" font-family="ui-monospace, SFMono-Regular, monospace" font-size="12" font-weight="500" fill="#94A3B8">
+        Build a modern SaaS landing<tspan x="116" dy="20">page with a dark theme...</tspan>
+      </text>
+      <!-- Blinking Cursor -->
+      <rect x="274" y="148" width="2" height="14" fill="#818CF8">
+        <animate attributeName="opacity" values="1;0;1" dur="1s" repeatCount="indefinite"/>
+      </rect>
+
+      <!-- Generate Button -->
+      <rect x="100" y="194" width="280" height="32" rx="8" fill="url(#btnGradient)"/>
+      <text x="240" y="214" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" fill="#FFFFFF" letter-spacing="1">GENERATE SITE ✨</text>
+    </g>
+
+    <!-- RIGHT CARD: Live Canvas Render -->
+    <g filter="url(#softShadow)">
+      <animateTransform attributeName="transform" type="translate" values="0 -6; 0 6; 0 -6" dur="7s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1; 0.45 0 0.55 1"/>
+      <rect x="880" y="60" width="320" height="180" rx="20" fill="#050810" fill-opacity="0.8" stroke="url(#glassBorder)" stroke-width="1.5"/>
+      
+      <!-- macOS Browser Chrome -->
+      <rect x="880" y="60" width="320" height="28" rx="20" fill="#111827"/>
+      <rect x="880" y="74" width="320" height="14" fill="#111827"/> <!-- Flattens bottom of chrome -->
+      <path d="M880 88 L1200 88" stroke="#FFFFFF" stroke-opacity="0.05" stroke-width="1"/>
+      
+      <!-- Traffic Lights -->
+      <circle cx="900" cy="74" r="4.5" fill="#FF5F56"/>
+      <circle cx="916" cy="74" r="4.5" fill="#FFBD2E"/>
+      <circle cx="932" cy="74" r="4.5" fill="#27C93F"/>
+      
+      <!-- URL Bar -->
+      <rect x="980" y="66" width="120" height="16" rx="8" fill="#030712" stroke="#FFFFFF" stroke-opacity="0.05"/>
+      <text x="1040" y="77" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="9" fill="#64748B">localhost:3000</text>
+
+      <!-- Website Wireframe Interface -->
+      <rect x="900" y="104" width="140" height="16" rx="4" fill="#1E293B"/>
+      <rect x="900" y="128" width="180" height="8" rx="4" fill="#334155"/>
+      <rect x="900" y="144" width="150" height="8" rx="4" fill="#334155" opacity="0.6"/>
+      
+      <!-- Call to action wireframe button -->
+      <rect x="900" y="166" width="70" height="20" rx="10" fill="#38BDF8" opacity="0.9"/>
+      
+      <!-- Hero Graphic Wireframe -->
+      <rect x="1100" y="104" width="80" height="82" rx="12" fill="url(#wireframeGrad)" stroke="#38BDF8" stroke-opacity="0.3" stroke-width="1"/>
+      <!-- Chart/Graph Mockup in Hero -->
+      <path d="M1110 170 L1125 140 L1140 155 L1155 125 L1170 145" fill="none" stroke="#38BDF8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="1155" cy="125" r="3" fill="#FFFFFF"/>
+    </g>
+
+    <!-- CENTER HERO CARD: Brand Core -->
+    <g filter="url(#softShadow)">
+      <!-- Smooth hover floating, offset from sides -->
+      <animateTransform attributeName="transform" type="translate" values="0 4; 0 -4; 0 4" dur="8s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1; 0.45 0 0.55 1"/>
+      
+      <!-- Premium Center Plate -->
+      <rect x="420" y="45" width="440" height="170" rx="28" fill="#0A0A0E" fill-opacity="0.6" stroke="url(#glassBorder)" stroke-width="1" style="backdrop-filter: blur(16px);"/>
+      <rect x="420" y="45" width="440" height="170" rx="28" fill="url(#textShine)" opacity="0.02"/>
+
+      <!-- Top Badge -->
+      <rect x="584" y="65" width="112" height="24" rx="12" fill="#818CF8" fill-opacity="0.1" stroke="#818CF8" stroke-opacity="0.3"/>
+      <text x="640" y="81" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="700" fill="#A5B4FC" letter-spacing="1">BETA 2.0 LIVE</text>
+
+      <!-- Main Title -->
+      <text x="640" y="130" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="52" font-weight="800" letter-spacing="-0.04em" fill="url(#textShine)">
+        Prompt2Site
+      </text>
+
+      <!-- Subtitle -->
+      <text x="640" y="158" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="15" font-weight="500" fill="#94A3B8">
+        Zero code. Just natural language to production HTML.
+      </text>
+
+      <!-- Divider line under text -->
+      <rect x="520" y="184" width="240" height="1" fill="url(#pathGradient)" opacity="0.3"/>
+    </g>
+
+    <!-- Foreground Atmosphere Particles -->
+    <g filter="url(#intenseGlow)">
+      <circle cx="450" cy="80" r="1.5" fill="#38BDF8">
+        <animate attributeName="opacity" values="0.2;1;0.2" dur="3s" repeatCount="indefinite" begin="0s"/>
+      </circle>
+      <circle cx="820" cy="220" r="2" fill="#C084FC">
+        <animate attributeName="opacity" values="0.2;1;0.2" dur="4s" repeatCount="indefinite" begin="1s"/>
+      </circle>
+      <circle cx="640" cy="30" r="1.5" fill="#FFFFFF">
+        <animate attributeName="opacity" values="0.1;0.8;0.1" dur="2s" repeatCount="indefinite" begin="0.5s"/>
+      </circle>
+    </g>
   </g>
 </svg>
