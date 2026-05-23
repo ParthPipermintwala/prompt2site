@@ -198,7 +198,6 @@ export const changeWebsite = async (req, res) => {
           },
         },
         {
-          new: true,
           returnDocument: "after",
         },
       ),
