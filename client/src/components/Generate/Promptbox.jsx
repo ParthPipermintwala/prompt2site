@@ -30,7 +30,6 @@ export default function Promptbox() {
   const [loading, setLoading] = useState(false);
   const [Error, setError] = useState("");
   const [randomText, setRandomText] = useState("Generating...");
-  const [seconds, setSeconds] = useState(0);
   const [progress, setProgress] = useState(0);
   const [phaseIndex, setphaseIndex] = useState(0);
 
@@ -45,14 +44,10 @@ export default function Promptbox() {
   }, [loading]);
 
   const handlegenerate = async () => {
-    var interval;
     setLoading(true);
     setError("");
 
     try {
-      interval = setInterval(() => {
-        setSeconds((prev) => prev + 1);
-      }, 1000);
       const result = await axios.post(
         `${import.meta.env.VITE_BACKEND_URL}/api/website/generate`,
         { prompt },
@@ -62,7 +57,6 @@ export default function Promptbox() {
       );
       setProgress(100);
       if (result.status === 200) {
-        console.log(result.data);
         dispatch(
           setUserData({ ...userData, credits: result.data.creditsLeft }),
         );
@@ -80,7 +74,6 @@ export default function Promptbox() {
       console.error("Error generating website:", error);
     } finally {
       setLoading(false);
-      clearInterval(interval);
     }
   };
 
@@ -115,7 +108,6 @@ export default function Promptbox() {
   return (
     <>
       <div className="relative">
-        {seconds}
         <Motion.textarea
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
