@@ -8,6 +8,7 @@ export default function LiveSite() {
   const [code, setCode] = useState("");
   const [error, setError] = useState("");
   useEffect(() => {
+    console.log(id)
     const handleGetWebsite = async () => {
       try {
         const result = await axios.get(

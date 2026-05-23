@@ -117,7 +117,6 @@ export const getWebsitesBySlug = async (req, res) => {
 
     const website = await Website.findOne({
       slug: slug,
-      user: req.user._id,
     })
       .select("latestCode")
       .lean();
