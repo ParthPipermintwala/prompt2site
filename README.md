@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&height=250&text=Prompt2Site&fontAlign=50&fontAlignY=36&color=0:120f17,30:1f1147,65:4f46e5,100:06b6d4&fontColor=ffffff&desc=AI%20Website%20Builder%20%7C%20Prompt%20to%20Live%20HTML%20in%20Minutes&descAlign=50&descAlignY=58&animation=fadeIn" alt="Prompt2Site banner" />
+  <img src="docs/assets/prompt2site-hero.svg" alt="Prompt2Site animated hero banner" />
 </p>
 
 <p align="center">
@@ -7,9 +7,7 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Product-AI%20Website%20Builder-4f46e5?style=for-the-badge" alt="product" />
   <img src="https://img.shields.io/badge/Frontend-React%2019%20%7C%20Vite%208%20%7C%20Tailwind-06b6d4?style=for-the-badge" alt="frontend" />
-  <img src="https://img.shields.io/badge/UI-ReactBits%20Animations-a855f7?style=for-the-badge" alt="ReactBits animations" />
   <img src="https://img.shields.io/badge/Backend-Node.js%20%7C%20Express%205-111827?style=for-the-badge" alt="backend" />
   <img src="https://img.shields.io/badge/Data-MongoDB%20%7C%20RedisJSON-16a34a?style=for-the-badge" alt="data" />
   <img src="https://img.shields.io/badge/AI-OpenRouter-a855f7?style=for-the-badge" alt="ai" />
@@ -47,7 +45,7 @@ Instead of starting from an empty editor, users can:
 ## Feature Highlights
 
 | Feature | What it does |
-| --- | --- |
+| :---: | :--- |
 | Prompt Website Generation | Sends a user prompt to OpenRouter and creates a saved HTML website |
 | AI Change Requests | Updates an existing website using the current code plus a new prompt |
 | Live Preview | Renders generated HTML inside a sandboxed iframe |
@@ -64,6 +62,7 @@ Instead of starting from an empty editor, users can:
 ## Animated Flow
 
 ```mermaid
+%%{init: {'theme': 'base', 'themeVariables': { 'background': '#0b0f19', 'primaryColor': '#0f172a', 'primaryTextColor': '#e2e8f0', 'primaryBorderColor': '#2ec4b6', 'lineColor': '#94a3b8', 'clusterBkg': '#252a2a', 'clusterBorder': '#52575a', 'fontFamily': 'Inter, ui-sans-serif, system-ui' }}}%%
 flowchart TD
 	A[User enters website idea]
 	A --> B[Prompt2Site generation pipeline]
@@ -93,7 +92,9 @@ flowchart TD
 	classDef gen fill:#0f172a,stroke:#2ec4b6,color:#e2e8f0,stroke-width:1px;
 	classDef data fill:#111827,stroke:#22d3ee,color:#e2e8f0,stroke-width:1px;
 	classDef output fill:#0b132b,stroke:#14b8a6,color:#e2e8f0,stroke-width:1px;
+	classDef entry fill:#202124,stroke:#8b949e,color:#f8fafc,stroke-width:1px;
 
+	class A entry;
 	class B,C,D,E gen;
 	class F,G,H data;
 	class I,J,K,L output;
@@ -113,15 +114,15 @@ flowchart TD
   <img src="https://img.shields.io/badge/Cache-RedisJSON%20Read%20Through-111827?style=for-the-badge&logo=redis&logoColor=DC382D" alt="cache" />
 </p>
 
-<table>
+<table align="center">
   <tr>
-    <th align="left" width="22%">Domain</th>
-    <th align="left">Stack</th>
-    <th align="left" width="25%">Purpose</th>
+    <th align="center" width="22%">Domain</th>
+    <th align="center">Stack</th>
+    <th align="center" width="25%">Purpose</th>
   </tr>
   <tr>
-    <td><strong>Frontend UI</strong></td>
-    <td>
+    <td align="center"><strong>Frontend UI</strong></td>
+    <td align="center">
       <img src="https://img.shields.io/badge/React-20232A?style=flat-square&logo=react&logoColor=61DAFB" alt="React" />
       <img src="https://img.shields.io/badge/Vite-111827?style=flat-square&logo=vite&logoColor=646CFF" alt="Vite" />
       <img src="https://img.shields.io/badge/Tailwind_CSS-0f172a?style=flat-square&logo=tailwindcss&logoColor=38B2AC" alt="Tailwind CSS" />
@@ -129,44 +130,44 @@ flowchart TD
       <img src="https://img.shields.io/badge/ReactBits-111827?style=flat-square&logo=react&logoColor=a855f7" alt="ReactBits" />
       <img src="https://img.shields.io/badge/Framer_Motion-0f172a?style=flat-square&logo=framer&logoColor=ffffff" alt="Framer Motion" />
     </td>
-    <td>Responsive, animated website builder interface with ReactBits-style effects</td>
+    <td align="center">Responsive, animated website builder interface with ReactBits-style effects</td>
   </tr>
   <tr>
-    <td><strong>Editor UX</strong></td>
-    <td>
+    <td align="center"><strong>Editor UX</strong></td>
+    <td align="center">
       <img src="https://img.shields.io/badge/Monaco_Editor-1f2937?style=flat-square&logo=visualstudiocode&logoColor=007ACC" alt="Monaco Editor" />
       <img src="https://img.shields.io/badge/Lucide_Icons-111827?style=flat-square&logo=lucide&logoColor=ffffff" alt="Lucide" />
       <img src="https://img.shields.io/badge/OGL-0f172a?style=flat-square" alt="OGL" />
     </td>
-    <td>Code view, preview controls, particles, and tool actions</td>
+    <td align="center">Code view, preview controls, particles, and tool actions</td>
   </tr>
   <tr>
-    <td><strong>Backend API</strong></td>
-    <td>
+    <td align="center"><strong>Backend API</strong></td>
+    <td align="center">
       <img src="https://img.shields.io/badge/Node.js-0f172a?style=flat-square&logo=nodedotjs&logoColor=339933" alt="Node.js" />
       <img src="https://img.shields.io/badge/Express-111827?style=flat-square&logo=express&logoColor=ffffff" alt="Express" />
       <img src="https://img.shields.io/badge/JWT-0b132b?style=flat-square&logo=jsonwebtokens&logoColor=ffffff" alt="JWT" />
       <img src="https://img.shields.io/badge/Cookies-0f172a?style=flat-square" alt="cookies" />
     </td>
-    <td>Routing, auth, AI orchestration, and payment verification</td>
+    <td align="center">Routing, auth, AI orchestration, and payment verification</td>
   </tr>
   <tr>
-    <td><strong>Data Layer</strong></td>
-    <td>
+    <td align="center"><strong>Data Layer</strong></td>
+    <td align="center">
       <img src="https://img.shields.io/badge/MongoDB-0f172a?style=flat-square&logo=mongodb&logoColor=47A248" alt="MongoDB" />
       <img src="https://img.shields.io/badge/Mongoose-111827?style=flat-square&logo=mongoose&logoColor=880000" alt="Mongoose" />
       <img src="https://img.shields.io/badge/RedisJSON-111827?style=flat-square&logo=redis&logoColor=DC382D" alt="RedisJSON" />
     </td>
-    <td>Users, websites, messages, and cached hot reads</td>
+    <td align="center">Users, websites, messages, and cached hot reads</td>
   </tr>
   <tr>
-    <td><strong>AI + Payments</strong></td>
-    <td>
+    <td align="center"><strong>AI + Payments</strong></td>
+    <td align="center">
       <img src="https://img.shields.io/badge/OpenRouter-0f172a?style=flat-square&logo=openai&logoColor=10b981" alt="OpenRouter" />
       <img src="https://img.shields.io/badge/Google_OAuth-111827?style=flat-square&logo=google&logoColor=4285F4" alt="Google OAuth" />
       <img src="https://img.shields.io/badge/Razorpay-0f172a?style=flat-square" alt="Razorpay" />
     </td>
-    <td>Website generation, sign-in, checkout, and credit updates</td>
+    <td align="center">Website generation, sign-in, checkout, and credit updates</td>
   </tr>
 </table>
 
@@ -175,6 +176,7 @@ flowchart TD
 ## Architecture
 
 ```mermaid
+%%{init: {'theme': 'base', 'themeVariables': { 'background': '#0b0f19', 'primaryColor': '#0f172a', 'primaryTextColor': '#e2e8f0', 'primaryBorderColor': '#22d3ee', 'lineColor': '#94a3b8', 'clusterBkg': '#252a2a', 'clusterBorder': '#52575a', 'fontFamily': 'Inter, ui-sans-serif, system-ui' }}}%%
 flowchart TD
   A["React + Vite Client"] --> B["React Router"]
   B --> C["Redux + localStorage"]
@@ -203,10 +205,10 @@ flowchart TD
     J --> O["Razorpay"]
   end
 
-  classDef input fill:#222222,stroke:#9ca3af,color:#f8fafc,stroke-width:1px;
+  classDef input fill:#202124,stroke:#9ca3af,color:#f8fafc,stroke-width:1px;
   classDef core fill:#071126,stroke:#06b6d4,color:#f8fafc,stroke-width:1px;
-  classDef service fill:#071126,stroke:#8b5cf6,color:#f8fafc,stroke-width:1px;
-  classDef infra fill:#071126,stroke:#2dd4bf,color:#f8fafc,stroke-width:1px;
+  classDef service fill:#120f2a,stroke:#8b5cf6,color:#f8fafc,stroke-width:1px;
+  classDef infra fill:#06231f,stroke:#2dd4bf,color:#f8fafc,stroke-width:1px;
 
   class A,B,C,D input;
   class E,F,G core;
@@ -219,6 +221,7 @@ flowchart TD
 ## Authentication Flow
 
 ```mermaid
+%%{init: {'theme': 'base', 'themeVariables': { 'background': '#0b0f19', 'primaryColor': '#0f172a', 'primaryTextColor': '#e2e8f0', 'primaryBorderColor': '#22d3ee', 'lineColor': '#94a3b8', 'clusterBkg': '#252a2a', 'clusterBorder': '#52575a', 'fontFamily': 'Inter, ui-sans-serif, system-ui' }}}%%
 flowchart TD
   A["User clicks Continue with Google"] --> B["Google returns credential token"]
 
@@ -255,7 +258,7 @@ flowchart TD
 ### Auth Notes
 
 | Area | Implementation |
-| --- | --- |
+| :---: | :--- |
 | Login UI | `@react-oauth/google` |
 | Token verification | `google-auth-library` on backend |
 | Session transport | JWT in HTTP-only cookie named `token` |
@@ -268,7 +271,7 @@ flowchart TD
 ## API Surface
 
 | Group | Method | Endpoint | Purpose |
-| --- | --- | --- | --- |
+| :---: | :---: | :--- | :--- |
 | Auth | `POST` | `/api/auth/google` | Google login, user creation/linking, JWT cookie |
 | Auth | `POST` | `/api/auth/signup` | Email/password signup |
 | Auth | `POST` | `/api/auth/signin` | Email/password signin |
@@ -289,6 +292,7 @@ flowchart TD
 ## AI Pipeline
 
 ```mermaid
+%%{init: {'theme': 'base', 'themeVariables': { 'background': '#0b0f19', 'primaryColor': '#0f172a', 'primaryTextColor': '#e2e8f0', 'primaryBorderColor': '#22d3ee', 'lineColor': '#94a3b8', 'clusterBkg': '#252a2a', 'clusterBorder': '#52575a', 'fontFamily': 'Inter, ui-sans-serif, system-ui' }}}%%
 flowchart TD
   A["User prompt"] --> B["Choose generation mode"]
 
@@ -327,7 +331,7 @@ flowchart TD
 ```
 
 | Detail | Current implementation |
-| --- | --- |
+| :---: | :--- |
 | Provider | OpenRouter-compatible chat completions endpoint |
 | Model | Controlled by `MODEL` env variable |
 | Parser | Extracts `TITLE`, `MESSAGE`, and fenced HTML |
@@ -349,7 +353,7 @@ await redisClient.expire(key, 172800);
 ```
 
 | Key | Value | TTL | Invalidated when |
-| --- | --- | --- | --- |
+| :--- | :---: | :---: | :--- |
 | `prompt2site:user:{userId}` | Safe user profile | 2 days | auth, credit changes, generation, update |
 | `prompt2site:websites:list:{userId}` | Dashboard site list | 2 days | generate, update, delete, deploy |
 | `prompt2site:website:detail:{userId}:{websiteId}` | Website detail + conversations | 2 days | update, delete, deploy |
@@ -362,6 +366,7 @@ If Redis is missing or down, the app logs the issue and falls back to MongoDB.
 ## Database Model
 
 ```mermaid
+%%{init: {'theme': 'base', 'themeVariables': { 'background': '#0b0f19', 'primaryColor': '#0f172a', 'primaryTextColor': '#e2e8f0', 'primaryBorderColor': '#22d3ee', 'lineColor': '#94a3b8', 'clusterBkg': '#252a2a', 'clusterBorder': '#52575a', 'fontFamily': 'Inter, ui-sans-serif, system-ui' }}}%%
 flowchart TD
   A["User"]
 
@@ -400,28 +405,42 @@ flowchart TD
 
 ## Project Structure
 
-```text
-prompt2site/
-|- client/              # React, Vite, Tailwind, routes, pages, components
-|  |- src/
-|  |  |- app/           # Redux store
-|  |  |- components/    # Home, Generate, Dashboard, Editor, animation UI
-|  |  |- features/      # user slice
-|  |  |- hooks/         # auth, current user, Razorpay
-|  |  |- pages/         # Home, Generate, Editor, Dashboard, Pricing, LiveSite
-|  |  |- router.jsx     # route definitions and client guard
-|
-|- server/              # Express API
-|  |- asset/            # AI prompt templates
-|  |- config/           # MongoDB, Redis, OpenRouter
-|  |- controllers/      # auth, website, payment, user logic
-|  |- middlewares/      # JWT auth middleware
-|  |- models/           # User, Website, Message schemas
-|  |- routes/           # API route modules
-|  |- services/         # auth, cache, response extraction
-|
-|- README.md
-|- LICENSE
+```mermaid
+%%{init: {'theme': 'base', 'themeVariables': { 'background': '#0b0f19', 'primaryColor': '#0f172a', 'primaryTextColor': '#e2e8f0', 'primaryBorderColor': '#22d3ee', 'lineColor': '#94a3b8', 'clusterBkg': '#252a2a', 'clusterBorder': '#52575a', 'fontFamily': 'Inter, ui-sans-serif, system-ui' }}}%%
+flowchart TD
+  ROOT["prompt2site"]
+
+  subgraph CLIENT["client - React Experience"]
+    direction TB
+    C1["src/app - Redux store"]
+    C2["src/components - UI + animation"]
+    C3["src/pages - product screens"]
+    C4["src/hooks - auth + payments"]
+    C5["router.jsx - route guard"]
+  end
+
+  subgraph SERVER["server - Express API"]
+    direction TB
+    S1["asset - AI prompt templates"]
+    S2["config - DB, Redis, OpenRouter"]
+    S3["controllers - request logic"]
+    S4["models - Mongo schemas"]
+    S5["routes + middleware + services"]
+  end
+
+  ROOT --> CLIENT
+  ROOT --> SERVER
+  ROOT --> DOCS["README + LICENSE"]
+
+  classDef root fill:#202124,stroke:#9ca3af,color:#f8fafc,stroke-width:1px;
+  classDef client fill:#071126,stroke:#06b6d4,color:#f8fafc,stroke-width:1px;
+  classDef server fill:#120f2a,stroke:#8b5cf6,color:#f8fafc,stroke-width:1px;
+  classDef docs fill:#06231f,stroke:#2dd4bf,color:#f8fafc,stroke-width:1px;
+
+  class ROOT root;
+  class C1,C2,C3,C4,C5 client;
+  class S1,S2,S3,S4,S5 server;
+  class DOCS docs;
 ```
 
 ---
@@ -460,7 +479,7 @@ Open `http://localhost:5173`.
 ### Backend `.env`
 
 | Variable | Purpose |
-| --- | --- |
+| :---: | :--- |
 | `PORT` | Backend port |
 | `ORIGIN` | Allowed frontend origin and share URL base |
 | `JWT_SECRET` | JWT signing secret |
@@ -477,7 +496,7 @@ Open `http://localhost:5173`.
 ### Frontend `.env`
 
 | Variable | Purpose |
-| --- | --- |
+| :---: | :--- |
 | `VITE_BACKEND_URL` | Express API base URL |
 | `VITE_GOOGLE_CLIENT_ID` | Google OAuth browser client ID |
 | `VITE_RAZORPAY_KEY_ID` | Razorpay checkout key |
@@ -502,7 +521,7 @@ Open `http://localhost:5173`.
 ## Security and Performance
 
 | Area | Current implementation |
-| --- | --- |
+| :---: | :--- |
 | Auth protection | JWT cookie middleware on user, website, and payment APIs |
 | Cookie settings | `httpOnly`, `sameSite: "lax"`, local `secure: false` |
 | Passwords | bcrypt hashing for email/password auth |
@@ -514,23 +533,17 @@ Open `http://localhost:5173`.
 
 ## Created By
 
-<table>
-  <tr>
-    <td align="center" width="100%">
-      <a href="https://github.com/ParthPipermintwala">
-        <img src="https://github.com/ParthPipermintwala.png?size=160" width="110" height="110" alt="ParthPipermintwala avatar" />
-      </a>
-      <br />
-      <strong>Parth Pipermintwala</strong>
-      <br />
-      <sub>Full-Stack + Product Engineering</sub>
-      <br /><br />
-      <a href="https://github.com/ParthPipermintwala">
-        <img src="https://img.shields.io/badge/GitHub-@ParthPipermintwala-111827?style=flat-square&logo=github&logoColor=ffffff" alt="Parth GitHub" />
-      </a>
-    </td>
-  </tr>
-</table>
+<p align="center">
+  <img src="https://capsule-render.vercel.app/api?type=transparent&height=86&text=Parth%20Pipermintwala&fontSize=34&fontColor=ffffff&desc=Full-Stack%20%2B%20Product%20Engineering&descSize=14&descAlignY=72&animation=fadeIn" alt="Created by Parth Pipermintwala" />
+</p>
+
+<p align="center">
+  <a href="https://github.com/ParthPipermintwala">
+    <img src="https://img.shields.io/badge/GitHub-@ParthPipermintwala-111827?style=for-the-badge&logo=github&logoColor=ffffff" alt="Parth GitHub" />
+  </a>
+  <img src="https://img.shields.io/badge/Role-Full--Stack%20Builder-4f46e5?style=for-the-badge" alt="Full Stack Builder" />
+  <img src="https://img.shields.io/badge/Focus-AI%20Product%20UX-06b6d4?style=for-the-badge" alt="AI Product UX" />
+</p>
 
 ---
 

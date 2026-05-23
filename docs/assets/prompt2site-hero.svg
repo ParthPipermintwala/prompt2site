@@ -1,0 +1,117 @@
+<svg width="1280" height="300" viewBox="0 0 1280 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1280" y2="300" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#120F17"/>
+      <stop offset="0.55" stop-color="#0D0A12"/>
+      <stop offset="1" stop-color="#111827"/>
+    </linearGradient>
+    <linearGradient id="brand" x1="390" y1="0" x2="890" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="0.45" stop-color="#A5F3FC"/>
+      <stop offset="0.75" stop-color="#A78BFA"/>
+      <stop offset="1" stop-color="#FFFFFF"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#4F46E5"/>
+      <stop offset="0.5" stop-color="#A855F7"/>
+      <stop offset="1" stop-color="#06B6D4"/>
+    </linearGradient>
+    <linearGradient id="beam" x1="330" y1="150" x2="950" y2="150" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#06B6D4" stop-opacity="0"/>
+      <stop offset="0.2" stop-color="#06B6D4" stop-opacity="0.9"/>
+      <stop offset="0.8" stop-color="#A855F7" stop-opacity="0.9"/>
+      <stop offset="1" stop-color="#A855F7" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="leftGlow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(260 150) rotate(20) scale(320 150)">
+      <stop offset="0" stop-color="#06B6D4" stop-opacity="0.3"/>
+      <stop offset="1" stop-color="#06B6D4" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="rightGlow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1020 150) rotate(160) scale(320 150)">
+      <stop offset="0" stop-color="#A855F7" stop-opacity="0.3"/>
+      <stop offset="1" stop-color="#A855F7" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="shadow" x="-20%" y="-30%" width="140%" height="170%">
+      <feDropShadow dx="0" dy="22" stdDeviation="22" flood-color="#000000" flood-opacity="0.38"/>
+    </filter>
+    <filter id="glow" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <clipPath id="clip">
+      <rect width="1280" height="300" rx="26"/>
+    </clipPath>
+  </defs>
+
+  <g clip-path="url(#clip)">
+    <rect width="1280" height="300" fill="url(#bg)"/>
+    <rect width="1280" height="300" fill="url(#leftGlow)"/>
+    <rect width="1280" height="300" fill="url(#rightGlow)"/>
+
+    <g opacity="0.42" stroke="white" stroke-opacity="0.08">
+      <path d="M0 75H1280"/>
+      <path d="M0 150H1280"/>
+      <path d="M0 225H1280"/>
+      <path d="M160 0V300"/>
+      <path d="M320 0V300"/>
+      <path d="M480 0V300"/>
+      <path d="M640 0V300"/>
+      <path d="M800 0V300"/>
+      <path d="M960 0V300"/>
+      <path d="M1120 0V300"/>
+    </g>
+
+    <path d="M338 150C456 106 532 106 640 150C748 194 824 194 942 150" stroke="url(#beam)" stroke-width="2" stroke-dasharray="18 18">
+      <animate attributeName="stroke-dashoffset" values="0;-144" dur="5s" repeatCount="indefinite"/>
+    </path>
+
+    <g filter="url(#shadow)">
+      <animateTransform attributeName="transform" type="translate" values="0 0;0 -6;0 0" dur="5s" repeatCount="indefinite"/>
+      <rect x="92" y="72" width="300" height="156" rx="24" fill="#0C0A0F" stroke="white" stroke-opacity="0.14"/>
+      <rect x="112" y="94" width="260" height="86" rx="16" fill="#120F17" stroke="white" stroke-opacity="0.08"/>
+      <text x="128" y="122" font-family="Arial, sans-serif" font-size="14" font-weight="700" fill="#E2E8F0">Describe your website</text>
+      <rect x="128" y="140" width="176" height="7" rx="3.5" fill="#67E8F9">
+        <animate attributeName="opacity" values="0.35;1;0.35" dur="3s" repeatCount="indefinite"/>
+      </rect>
+      <rect x="128" y="156" width="214" height="7" rx="3.5" fill="#A78BFA">
+        <animate attributeName="opacity" values="0.35;1;0.35" dur="3s" begin="0.35s" repeatCount="indefinite"/>
+      </rect>
+      <rect x="128" y="172" width="142" height="7" rx="3.5" fill="#CBD5E1">
+        <animate attributeName="opacity" values="0.35;1;0.35" dur="3s" begin="0.7s" repeatCount="indefinite"/>
+      </rect>
+      <rect x="112" y="194" width="126" height="24" rx="12" fill="url(#accent)"/>
+      <text x="175" y="211" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="800" fill="#FFFFFF">Generate</text>
+    </g>
+
+    <g filter="url(#shadow)">
+      <rect x="420" y="52" width="440" height="196" rx="30" fill="#08070C" fill-opacity="0.86" stroke="white" stroke-opacity="0.13"/>
+      <rect x="420" y="52" width="440" height="196" rx="30" fill="#FFFFFF" opacity="0.03">
+        <animate attributeName="opacity" values="0.03;0.08;0.03" dur="4s" repeatCount="indefinite"/>
+      </rect>
+      <text x="640" y="128" text-anchor="middle" font-family="Arial, sans-serif" font-size="58" font-weight="800" letter-spacing="-2" fill="url(#brand)">Prompt2Site</text>
+      <text x="640" y="164" text-anchor="middle" font-family="Arial, sans-serif" font-size="17" font-weight="600" fill="#B6C2D1">AI website builder for instant live HTML</text>
+      <rect x="510" y="184" width="260" height="34" rx="17" fill="white" fill-opacity="0.055" stroke="white" stroke-opacity="0.1"/>
+      <text x="640" y="206" text-anchor="middle" font-family="Consolas, monospace" font-size="12" font-weight="800" fill="#BAE6FD">Prompt - Preview - Edit - Share</text>
+    </g>
+
+    <g filter="url(#shadow)">
+      <animateTransform attributeName="transform" type="translate" values="0 0;0 6;0 0" dur="5.5s" repeatCount="indefinite"/>
+      <rect x="888" y="66" width="300" height="168" rx="24" fill="#0C0A0F" stroke="white" stroke-opacity="0.14"/>
+      <rect x="908" y="88" width="260" height="126" rx="18" fill="#F8FAFC"/>
+      <rect x="928" y="110" width="92" height="10" rx="5" fill="#111827" opacity="0.85"/>
+      <rect x="928" y="132" width="142" height="8" rx="4" fill="#6366F1" opacity="0.82"/>
+      <rect x="928" y="151" width="98" height="8" rx="4" fill="#CBD5E1"/>
+      <rect x="928" y="178" width="70" height="18" rx="9" fill="url(#accent)"/>
+      <rect x="1088" y="112" width="56" height="80" rx="12" fill="#E0F2FE"/>
+      <path d="M1100 172L1116 150L1128 162L1138 144L1144 172H1100Z" fill="#06B6D4" opacity="0.6"/>
+    </g>
+
+    <circle cx="640" cy="34" r="4" fill="#67E8F9" filter="url(#glow)">
+      <animate attributeName="opacity" values="0.35;1;0.35" dur="2.8s" repeatCount="indefinite"/>
+      <animate attributeName="r" values="3;5;3" dur="2.8s" repeatCount="indefinite"/>
+    </circle>
+    <path d="M0 264C168 236 304 241 456 264C600 286 758 286 914 264C1068 242 1184 238 1280 254V300H0V264Z" fill="#020617" fill-opacity="0.66"/>
+  </g>
+</svg>
