@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="docs/assets/prompt2site-hero.svg" alt="Prompt2Site animated hero banner" />
+  <img src="assets/prompt2site-hero.svg" alt="Prompt2Site animated hero banner" />
 </p>
 
 <p align="center">
