@@ -13,6 +13,7 @@ export default function Chat({
   fetching,
   setPrompt,
   prompt,
+  setCode,
 }) {
   const dispatch = useDispatch();
   const { userData } = useSelector((state) => state.user);
@@ -45,11 +46,14 @@ export default function Chat({
       );
       setFetching(false);
       setPrompt("");
-      setWebsiteData((pre) => ({
-        ...pre,
-        conversations: [...conversations, ...result.data.conversations],
-        latestCode: result.data.latestCode,
+      setWebsiteData((prev) => ({
+        ...prev,
+        conversations: [
+          ...prev.conversations,
+          { role: "user", content: prompt },
+        ],
       }));
+     setCode(result.data.latestCode);
     } catch (e) {
       setWebsiteData((pre) => ({
         ...pre,
