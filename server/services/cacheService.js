@@ -5,7 +5,8 @@ export const CACHE_TTL_SECONDS = 2 * 24 * 60 * 60;
 export const cacheKeys = {
   user: (userId) => `prompt2site:user:${userId}`,
   websiteList: (userId) => `prompt2site:websites:list:${userId}`,
-  websiteDetail: (userId, websiteId) => `prompt2site:website:detail:${userId}:${websiteId}`,
+  websiteDetail: (userId, websiteId) =>
+    `prompt2site:website:detail:${userId}:${websiteId}`,
   websiteSlug: (slug) => (slug ? `prompt2site:website:slug:${slug}` : null),
 };
 
@@ -38,29 +39,16 @@ export const setJsonCache = async (
 };
 
 export const deleteCache = async (...keys) => {
-  if (!canUseCache()) {
-    console.log("Redis unavailable");
-    return;
-  }
+  if (!canUseCache()) return;
 
   const validKeys = keys.filter(Boolean);
-
-  console.log("DELETE REQUEST:", validKeys);
-
-  if (!validKeys.length) {
-    console.log("No valid keys");
-    return;
-  }
+  if (!validKeys.length) return;
 
   try {
-    const existing = await redisClient.exists(...validKeys);
-
-    console.log("Keys exist count:", existing);
-
-    const deleted = await redisClient.del(...validKeys);
-
-    console.log("Deleted keys count:", deleted);
+    for (const key of validKeys) {
+      await redisClient.del(key);
+    }
   } catch (error) {
-    console.error("Redis delete failed:", error);
+    console.error("Redis delete failed:", error.message);
   }
 };
