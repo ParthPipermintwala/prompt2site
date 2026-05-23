@@ -13,9 +13,6 @@ export default function LiveSite() {
       try {
         const result = await axios.get(
           `${import.meta.env.VITE_BACKEND_URL}/api/website/getBySlug/${id}`,
-          {
-            withCredentials: true,
-          },
         );
         setCode(result.data.latestCode);
       } catch (error) {
