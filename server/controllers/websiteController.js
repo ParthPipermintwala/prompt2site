@@ -4,6 +4,12 @@ import extractWebsiteResponse from "../services/extractJson.js";
 import Website from "../models/websiteModel.js";
 import Message from "../models/messageModel.js";
 import User from "../models/userModel.js";
+import {
+  cacheKeys,
+  deleteCache,
+  getJsonCache,
+  setJsonCache,
+} from "../services/cacheService.js";
 
 export const generatewebsite = async (req, res) => {
   try {
@@ -55,6 +61,10 @@ export const generatewebsite = async (req, res) => {
     });
     user.credits -= 50;
     await user.save();
+    await deleteCache(
+      cacheKeys.user(user._id),
+      cacheKeys.websiteList(user._id),
+    );
     return res
       .status(201)
       .json({ websiteId: website._id, creditsLeft: user.credits });
@@ -70,13 +80,23 @@ export const generatewebsite = async (req, res) => {
 export const getWebsites = async (req, res) => {
   try {
     const { id } = req.params;
+    const cacheKey = cacheKeys.websiteDetail(req.user._id, id);
+    const cachedWebsite = await getJsonCache(cacheKey);
+
+    if (cachedWebsite) {
+      return res.status(200).json(cachedWebsite);
+    }
+
     const website = await Website.findOne({
       _id: id,
       user: req.user._id,
-    }).populate("conversations");
+    })
+      .populate("conversations")
+      .lean();
     if (!website) {
       return res.status(404).json({ message: "Website not found" });
     }
+    await setJsonCache(cacheKey, website);
     return res.status(200).json(website);
   } catch (error) {
     return res
@@ -88,6 +108,13 @@ export const getWebsites = async (req, res) => {
 export const getWebsitesBySlug = async (req, res) => {
   try {
     const { slug } = req.params;
+    const cacheKey = cacheKeys.websiteSlug(req.user._id, slug);
+    const cachedWebsite = await getJsonCache(cacheKey);
+
+    if (cachedWebsite) {
+      return res.status(200).json(cachedWebsite);
+    }
+
     const website = await Website.findOne({
       slug: slug,
       user: req.user._id,
@@ -97,6 +124,7 @@ export const getWebsitesBySlug = async (req, res) => {
     if (!website) {
       return res.status(404).json({ message: "Website not found" });
     }
+    await setJsonCache(cacheKey, website);
     return res.status(200).json(website);
   } catch (error) {
     console.log(error);
@@ -127,6 +155,9 @@ export const changeWebsite = async (req, res) => {
       _id: id,
       user: req.user._id,
     });
+    if (!website) {
+      return res.status(404).json({ message: "Website not found" });
+    }
 
     const finalPrompt = updatePrompt
       .replace("{USER_PROMPT}", prompt)
@@ -167,6 +198,12 @@ export const changeWebsite = async (req, res) => {
     user.credits -= 15;
     await website.save();
     await user.save();
+    await deleteCache(
+      cacheKeys.user(user._id),
+      cacheKeys.websiteList(user._id),
+      cacheKeys.websiteDetail(user._id, website._id),
+      cacheKeys.websiteSlug(user._id, website.slug),
+    );
     return res.status(201).json({
       conversations: [user_conversation, ai_conversation],
       latestCode: parsed.code,
@@ -182,8 +219,11 @@ export const changeWebsite = async (req, res) => {
 export const deleteWebsite = async (req, res) => {
   try {
     const { id } = req.params;
-    const website = await Website.findById(req.params.id)
-      .select("conversations")
+    const website = await Website.findOne({
+      _id: id,
+      user: req.user._id,
+    })
+      .select("conversations slug")
       .lean();
     if (!website) {
       return res.status(404).json({
@@ -194,7 +234,12 @@ export const deleteWebsite = async (req, res) => {
     await Message.deleteMany({
       _id: { $in: website.conversations },
     });
-    await Website.findByIdAndDelete(req.params.id);
+    await Website.findByIdAndDelete(id);
+    await deleteCache(
+      cacheKeys.websiteList(req.user._id),
+      cacheKeys.websiteDetail(req.user._id, id),
+      cacheKeys.websiteSlug(req.user._id, website.slug),
+    );
 
     res.json({
       success: true,
@@ -209,9 +254,17 @@ export const deleteWebsite = async (req, res) => {
 
 export const getAll = async (req, res) => {
   try {
+    const cacheKey = cacheKeys.websiteList(req.user._id);
+    const cachedWebsites = await getJsonCache(cacheKey);
+
+    if (cachedWebsites) {
+      return res.status(200).json(cachedWebsites);
+    }
+
     const website = await Website.find({ user: req.user._id })
       .select("-conversations -__v -user")
       .lean();
+    await setJsonCache(cacheKey, website);
     return res.status(200).json(website);
   } catch (error) {
     return res
@@ -239,6 +292,11 @@ export const deploy = async (req, res) => {
     website.deployed = true;
     website.deployeUrl = `${process.env.ORIGIN}site/${website.slug}`;
     await website.save();
+    await deleteCache(
+      cacheKeys.websiteList(req.user._id),
+      cacheKeys.websiteDetail(req.user._id, website._id),
+      cacheKeys.websiteSlug(req.user._id, website.slug),
+    );
 
     return res.status(200).json({
       deployed: website.deployed,
