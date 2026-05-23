@@ -49,7 +49,7 @@ export default function Chat({
         ...prev,
         conversations: [
           ...prev.conversations,
-          { role: "ai", content: result.data.conversations[1] },
+          { ...result.data.conversations[1] },
         ],
       }));
      setCode(result.data.latestCode);
