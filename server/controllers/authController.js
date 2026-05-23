@@ -6,6 +6,18 @@ import {
   generateJWTToken,
   setTokenCookie,
 } from "../services/authServices.js";
+import { cacheKeys, setJsonCache } from "../services/cacheService.js";
+
+const toSafeUser = (user) => ({
+  _id: user._id,
+  name: user.name,
+  email: user.email,
+  avatar: user.avatar,
+  credits: user.credits,
+  plan: user.plan,
+  createdAt: user.createdAt,
+  updatedAt: user.updatedAt,
+});
 
 // Handle Google authentication
 export const googleAuth = async (req, res) => {
@@ -19,10 +31,12 @@ export const googleAuth = async (req, res) => {
 
     const jwtToken = await generateJWTToken(user._id);
     await setTokenCookie(res, jwtToken);
+    const safeUser = toSafeUser(user);
+    await setJsonCache(cacheKeys.user(user._id), safeUser);
 
     return res.status(200).json({
       message: "Login successful",
-      user,
+      user: safeUser,
     });
   } catch (error) {
     return res.status(error.statusCode || 500).json({
@@ -60,15 +74,12 @@ export const signup = async (req, res) => {
 
     const jwtToken = await generateJWTToken(user._id);
     await setTokenCookie(res, jwtToken);
+    const safeUser = toSafeUser(user);
+    await setJsonCache(cacheKeys.user(user._id), safeUser);
 
     return res.status(201).json({
       message: "User created successfully",
-      user: {
-        _id: user._id,
-        name: user.name,
-        email: user.email,
-        avatar: user.avatar,
-      },
+      user: safeUser,
     });
   } catch (error) {
     // Handle validation errors from Mongoose schema
@@ -114,15 +125,12 @@ export const signin = async (req, res) => {
 
     const jwtToken = await generateJWTToken(user._id);
     await setTokenCookie(res, jwtToken);
+    const safeUser = toSafeUser(user);
+    await setJsonCache(cacheKeys.user(user._id), safeUser);
 
     return res.status(200).json({
       message: "Login successful",
-      user: {
-        _id: user._id,
-        name: user.name,
-        email: user.email,
-        avatar: user.avatar,
-      },
+      user: safeUser,
     });
   } catch (error) {
     return res.status(500).json({
