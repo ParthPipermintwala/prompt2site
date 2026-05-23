@@ -1,6 +1,7 @@
 import Razorpay from "razorpay";
 import crypto from "crypto";
 import User from "../models/userModel.js";
+import { cacheKeys, deleteCache } from "../services/cacheService.js";
 
 const razorpay = new Razorpay({
   key_id: process.env.RAZORPAY_KEY_ID,
@@ -59,6 +60,7 @@ export const verifyPayment = async (req, res) => {
         returnDocument: "after",
       },
     ).select("plan credits");
+    await deleteCache(cacheKeys.user(req.user._id));
 
     res.json({
       success: true,
