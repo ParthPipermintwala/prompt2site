@@ -152,7 +152,7 @@ export const changeWebsite = async (req, res) => {
     const website = await Website.findOne({
       _id: id,
       user: req.user._id,
-    });
+    }).lean();
     if (!website) {
       return res.status(404).json({ message: "Website not found" });
     }
@@ -186,15 +186,25 @@ export const changeWebsite = async (req, res) => {
       content: prompt,
     });
     user.credits -= 15;
-    await Website.findByIdAndUpdate(website._id, {
-      latestCode: parsed.code,
-      $push: {
-        conversations: {
-          $each: [user_conversation._id, ai_conversation._id],
+    await Promise.all([
+      Website.findByIdAndUpdate(
+        website._id,
+        {
+          latestCode: parsed.code,
+          $push: {
+            conversations: {
+              $each: [user_conversation._id, ai_conversation._id],
+            },
+          },
         },
-      },
-    });
-    await user.save();
+        {
+          new: true,
+          runValidators: true,
+        },
+      ),
+
+      user.save(),
+    ]);
     await deleteCache(
       cacheKeys.user(user._id),
       cacheKeys.websiteList(user._id),
