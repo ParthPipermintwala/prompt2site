@@ -108,7 +108,7 @@ export const getWebsites = async (req, res) => {
 export const getWebsitesBySlug = async (req, res) => {
   try {
     const { slug } = req.params;
-    const cacheKey = cacheKeys.websiteSlug(req.user._id, slug);
+    const cacheKey = cacheKeys.websiteSlug(slug);
     const cachedWebsite = await getJsonCache(cacheKey);
 
     if (cachedWebsite) {
@@ -201,7 +201,7 @@ export const changeWebsite = async (req, res) => {
       cacheKeys.user(user._id),
       cacheKeys.websiteList(user._id),
       cacheKeys.websiteDetail(user._id, website._id),
-      cacheKeys.websiteSlug(user._id, website.slug),
+      cacheKeys.websiteSlug(website.slug),
     );
     return res.status(201).json({
       conversations: [user_conversation, ai_conversation],
@@ -238,7 +238,7 @@ export const deleteWebsite = async (req, res) => {
     await deleteCache(
       cacheKeys.websiteList(req.user._id),
       cacheKeys.websiteDetail(req.user._id, id),
-      cacheKeys.websiteSlug(req.user._id, website.slug),
+      cacheKeys.websiteSlug(website.slug),
     );
 
     res.json({
@@ -296,7 +296,7 @@ export const deploy = async (req, res) => {
     await deleteCache(
       cacheKeys.websiteList(req.user._id),
       cacheKeys.websiteDetail(req.user._id, website._id),
-      cacheKeys.websiteSlug(req.user._id, website.slug),
+      cacheKeys.websiteSlug(website.slug),
     );
 
     return res.status(200).json({
