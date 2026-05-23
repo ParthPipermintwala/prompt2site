@@ -9,6 +9,7 @@
 <p align="center">
   <img src="https://img.shields.io/badge/Product-AI%20Website%20Builder-4f46e5?style=for-the-badge" alt="product" />
   <img src="https://img.shields.io/badge/Frontend-React%2019%20%7C%20Vite%208%20%7C%20Tailwind-06b6d4?style=for-the-badge" alt="frontend" />
+  <img src="https://img.shields.io/badge/UI-ReactBits%20Animations-a855f7?style=for-the-badge" alt="ReactBits animations" />
   <img src="https://img.shields.io/badge/Backend-Node.js%20%7C%20Express%205-111827?style=for-the-badge" alt="backend" />
   <img src="https://img.shields.io/badge/Data-MongoDB%20%7C%20RedisJSON-16a34a?style=for-the-badge" alt="data" />
   <img src="https://img.shields.io/badge/AI-OpenRouter-a855f7?style=for-the-badge" alt="ai" />
@@ -33,6 +34,7 @@ Instead of starting from an empty editor, users can:
 - Generate a complete website from a prompt
 - Preview the result instantly in a sandboxed iframe
 - Refine the site through chat-style AI edits
+- Feel the product through ReactBits-inspired motion, particles, and shiny text
 - Inspect and edit generated HTML with Monaco Editor
 - Save generated websites to a private dashboard
 - Buy credits through Razorpay
@@ -124,9 +126,10 @@ flowchart TD
       <img src="https://img.shields.io/badge/Vite-111827?style=flat-square&logo=vite&logoColor=646CFF" alt="Vite" />
       <img src="https://img.shields.io/badge/Tailwind_CSS-0f172a?style=flat-square&logo=tailwindcss&logoColor=38B2AC" alt="Tailwind CSS" />
       <img src="https://img.shields.io/badge/Redux_Toolkit-111827?style=flat-square&logo=redux&logoColor=764ABC" alt="Redux Toolkit" />
+      <img src="https://img.shields.io/badge/ReactBits-111827?style=flat-square&logo=react&logoColor=a855f7" alt="ReactBits" />
       <img src="https://img.shields.io/badge/Framer_Motion-0f172a?style=flat-square&logo=framer&logoColor=ffffff" alt="Framer Motion" />
     </td>
-    <td>Responsive, animated website builder interface</td>
+    <td>Responsive, animated website builder interface with ReactBits-style effects</td>
   </tr>
   <tr>
     <td><strong>Editor UX</strong></td>
@@ -509,23 +512,6 @@ Open `http://localhost:5173`.
 | Cache performance | RedisJSON read-through cache with 2-day TTL |
 | Preview isolation | Generated HTML renders inside sandboxed iframes |
 
----
-
-## Notes From The Current Codebase
-
-<details>
-  <summary><strong>Implementation details worth knowing</strong></summary>
-
-- Shared live site route `/api/website/getBySlug/:slug` is currently under protected website routes, so it requires authentication.
-- Deploy slug generation currently calculates the ID suffix separately, so the suffix is not appended.
-- `useRazorpay.jsx` contains a leading space before the verify-payment URL template.
-- Client route protection uses `localStorage`, while backend protection uses the HTTP-only JWT cookie.
-- Streaming AI responses, rate limiting, CSRF protection, GitHub OAuth, queues, vector search, and RAG are not implemented.
-
-</details>
-
----
-
 ## Created By
 
 <table>
@@ -554,7 +540,7 @@ Prompt2Site is released under the [MIT License](LICENSE).
 
 <p align="center">
   <img src="https://img.shields.io/badge/Project-Prompt2Site-4f46e5?style=for-the-badge" alt="project" />
-  <img src="https://img.shields.io/badge/Made%20With-React%20%2B%20Express%20%2B%20AI-06b6d4?style=for-the-badge" alt="made with" />
+  <img src="https://img.shields.io/badge/Made%20With-ReactBits%20%2B%20React%20%2B%20AI-06b6d4?style=for-the-badge" alt="made with" />
 </p>
 
 <p align="center">
