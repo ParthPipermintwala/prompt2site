@@ -11,7 +11,7 @@ export default function LiveSite() {
     const handleGetWebsite = async () => {
       try {
         const result = await axios.get(
-          `${import.meta.env.VITE_BACKEND_URL || ""}/api/website/getBySlug/${id}`,
+          `${import.meta.env.PROD ? "" : import.meta.env.VITE_BACKEND_URL || ""}/api/website/getBySlug/${id}`,
         );
         setCode(result.data.latestCode);
       } catch (error) {

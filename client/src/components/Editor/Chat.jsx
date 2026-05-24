@@ -32,7 +32,7 @@ export default function Chat({
     try {
       setFetching(true);
       const result = await axios.post(
-        `${import.meta.env.VITE_BACKEND_URL || ""}/api/website/changeWebsite/${id}`,
+        `${import.meta.env.PROD ? "" : import.meta.env.VITE_BACKEND_URL || ""}/api/website/changeWebsite/${id}`,
         { prompt },
         {
           withCredentials: true,

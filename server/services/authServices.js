@@ -90,13 +90,15 @@ export const getTokenCookieOptions = () => {
   return {
     httpOnly: true,
     secure: isProduction,
-    sameSite: isProduction ? "none" : "lax",
+    sameSite: "lax",
     path: "/",
-    maxAge: 7 * 24 * 60 * 60 * 1000,
   };
 };
 
 export const setTokenCookie = async (res, jwtToken) => {
   // Set token in HTTP-only cookie
-  res.cookie("token", jwtToken, getTokenCookieOptions());
+  res.cookie("token", jwtToken, {
+    ...getTokenCookieOptions(),
+    maxAge: 7 * 24 * 60 * 60 * 1000,
+  });
 };

@@ -23,7 +23,7 @@ export default function Dashboard() {
   const handleDeploy = async (id) => {
     try {
       const result = await axios.get(
-        `${import.meta.env.VITE_BACKEND_URL || ""}/api/website/deploy/${id}`,
+        `${import.meta.env.PROD ? "" : import.meta.env.VITE_BACKEND_URL || ""}/api/website/deploy/${id}`,
         {
           withCredentials: true,
         },
@@ -52,7 +52,7 @@ export default function Dashboard() {
     setLoading(true);
     try {
       const result = await axios.get(
-        `${import.meta.env.VITE_BACKEND_URL || ""}/api/website/getAll`,
+        `${import.meta.env.PROD ? "" : import.meta.env.VITE_BACKEND_URL || ""}/api/website/getAll`,
         {
           withCredentials: true,
         },

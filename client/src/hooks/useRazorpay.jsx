@@ -29,7 +29,7 @@ export default function useRazorpay() {
       }
 
       const { data: order } = await axios.post(
-        `${import.meta.env.VITE_BACKEND_URL || ""}/api/payment/createOrder`,
+        `${import.meta.env.PROD ? "" : import.meta.env.VITE_BACKEND_URL || ""}/api/payment/createOrder`,
         {
           amount,
         },
@@ -62,7 +62,7 @@ export default function useRazorpay() {
         },
         handler: async function (response) {
           const verify = await axios.post(
-            `${import.meta.env.VITE_BACKEND_URL || ""}/api/payment/verifyPayment`,
+            `${import.meta.env.PROD ? "" : import.meta.env.VITE_BACKEND_URL || ""}/api/payment/verifyPayment`,
             {
               ...response,
               plan: planName,

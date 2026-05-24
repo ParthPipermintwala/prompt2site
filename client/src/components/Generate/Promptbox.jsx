@@ -49,7 +49,7 @@ export default function Promptbox() {
 
     try {
       const result = await axios.post(
-        `${import.meta.env.VITE_BACKEND_URL || ""}/api/website/generate`,
+        `${import.meta.env.PROD ? "" : import.meta.env.VITE_BACKEND_URL || ""}/api/website/generate`,
         { prompt },
         {
           withCredentials: true,

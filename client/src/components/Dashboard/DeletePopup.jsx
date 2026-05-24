@@ -11,7 +11,7 @@ export default function DeletePopup({ setOpen, id, handleGetAllWebsite }) {
     try {
       setLoading(true);
       const result = await axios.delete(
-        `${import.meta.env.VITE_BACKEND_URL || ""}/api/website/delete/${id}`,
+        `${import.meta.env.PROD ? "" : import.meta.env.VITE_BACKEND_URL || ""}/api/website/delete/${id}`,
         {
           withCredentials: true,
         },

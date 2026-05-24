@@ -33,7 +33,7 @@ export default function PreviewHeader({
   const handleDeploy = async (id) => {
     try {
       const result = await axios.get(
-        `${import.meta.env.VITE_BACKEND_URL || ""}/api/website/deploy/${id}`,
+        `${import.meta.env.PROD ? "" : import.meta.env.VITE_BACKEND_URL || ""}/api/website/deploy/${id}`,
         {
           withCredentials: true,
         },
