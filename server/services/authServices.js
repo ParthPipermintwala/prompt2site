@@ -85,21 +85,18 @@ export const generateJWTToken = async (userId) => {
 };
 
 export const getTokenCookieOptions = () => {
-  const origin = process.env.ORIGIN || "";
-  const isHttpsOrigin = origin.startsWith("https://");
+  const isProduction = process.env.NODE_ENV === "production";
 
   return {
     httpOnly: true,
-    secure: isHttpsOrigin,
-    sameSite: isHttpsOrigin ? "none" : "lax",
+    secure: isProduction,
+    sameSite: isProduction ? "none" : "lax",
     path: "/",
+    maxAge: 7 * 24 * 60 * 60 * 1000,
   };
 };
 
 export const setTokenCookie = async (res, jwtToken) => {
   // Set token in HTTP-only cookie
-  res.cookie("token", jwtToken, {
-    ...getTokenCookieOptions(),
-    maxAge: 7 * 24 * 60 * 60 * 1000,
-  });
+  res.cookie("token", jwtToken, getTokenCookieOptions());
 };
