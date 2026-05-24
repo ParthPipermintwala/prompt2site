@@ -49,14 +49,14 @@ export default function Promptbox() {
 
     try {
       const result = await axios.post(
-        `${import.meta.env.VITE_BACKEND_URL}/api/website/generate`,
+        `${import.meta.env.VITE_BACKEND_URL || ""}/api/website/generate`,
         { prompt },
         {
           withCredentials: true,
         },
       );
       setProgress(100);
-      if (result.status === 200) {
+      if (result.status === 201) {
         dispatch(
           setUserData({ ...userData, credits: result.data.creditsLeft }),
         );
@@ -67,7 +67,7 @@ export default function Promptbox() {
       }
       navigate(`/editor/${result.data.websiteId}`);
     } catch (error) {
-      setError(error.response.data.message || "Something went wrong");
+      setError(error.response?.data?.message || "Something went wrong");
       setTimeout(() => {
         setError("");
       }, 6000);

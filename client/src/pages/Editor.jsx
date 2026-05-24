@@ -29,7 +29,7 @@ export default function Editor() {
     const handleGetWebsite = async () => {
       try {
         const result = await axios.get(
-          `${import.meta.env.VITE_BACKEND_URL}/api/website/websiteData/${id}`,
+          `${import.meta.env.VITE_BACKEND_URL || ""}/api/website/websiteData/${id}`,
           {
             withCredentials: true,
           },

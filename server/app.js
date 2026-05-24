@@ -10,9 +10,19 @@ import paymentRouter from "./routes/paymentRoutes.js";
 const app = express();
 app.disable("x-powered-by");
 
+const allowedOrigins = (process.env.ORIGIN || "")
+  .split(",")
+  .map((origin) => origin.trim())
+  .filter(Boolean);
+
 app.use(
   cors({
-    origin: process.env.ORIGIN, 
+    origin(origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      }
+      return callback(new Error("Not allowed by CORS"));
+    },
     credentials: true, //allowing cookies to be sent with requests from the frontend
   }),
 );

@@ -8,7 +8,7 @@ const useAuth = () => {
   const navigate = useNavigate();
 
   const handleGoogleAuth = async (credential) => {
-    const baseUrl = import.meta.env.VITE_BACKEND_URL;
+    const baseUrl = import.meta.env.VITE_BACKEND_URL || "";
     try {
       const { data } = await axios.post(
         `${baseUrl}/api/auth/google`,
@@ -27,7 +27,7 @@ const useAuth = () => {
 
   const handleLogout = async () => {
     try {
-      const baseurl = import.meta.env.VITE_BACKEND_URL;
+      const baseurl = import.meta.env.VITE_BACKEND_URL || "";
       await axios.get(`${baseurl}/api/auth/logout`, {
         withCredentials: true,
       });

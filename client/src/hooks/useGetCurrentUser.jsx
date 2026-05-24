@@ -12,7 +12,7 @@ export default function useGetCurrentUser() {
     }
     const getCurrentUser = async () => {
       try {
-        const baseUrl = import.meta.env.VITE_BACKEND_URL;
+        const baseUrl = import.meta.env.VITE_BACKEND_URL || "";
         const { data } = await axios.get(`${baseUrl}/api/user/profile`, {
           withCredentials: true,
         });
