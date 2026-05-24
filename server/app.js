@@ -14,7 +14,7 @@ const allowedOrigins = (process.env.ORIGIN || "")
   .split(",")
   .map((origin) => origin.trim())
   .filter(Boolean);
-
+app.set("trust proxy", 1);
 app.use(
   cors({
     origin(origin, callback) {
