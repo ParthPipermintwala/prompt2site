@@ -5,6 +5,7 @@ import {
   loginWithGoogle,
   generateJWTToken,
   setTokenCookie,
+  getTokenCookieOptions,
 } from "../services/authServices.js";
 import { cacheKeys, setJsonCache } from "../services/cacheService.js";
 
@@ -48,11 +49,7 @@ export const googleAuth = async (req, res) => {
 // Handle user logout
 export const logout = async (req, res) => {
   try {
-    res.clearCookie("token", {
-      httpOnly: true,
-      secure: false,
-      sameSite: "lax",
-    });
+    res.clearCookie("token", getTokenCookieOptions());
     return res.status(200).json({
       message: "Logout successful",
     });
