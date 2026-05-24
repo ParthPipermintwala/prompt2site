@@ -5,6 +5,9 @@ import { GoogleOAuthProvider } from "@react-oauth/google";
 import Loader from "./components/common/Loader";
 import { Provider } from "react-redux";
 import { store } from "./app/store";
+import axios from "axios";
+
+axios.defaults.withCredentials = true;
 
 export default function App() {
   const navigation = useNavigation();
